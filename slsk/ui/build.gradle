@@ -12,6 +12,10 @@ android {
 
     resourcePrefix 'slsk_'
 
+    buildFeatures {
+        viewBinding true
+    }
+
     buildTypes {
         release {
             consumerProguardFiles 'consumer-rules.pro'
@@ -28,8 +32,11 @@ java {
 dependencies {
     api project(':slsk:core')
 
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.8.6'
+    implementation slsk.androidx.datastore.preferences
+    implementation slsk.androidx.swiperefreshlayout
     implementation slsk.androidx.appcompat
-    implementation slsk.androidx.recyclerview
+
     implementation slsk.androidx.constraintlayout
     implementation slsk.androidx.lifecycle.viewmodel.ktx
     implementation slsk.androidx.lifecycle.runtime.ktx

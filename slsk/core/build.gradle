@@ -31,6 +31,7 @@ dependencies {
     api slsk.coroutines.core
 
     implementation slsk.retrofit.kotlinx.serialization
+    implementation slsk.okhttp.logging
     implementation slsk.coroutines.android
     implementation slsk.androidx.datastore.preferences
     implementation slsk.androidx.annotation

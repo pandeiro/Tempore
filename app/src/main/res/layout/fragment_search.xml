@@ -162,6 +162,8 @@
                     android:paddingStart="6dp"
                     android:paddingEnd="6dp"
                     android:text="@string/search_description_empty_response" />
+
+                <include layout="@layout/slsk_view_search_cta" />
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

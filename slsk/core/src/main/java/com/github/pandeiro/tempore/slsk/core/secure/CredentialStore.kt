@@ -1,5 +1,7 @@
 package com.github.pandeiro.tempore.slsk.core.secure
 
+import kotlinx.serialization.Serializable
+
 interface CredentialStore {
     fun load(): SlskdConfig?
 
@@ -8,6 +10,7 @@ interface CredentialStore {
     fun clear()
 }
 
+@Serializable
 data class SlskdConfig(
     val baseUrl: String,
     val apiKey: String,

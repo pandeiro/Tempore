@@ -27,7 +27,13 @@ anim design_bottom_sheet_slide_in
 anim design_bottom_sheet_slide_out
 anim design_snackbar_in
 anim design_snackbar_out
+anim fragment_close_enter
+anim fragment_close_exit
+anim fragment_fade_enter
+anim fragment_fade_exit
 anim fragment_fast_out_extra_slow_in
+anim fragment_open_enter
+anim fragment_open_exit
 anim linear_indeterminate_line1_head_interpolator
 anim linear_indeterminate_line1_tail_interpolator
 anim linear_indeterminate_line2_head_interpolator
@@ -79,6 +85,7 @@ animator mtrl_fab_transformation_sheet_collapse_spec
 animator mtrl_fab_transformation_sheet_expand_spec
 attr SharedValue
 attr SharedValueId
+attr action
 attr actionBarDivider
 attr actionBarItemBackground
 attr actionBarPopupTheme
@@ -135,6 +142,7 @@ attr animationMode
 attr appBarLayoutStyle
 attr applyMotionScene
 attr arcMode
+attr argType
 attr arrowHeadLength
 attr arrowShaftLength
 attr attributeName
@@ -441,18 +449,22 @@ attr customNavigationLayout
 attr customPixelDimension
 attr customReference
 attr customStringValue
+attr data
+attr dataPattern
 attr dayInvalidStyle
 attr daySelectedStyle
 attr dayStyle
 attr dayTodayStyle
 attr defaultDuration
 attr defaultMarginsEnabled
+attr defaultNavHost
 attr defaultQueryHint
 attr defaultScrollFlagsEnabled
 attr defaultState
 attr deltaPolarAngle
 attr deltaPolarRadius
 attr deriveConstraintsFrom
+attr destination
 attr dialogCornerRadius
 attr dialogPreferredPadding
 attr dialogTheme
@@ -506,6 +518,7 @@ attr endIconTintMode
 attr enforceMaterialTheme
 attr enforceTextAppearance
 attr ensureMinTouchTargetSize
+attr enterAnim
 attr errorAccessibilityLabel
 attr errorAccessibilityLiveRegion
 attr errorContentDescription
@@ -516,6 +529,7 @@ attr errorIconTintMode
 attr errorShown
 attr errorTextAppearance
 attr errorTextColor
+attr exitAnim
 attr expandActivityOverflowButtonDrawable
 attr expanded
 attr expandedHintEnabled
@@ -603,6 +617,7 @@ attr framePosition
 attr gapBetweenBars
 attr gestureInsetBottomIgnored
 attr goIcon
+attr graph
 attr grid_columnWeights
 attr grid_columns
 attr grid_horizontalGaps
@@ -706,6 +721,7 @@ attr labelVisibilityMode
 attr largeFontVerticalOffsetAdjustment
 attr lastBaselineToBottomHeight
 attr lastItemDecorated
+attr launchSingleTop
 attr layout
 attr layoutDescription
 attr layoutDuringTransition
@@ -871,6 +887,7 @@ attr menu
 attr menuAlignmentMode
 attr menuGravity
 attr methodName
+attr mimeType
 attr minHeight
 attr minHideDelay
 attr minSeparation
@@ -929,6 +946,7 @@ attr motion_postLayoutCollision
 attr motion_triggerOnCollision
 attr moveWhenScrollAtTop
 attr multiChoiceItemLayout
+attr navGraph
 attr navigationContentDescription
 attr navigationIcon
 attr navigationIconTint
@@ -938,6 +956,7 @@ attr navigationViewStyle
 attr nestedScrollFlags
 attr nestedScrollViewStyle
 attr nestedScrollable
+attr nullable
 attr number
 attr numericModifiers
 attr offsetAlignmentMode
@@ -980,6 +999,11 @@ attr placeholderTextAppearance
 attr placeholderTextColor
 attr placeholder_emptyVisibility
 attr polarRelativeTo
+attr popEnterAnim
+attr popExitAnim
+attr popUpTo
+attr popUpToInclusive
+attr popUpToSaveState
 attr popupMenuBackground
 attr popupMenuStyle
 attr popupTheme
@@ -1012,11 +1036,13 @@ attr region_heightMoreThan
 attr region_widthLessThan
 attr region_widthMoreThan
 attr removeEmbeddedFabElevation
+attr restoreState
 attr reverseLayout
 attr rippleColor
 attr rotationCenterId
 attr round
 attr roundPercent
+attr route
 attr saturation
 attr scaleFromTextSize
 attr scrimAnimationDuration
@@ -1081,6 +1107,7 @@ attr springStopThreshold
 attr srcCompat
 attr stackFromEnd
 attr staggered
+attr startDestination
 attr startIconCheckable
 attr startIconContentDescription
 attr startIconDrawable
@@ -1118,6 +1145,7 @@ attr suffixText
 attr suffixTextAppearance
 attr suffixTextColor
 attr suggestionRowLayout
+attr swipeRefreshLayoutProgressSpinnerBackgroundColor
 attr switchMinWidth
 attr switchPadding
 attr switchStyle
@@ -1152,6 +1180,7 @@ attr tabTextAppearance
 attr tabTextColor
 attr tabUnboundedRipple
 attr targetId
+attr targetPackage
 attr telltales_tailColor
 attr telltales_tailScale
 attr telltales_velocityMode
@@ -1297,6 +1326,7 @@ attr triggerReceiver
 attr triggerSlack
 attr ttcIndex
 attr upDuration
+attr uri
 attr useCompatPadding
 attr useDrawerArrowDrawable
 attr useMaterialThemeColors
@@ -1343,6 +1373,7 @@ color abc_decor_view_status_guard
 color abc_decor_view_status_guard_light
 color abc_hint_foreground_material_dark
 color abc_hint_foreground_material_light
+color abc_input_method_navigation_guard
 color abc_primary_text_disable_only_material_dark
 color abc_primary_text_disable_only_material_light
 color abc_primary_text_material_dark
@@ -2069,6 +2100,12 @@ color secondary_text_default_material_dark
 color secondary_text_default_material_light
 color secondary_text_disabled_material_dark
 color secondary_text_disabled_material_light
+color slsk_badge_pill
+color slsk_result_tint
+color slsk_soulseek_accent
+color slsk_status_bad
+color slsk_status_good
+color slsk_status_warn
 color switch_thumb_disabled_material_dark
 color switch_thumb_disabled_material_light
 color switch_thumb_material_dark
@@ -2864,6 +2901,7 @@ dimen notification_small_icon_size_as_large
 dimen notification_subtext_size
 dimen notification_top_pad
 dimen notification_top_pad_large_text
+dimen sliding_pane_detail_pane_width
 dimen tooltip_corner_radius
 dimen tooltip_horizontal_padding
 dimen tooltip_margin
@@ -3069,6 +3107,10 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable slsk_ic_delete
+drawable slsk_ic_filter
+drawable slsk_ic_soulseek
+drawable slsk_ic_transfer
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
@@ -3336,6 +3378,8 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
+id nav_controller_view_tag
+id nav_host_fragment_container
 id navigation_bar_item_active_indicator_view
 id navigation_bar_item_icon_container
 id navigation_bar_item_icon_view
@@ -3425,6 +3469,83 @@ id shortcut
 id sin
 id skipped
 id slide
+id sliding_pane_detail_container
+id sliding_pane_layout
+id slskActivityFragment
+id slskResultsFragment
+id slsk_action_activity
+id slsk_action_filter
+id slsk_action_results_to_activity
+id slsk_activity_clear
+id slsk_activity_empty
+id slsk_activity_error_action
+id slsk_activity_error_banner
+id slsk_activity_error_text
+id slsk_activity_list
+id slsk_activity_scan_banner
+id slsk_activity_toolbar
+id slsk_file_check
+id slsk_file_locked
+id slsk_file_name
+id slsk_file_quality
+id slsk_file_size
+id slsk_filter_320
+id slsk_filter_format_order
+id slsk_filter_free
+id slsk_filter_lossless
+id slsk_first_use_got_it
+id slsk_group_meta
+id slsk_group_quality
+id slsk_group_queue
+id slsk_group_slot
+id slsk_group_slot_icon
+id slsk_group_speed
+id slsk_group_title
+id slsk_group_username
+id slsk_nav_graph
+id slsk_results_empty
+id slsk_results_empty_group
+id slsk_results_empty_hint
+id slsk_results_error_action
+id slsk_results_error_banner
+id slsk_results_error_text
+id slsk_results_list
+id slsk_results_load_more
+id slsk_results_progress
+id slsk_results_toolbar
+id slsk_scope_button_library
+id slsk_scope_button_soulseek
+id slsk_scope_toggle
+id slsk_search_cta
+id slsk_settings_api_key
+id slsk_settings_autoscan
+id slsk_settings_base_url
+id slsk_settings_key_layout
+id slsk_settings_open_activity
+id slsk_settings_pinned_cert
+id slsk_settings_result
+id slsk_settings_save
+id slsk_settings_test
+id slsk_settings_url_layout
+id slsk_sheet_download
+id slsk_sheet_files
+id slsk_sheet_load_full_folder
+id slsk_sheet_locked_hint
+id slsk_sheet_select_all
+id slsk_sheet_title
+id slsk_tf_cancel
+id slsk_tf_name
+id slsk_tf_retry
+id slsk_tf_state
+id slsk_tg_folder
+id slsk_tg_handoff_action
+id slsk_tg_handoff_chip
+id slsk_tg_handoff_hint
+id slsk_tg_handoff_row
+id slsk_tg_progress
+id slsk_tg_rows
+id slsk_tg_status
+id slsk_tg_username
 id snackbar_action
 id snackbar_text
 id south
@@ -3704,7 +3825,21 @@ layout notification_template_part_time
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
+layout slsk_activity_settings
+layout slsk_fragment_activity
+layout slsk_fragment_results
+layout slsk_fragment_search_toggle
+layout slsk_item_folder_file
+layout slsk_item_result_group
+layout slsk_item_transfer_file
+layout slsk_item_transfer_group
+layout slsk_sheet_first_use
+layout slsk_sheet_folder
+layout slsk_view_search_cta
 layout support_simple_spinner_dropdown_item
+menu slsk_menu_filters
+menu slsk_menu_results
+navigation slsk_nav_graph
 plurals mtrl_badge_content_description
 string abc_action_bar_home_description
 string abc_action_bar_up_description
@@ -3714,6 +3849,18 @@ string abc_activity_chooser_view_see_all
 string abc_activitychooserview_choose_application
 string abc_capital_off
 string abc_capital_on
+string abc_font_family_body_1_material
+string abc_font_family_body_2_material
+string abc_font_family_button_material
+string abc_font_family_caption_material
+string abc_font_family_display_1_material
+string abc_font_family_display_2_material
+string abc_font_family_display_3_material
+string abc_font_family_display_4_material
+string abc_font_family_headline_material
+string abc_font_family_menu_material
+string abc_font_family_subhead_material
+string abc_font_family_title_material
 string abc_menu_alt_shortcut_label
 string abc_menu_ctrl_shortcut_label
 string abc_menu_delete_shortcut_label
@@ -3870,6 +4017,96 @@ string searchview_clear_text_content_description
 string searchview_navigation_content_description
 string side_sheet_accessibility_pane_title
 string side_sheet_behavior
+string slsk_activity_cancel_group
+string slsk_activity_clear_completed
+string slsk_activity_downloaded_not_visible
+string slsk_activity_empty
+string slsk_activity_in_library
+string slsk_activity_manual_rescan_failed
+string slsk_activity_open_album
+string slsk_activity_rescan
+string slsk_activity_retry_failed
+string slsk_activity_scanning
+string slsk_activity_state_aborted
+string slsk_activity_state_downloading
+string slsk_activity_state_queued_local
+string slsk_activity_state_queued_remote
+string slsk_activity_state_succeeded
+string slsk_activity_state_unknown
+string slsk_activity_title
+string slsk_activity_transfer_failed
+string slsk_cancel
+string slsk_error_disconnected
+string slsk_error_not_configured
+string slsk_error_open_settings
+string slsk_error_search_failed
+string slsk_error_unauthorized
+string slsk_error_unreachable
+string slsk_first_use_body_1
+string slsk_first_use_body_2
+string slsk_first_use_body_3
+string slsk_first_use_got_it
+string slsk_first_use_title
+string slsk_group_busy_slot
+string slsk_group_files_videos
+string slsk_group_free_slot
+string slsk_group_locked_warning
+string slsk_group_queue_ahead
+string slsk_group_speed
+string slsk_results_active_transfers
+string slsk_results_banner
+string slsk_results_cancel_search
+string slsk_results_count
+string slsk_results_empty
+string slsk_results_empty_hint
+string slsk_results_filter
+string slsk_results_filter_320
+string slsk_results_filter_cleared
+string slsk_results_filter_free_slot
+string slsk_results_filter_lossless
+string slsk_results_load_more
+string slsk_results_retry
+string slsk_results_searching
+string slsk_results_searching_counts
+string slsk_results_sort_format
+string slsk_retry
+string slsk_scope_library
+string slsk_scope_soulseek
+string slsk_search_cta_subtitle
+string slsk_search_cta_title
+string slsk_settings_api_key
+string slsk_settings_api_key_hint
+string slsk_settings_autoscan
+string slsk_settings_base_url
+string slsk_settings_base_url_hint
+string slsk_settings_connected_no
+string slsk_settings_connected_yes
+string slsk_settings_error_no_url
+string slsk_settings_open_activity
+string slsk_settings_pinned_cert
+string slsk_settings_pinned_cert_hint
+string slsk_settings_result_ok
+string slsk_settings_result_unauthorized
+string slsk_settings_result_unreachable
+string slsk_settings_save
+string slsk_settings_test
+string slsk_settings_testing
+string slsk_settings_title
+string slsk_settings_unsaved
+string slsk_sheet_download
+string slsk_sheet_download_none
+string slsk_sheet_empty
+string slsk_sheet_enqueue_done
+string slsk_sheet_enqueue_failed_none
+string slsk_sheet_enqueue_partial
+string slsk_sheet_folder_title
+string slsk_sheet_load_failed
+string slsk_sheet_load_full_folder
+string slsk_sheet_loading
+string slsk_sheet_locked_hint
+string slsk_sheet_select_all
+string slsk_sheet_view_activity
+string slsk_version_notice
 string status_bar_notification_info_overflow
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
@@ -4992,6 +5229,7 @@ styleable ActionMenuItemView android_minWidth
 styleable ActionMenuView
 styleable ActionMode background backgroundSplit closeItemLayout height subtitleTextStyle titleTextStyle
 styleable ActivityChooserView expandActivityOverflowButtonDrawable initialActivityCount
+styleable ActivityNavigator action android_name data dataPattern targetPackage
 styleable AlertDialog android_layout buttonIconDimen buttonPanelSideLayout listItemLayout listLayout multiChoiceItemLayout showTitle singleChoiceItemLayout
 styleable AnimatedStateListDrawableCompat android_constantSize android_dither android_enterFadeDuration android_exitFadeDuration android_variablePadding android_visible
 styleable AnimatedStateListDrawableItem android_drawable android_id
@@ -5033,6 +5271,7 @@ styleable ConstraintSet android_alpha android_elevation android_id android_layou
 styleable CoordinatorLayout keylines statusBarBackground
 styleable CoordinatorLayout_Layout android_layout_gravity layout_anchor layout_anchorGravity layout_behavior layout_dodgeInsetEdges layout_insetEdge layout_keyline
 styleable CustomAttribute attributeName customBoolean customColorDrawableValue customColorValue customDimension customFloatValue customIntegerValue customPixelDimension customReference customStringValue methodName
+styleable DialogFragmentNavigator android_name
 styleable DrawerArrowToggle arrowHeadLength arrowShaftLength barLength color drawableSize gapBetweenBars spinBars thickness
 styleable DrawerLayout elevation
 styleable ExtendedFloatingActionButton collapsedSize elevation extendMotionSpec extendStrategy hideMotionSpec showMotionSpec shrinkMotionSpec
@@ -5045,6 +5284,7 @@ styleable FontFamilyFont android_font android_fontStyle android_fontVariationSet
 styleable ForegroundLinearLayout android_foreground android_foregroundGravity foregroundInsidePadding
 styleable Fragment android_id android_name android_tag
 styleable FragmentContainerView android_name android_tag
+styleable FragmentNavigator android_name
 styleable GradientColor android_centerColor android_centerX android_centerY android_endColor android_endX android_endY android_gradientRadius android_startColor android_startX android_startY android_tileMode android_type
 styleable GradientColorItem android_color android_offset
 styleable Grid grid_columnWeights grid_columns grid_horizontalGaps grid_orientation grid_rowWeights grid_rows grid_skips grid_spans grid_useRtl grid_validateInputs grid_verticalGaps
@@ -5092,10 +5332,18 @@ styleable MotionLabel android_autoSizeTextType android_fontFamily android_gravit
 styleable MotionLayout applyMotionScene currentState layoutDescription motionDebug motionProgress showPaths
 styleable MotionScene defaultDuration layoutDuringTransition
 styleable MotionTelltales telltales_tailColor telltales_tailScale telltales_velocityMode
+styleable NavAction android_id destination enterAnim exitAnim launchSingleTop popEnterAnim popExitAnim popUpTo popUpToInclusive popUpToSaveState restoreState
+styleable NavArgument android_defaultValue android_name argType nullable
+styleable NavDeepLink action android_autoVerify mimeType uri
+styleable NavGraphNavigator startDestination
+styleable NavHost navGraph
+styleable NavHostFragment defaultNavHost
+styleable NavInclude graph
 styleable NavigationBarActiveIndicator android_color android_height android_width marginHorizontal shapeAppearance
 styleable NavigationBarView activeIndicatorLabelPadding backgroundTint elevation itemActiveIndicatorStyle itemBackground itemIconSize itemIconTint itemPaddingBottom itemPaddingTop itemRippleColor itemTextAppearanceActive itemTextAppearanceActiveBoldEnabled itemTextAppearanceInactive itemTextColor labelVisibilityMode menu
 styleable NavigationRailView headerLayout itemMinHeight menuGravity paddingBottomSystemWindowInsets paddingStartSystemWindowInsets paddingTopSystemWindowInsets shapeAppearance shapeAppearanceOverlay
 styleable NavigationView android_background android_fitsSystemWindows android_layout_gravity android_maxWidth bottomInsetScrimEnabled dividerInsetEnd dividerInsetStart drawerLayoutCornerSize elevation headerLayout itemBackground itemHorizontalPadding itemIconPadding itemIconSize itemIconTint itemMaxLines itemRippleColor itemShapeAppearance itemShapeAppearanceOverlay itemShapeFillColor itemShapeInsetBottom itemShapeInsetEnd itemShapeInsetStart itemShapeInsetTop itemTextAppearance itemTextAppearanceActiveBoldEnabled itemTextColor itemVerticalPadding menu shapeAppearance shapeAppearanceOverlay subheaderColor subheaderInsetEnd subheaderInsetStart subheaderTextAppearance topInsetScrimEnabled
+styleable Navigator android_id android_label route
 styleable OnClick clickAction targetId
 styleable OnSwipe autoCompleteMode dragDirection dragScale dragThreshold limitBoundsTo maxAcceleration maxVelocity moveWhenScrollAtTop nestedScrollFlags onTouchUp rotationCenterId springBoundary springDamping springMass springStiffness springStopThreshold touchAnchorId touchAnchorSide touchRegionId
 styleable PopupWindow android_popupAnimationStyle android_popupBackground overlapAnchor
@@ -5120,6 +5368,7 @@ styleable State android_id constraints
 styleable StateListDrawable android_constantSize android_dither android_enterFadeDuration android_exitFadeDuration android_variablePadding android_visible
 styleable StateListDrawableItem android_drawable
 styleable StateSet defaultState
+styleable SwipeRefreshLayout swipeRefreshLayoutProgressSpinnerBackgroundColor
 styleable SwitchCompat android_textOff android_textOn android_thumb showText splitTrack switchMinWidth switchPadding switchTextAppearance thumbTextPadding thumbTint thumbTintMode track trackTint trackTintMode
 styleable SwitchMaterial useMaterialThemeColors
 styleable TabItem android_icon android_layout android_text

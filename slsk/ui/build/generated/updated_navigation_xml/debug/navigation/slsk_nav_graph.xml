@@ -1,0 +1,33 @@
+<navigation
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/slsk_nav_graph"
+app:startDestination="@+id/slskResultsFragment" >
+<fragment
+    android:id="@+id/slskResultsFragment"
+    android:name="com.github.pandeiro.tempore.slsk.ui.SlskResultsFragment"
+    android:label="@string/slsk_results_banner"
+    tools:layout="@layout/slsk_fragment_results" >
+
+    <argument
+        android:name="slsk_search_id"
+        android:defaultValue=""
+        app:argType="string" />
+    <argument
+        android:name="slsk_fallback_query"
+        android:defaultValue="@null"
+        app:argType="string"
+        app:nullable="true" />
+
+    <action
+        android:id="@+id/slsk_action_results_to_activity"
+        app:destination="@+id/slskActivityFragment" />
+
+</fragment>
+<fragment
+    android:id="@+id/slskActivityFragment"
+    android:name="com.github.pandeiro.tempore.slsk.ui.SlskActivityFragment"
+    android:label="@string/slsk_activity_title"
+    tools:layout="@layout/slsk_fragment_activity" />
+</navigation>

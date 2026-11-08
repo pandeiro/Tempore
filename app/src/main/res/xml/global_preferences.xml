@@ -662,6 +662,13 @@
             android:key="github_update_check" />
     </com.eddyizm.tempus.util.ClickablePreferenceCategory>
 
+    <com.eddyizm.tempus.util.ClickablePreferenceCategory app:title="@string/slsk_settings_title">
+        <Preference
+            android:key="slsk_settings_entry"
+            app:summary="@string/slsk_settings_open_activity"
+            app:title="@string/slsk_settings_title" />
+    </com.eddyizm.tempus.util.ClickablePreferenceCategory>
+
     <com.eddyizm.tempus.util.ClickablePreferenceCategory app:title="@string/settings_about_title">
         <Preference
             app:selectable="false"

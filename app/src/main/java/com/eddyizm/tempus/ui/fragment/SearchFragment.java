@@ -27,6 +27,7 @@ import com.eddyizm.tempus.interfaces.ClickCallback;
 import com.eddyizm.tempus.service.MediaManager;
 import com.eddyizm.tempus.service.MediaService;
 import com.eddyizm.tempus.subsonic.models.Playlist;
+import com.github.pandeiro.tempore.slsk.ui.SlskSeams;
 import com.eddyizm.tempus.ui.activity.MainActivity;
 import com.eddyizm.tempus.ui.adapter.AlbumAdapter;
 import com.eddyizm.tempus.ui.adapter.ArtistAdapter;
@@ -69,6 +70,7 @@ public class SearchFragment extends Fragment implements ClickCallback {
 
         initSearchResultView();
         initSearchView();
+        SlskSeams.attachScopeToggle(this, bind.emptyResponseContainer);
         inputFocus();
 
         return view;
@@ -226,6 +228,10 @@ public class SearchFragment extends Fragment implements ClickCallback {
     }
 
     public void search(String query) {
+        if (SlskSeams.onSearchSubmitted(this, query)) {
+            bind.searchView.hide();
+            return;
+        }
         searchViewModel.setQuery(query);
         bind.allSongs.setText(this.getView().getContext().getString(R.string.search_all_songs_loading));
         playlistHorizontalAdapter.setItems(Collections.emptyList());

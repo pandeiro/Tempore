@@ -57,6 +57,7 @@ public class App extends Application {
         preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         ClientCertManager.setupSslSocketFactory(context);
+        com.github.pandeiro.tempore.glue.SlskGlueInstaller.install(context);
     }
 
     public static App getInstance() {

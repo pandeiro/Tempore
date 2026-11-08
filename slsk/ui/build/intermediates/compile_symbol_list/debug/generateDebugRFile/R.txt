@@ -26,7 +26,13 @@ int anim design_bottom_sheet_slide_in 0x0
 int anim design_bottom_sheet_slide_out 0x0
 int anim design_snackbar_in 0x0
 int anim design_snackbar_out 0x0
+int anim fragment_close_enter 0x0
+int anim fragment_close_exit 0x0
+int anim fragment_fade_enter 0x0
+int anim fragment_fade_exit 0x0
 int anim fragment_fast_out_extra_slow_in 0x0
+int anim fragment_open_enter 0x0
+int anim fragment_open_exit 0x0
 int anim linear_indeterminate_line1_head_interpolator 0x0
 int anim linear_indeterminate_line1_tail_interpolator 0x0
 int anim linear_indeterminate_line2_head_interpolator 0x0
@@ -78,6 +84,7 @@ int animator mtrl_fab_transformation_sheet_collapse_spec 0x0
 int animator mtrl_fab_transformation_sheet_expand_spec 0x0
 int attr SharedValue 0x0
 int attr SharedValueId 0x0
+int attr action 0x0
 int attr actionBarDivider 0x0
 int attr actionBarItemBackground 0x0
 int attr actionBarPopupTheme 0x0
@@ -134,6 +141,7 @@ int attr animationMode 0x0
 int attr appBarLayoutStyle 0x0
 int attr applyMotionScene 0x0
 int attr arcMode 0x0
+int attr argType 0x0
 int attr arrowHeadLength 0x0
 int attr arrowShaftLength 0x0
 int attr attributeName 0x0
@@ -440,18 +448,22 @@ int attr customNavigationLayout 0x0
 int attr customPixelDimension 0x0
 int attr customReference 0x0
 int attr customStringValue 0x0
+int attr data 0x0
+int attr dataPattern 0x0
 int attr dayInvalidStyle 0x0
 int attr daySelectedStyle 0x0
 int attr dayStyle 0x0
 int attr dayTodayStyle 0x0
 int attr defaultDuration 0x0
 int attr defaultMarginsEnabled 0x0
+int attr defaultNavHost 0x0
 int attr defaultQueryHint 0x0
 int attr defaultScrollFlagsEnabled 0x0
 int attr defaultState 0x0
 int attr deltaPolarAngle 0x0
 int attr deltaPolarRadius 0x0
 int attr deriveConstraintsFrom 0x0
+int attr destination 0x0
 int attr dialogCornerRadius 0x0
 int attr dialogPreferredPadding 0x0
 int attr dialogTheme 0x0
@@ -505,6 +517,7 @@ int attr endIconTintMode 0x0
 int attr enforceMaterialTheme 0x0
 int attr enforceTextAppearance 0x0
 int attr ensureMinTouchTargetSize 0x0
+int attr enterAnim 0x0
 int attr errorAccessibilityLabel 0x0
 int attr errorAccessibilityLiveRegion 0x0
 int attr errorContentDescription 0x0
@@ -515,6 +528,7 @@ int attr errorIconTintMode 0x0
 int attr errorShown 0x0
 int attr errorTextAppearance 0x0
 int attr errorTextColor 0x0
+int attr exitAnim 0x0
 int attr expandActivityOverflowButtonDrawable 0x0
 int attr expanded 0x0
 int attr expandedHintEnabled 0x0
@@ -602,6 +616,7 @@ int attr framePosition 0x0
 int attr gapBetweenBars 0x0
 int attr gestureInsetBottomIgnored 0x0
 int attr goIcon 0x0
+int attr graph 0x0
 int attr grid_columnWeights 0x0
 int attr grid_columns 0x0
 int attr grid_horizontalGaps 0x0
@@ -705,6 +720,7 @@ int attr labelVisibilityMode 0x0
 int attr largeFontVerticalOffsetAdjustment 0x0
 int attr lastBaselineToBottomHeight 0x0
 int attr lastItemDecorated 0x0
+int attr launchSingleTop 0x0
 int attr layout 0x0
 int attr layoutDescription 0x0
 int attr layoutDuringTransition 0x0
@@ -870,6 +886,7 @@ int attr menu 0x0
 int attr menuAlignmentMode 0x0
 int attr menuGravity 0x0
 int attr methodName 0x0
+int attr mimeType 0x0
 int attr minHeight 0x0
 int attr minHideDelay 0x0
 int attr minSeparation 0x0
@@ -928,6 +945,7 @@ int attr motion_postLayoutCollision 0x0
 int attr motion_triggerOnCollision 0x0
 int attr moveWhenScrollAtTop 0x0
 int attr multiChoiceItemLayout 0x0
+int attr navGraph 0x0
 int attr navigationContentDescription 0x0
 int attr navigationIcon 0x0
 int attr navigationIconTint 0x0
@@ -937,6 +955,7 @@ int attr navigationViewStyle 0x0
 int attr nestedScrollFlags 0x0
 int attr nestedScrollViewStyle 0x0
 int attr nestedScrollable 0x0
+int attr nullable 0x0
 int attr number 0x0
 int attr numericModifiers 0x0
 int attr offsetAlignmentMode 0x0
@@ -979,6 +998,11 @@ int attr placeholderTextAppearance 0x0
 int attr placeholderTextColor 0x0
 int attr placeholder_emptyVisibility 0x0
 int attr polarRelativeTo 0x0
+int attr popEnterAnim 0x0
+int attr popExitAnim 0x0
+int attr popUpTo 0x0
+int attr popUpToInclusive 0x0
+int attr popUpToSaveState 0x0
 int attr popupMenuBackground 0x0
 int attr popupMenuStyle 0x0
 int attr popupTheme 0x0
@@ -1011,11 +1035,13 @@ int attr region_heightMoreThan 0x0
 int attr region_widthLessThan 0x0
 int attr region_widthMoreThan 0x0
 int attr removeEmbeddedFabElevation 0x0
+int attr restoreState 0x0
 int attr reverseLayout 0x0
 int attr rippleColor 0x0
 int attr rotationCenterId 0x0
 int attr round 0x0
 int attr roundPercent 0x0
+int attr route 0x0
 int attr saturation 0x0
 int attr scaleFromTextSize 0x0
 int attr scrimAnimationDuration 0x0
@@ -1080,6 +1106,7 @@ int attr springStopThreshold 0x0
 int attr srcCompat 0x0
 int attr stackFromEnd 0x0
 int attr staggered 0x0
+int attr startDestination 0x0
 int attr startIconCheckable 0x0
 int attr startIconContentDescription 0x0
 int attr startIconDrawable 0x0
@@ -1117,6 +1144,7 @@ int attr suffixText 0x0
 int attr suffixTextAppearance 0x0
 int attr suffixTextColor 0x0
 int attr suggestionRowLayout 0x0
+int attr swipeRefreshLayoutProgressSpinnerBackgroundColor 0x0
 int attr switchMinWidth 0x0
 int attr switchPadding 0x0
 int attr switchStyle 0x0
@@ -1151,6 +1179,7 @@ int attr tabTextAppearance 0x0
 int attr tabTextColor 0x0
 int attr tabUnboundedRipple 0x0
 int attr targetId 0x0
+int attr targetPackage 0x0
 int attr telltales_tailColor 0x0
 int attr telltales_tailScale 0x0
 int attr telltales_velocityMode 0x0
@@ -1296,6 +1325,7 @@ int attr triggerReceiver 0x0
 int attr triggerSlack 0x0
 int attr ttcIndex 0x0
 int attr upDuration 0x0
+int attr uri 0x0
 int attr useCompatPadding 0x0
 int attr useDrawerArrowDrawable 0x0
 int attr useMaterialThemeColors 0x0
@@ -1342,6 +1372,7 @@ int color abc_decor_view_status_guard 0x0
 int color abc_decor_view_status_guard_light 0x0
 int color abc_hint_foreground_material_dark 0x0
 int color abc_hint_foreground_material_light 0x0
+int color abc_input_method_navigation_guard 0x0
 int color abc_primary_text_disable_only_material_dark 0x0
 int color abc_primary_text_disable_only_material_light 0x0
 int color abc_primary_text_material_dark 0x0
@@ -2068,6 +2099,12 @@ int color secondary_text_default_material_dark 0x0
 int color secondary_text_default_material_light 0x0
 int color secondary_text_disabled_material_dark 0x0
 int color secondary_text_disabled_material_light 0x0
+int color slsk_badge_pill 0x0
+int color slsk_result_tint 0x0
+int color slsk_soulseek_accent 0x0
+int color slsk_status_bad 0x0
+int color slsk_status_good 0x0
+int color slsk_status_warn 0x0
 int color switch_thumb_disabled_material_dark 0x0
 int color switch_thumb_disabled_material_light 0x0
 int color switch_thumb_material_dark 0x0
@@ -2863,6 +2900,7 @@ int dimen notification_small_icon_size_as_large 0x0
 int dimen notification_subtext_size 0x0
 int dimen notification_top_pad 0x0
 int dimen notification_top_pad_large_text 0x0
+int dimen sliding_pane_detail_pane_width 0x0
 int dimen tooltip_corner_radius 0x0
 int dimen tooltip_horizontal_padding 0x0
 int dimen tooltip_margin 0x0
@@ -3068,6 +3106,10 @@ int drawable notification_template_icon_bg 0x0
 int drawable notification_template_icon_low_bg 0x0
 int drawable notification_tile_bg 0x0
 int drawable notify_panel_notification_icon_bg 0x0
+int drawable slsk_ic_delete 0x0
+int drawable slsk_ic_filter 0x0
+int drawable slsk_ic_soulseek 0x0
+int drawable slsk_ic_transfer 0x0
 int drawable test_level_drawable 0x0
 int drawable tooltip_frame_dark 0x0
 int drawable tooltip_frame_light 0x0
@@ -3335,6 +3377,8 @@ int id mtrl_picker_text_input_range_start 0x0
 int id mtrl_picker_title_text 0x0
 int id mtrl_view_tag_bottom_padding 0x0
 int id multiply 0x0
+int id nav_controller_view_tag 0x0
+int id nav_host_fragment_container 0x0
 int id navigation_bar_item_active_indicator_view 0x0
 int id navigation_bar_item_icon_container 0x0
 int id navigation_bar_item_icon_view 0x0
@@ -3424,6 +3468,83 @@ int id shortcut 0x0
 int id sin 0x0
 int id skipped 0x0
 int id slide 0x0
+int id sliding_pane_detail_container 0x0
+int id sliding_pane_layout 0x0
+int id slskActivityFragment 0x0
+int id slskResultsFragment 0x0
+int id slsk_action_activity 0x0
+int id slsk_action_filter 0x0
+int id slsk_action_results_to_activity 0x0
+int id slsk_activity_clear 0x0
+int id slsk_activity_empty 0x0
+int id slsk_activity_error_action 0x0
+int id slsk_activity_error_banner 0x0
+int id slsk_activity_error_text 0x0
+int id slsk_activity_list 0x0
+int id slsk_activity_scan_banner 0x0
+int id slsk_activity_toolbar 0x0
+int id slsk_file_check 0x0
+int id slsk_file_locked 0x0
+int id slsk_file_name 0x0
+int id slsk_file_quality 0x0
+int id slsk_file_size 0x0
+int id slsk_filter_320 0x0
+int id slsk_filter_format_order 0x0
+int id slsk_filter_free 0x0
+int id slsk_filter_lossless 0x0
+int id slsk_first_use_got_it 0x0
+int id slsk_group_meta 0x0
+int id slsk_group_quality 0x0
+int id slsk_group_queue 0x0
+int id slsk_group_slot 0x0
+int id slsk_group_slot_icon 0x0
+int id slsk_group_speed 0x0
+int id slsk_group_title 0x0
+int id slsk_group_username 0x0
+int id slsk_nav_graph 0x0
+int id slsk_results_empty 0x0
+int id slsk_results_empty_group 0x0
+int id slsk_results_empty_hint 0x0
+int id slsk_results_error_action 0x0
+int id slsk_results_error_banner 0x0
+int id slsk_results_error_text 0x0
+int id slsk_results_list 0x0
+int id slsk_results_load_more 0x0
+int id slsk_results_progress 0x0
+int id slsk_results_toolbar 0x0
+int id slsk_scope_button_library 0x0
+int id slsk_scope_button_soulseek 0x0
+int id slsk_scope_toggle 0x0
+int id slsk_search_cta 0x0
+int id slsk_settings_api_key 0x0
+int id slsk_settings_autoscan 0x0
+int id slsk_settings_base_url 0x0
+int id slsk_settings_key_layout 0x0
+int id slsk_settings_open_activity 0x0
+int id slsk_settings_pinned_cert 0x0
+int id slsk_settings_result 0x0
+int id slsk_settings_save 0x0
+int id slsk_settings_test 0x0
+int id slsk_settings_url_layout 0x0
+int id slsk_sheet_download 0x0
+int id slsk_sheet_files 0x0
+int id slsk_sheet_load_full_folder 0x0
+int id slsk_sheet_locked_hint 0x0
+int id slsk_sheet_select_all 0x0
+int id slsk_sheet_title 0x0
+int id slsk_tf_cancel 0x0
+int id slsk_tf_name 0x0
+int id slsk_tf_retry 0x0
+int id slsk_tf_state 0x0
+int id slsk_tg_folder 0x0
+int id slsk_tg_handoff_action 0x0
+int id slsk_tg_handoff_chip 0x0
+int id slsk_tg_handoff_hint 0x0
+int id slsk_tg_handoff_row 0x0
+int id slsk_tg_progress 0x0
+int id slsk_tg_rows 0x0
+int id slsk_tg_status 0x0
+int id slsk_tg_username 0x0
 int id snackbar_action 0x0
 int id snackbar_text 0x0
 int id south 0x0
@@ -3703,7 +3824,21 @@ int layout notification_template_part_time 0x0
 int layout select_dialog_item_material 0x0
 int layout select_dialog_multichoice_material 0x0
 int layout select_dialog_singlechoice_material 0x0
+int layout slsk_activity_settings 0x0
+int layout slsk_fragment_activity 0x0
+int layout slsk_fragment_results 0x0
+int layout slsk_fragment_search_toggle 0x0
+int layout slsk_item_folder_file 0x0
+int layout slsk_item_result_group 0x0
+int layout slsk_item_transfer_file 0x0
+int layout slsk_item_transfer_group 0x0
+int layout slsk_sheet_first_use 0x0
+int layout slsk_sheet_folder 0x0
+int layout slsk_view_search_cta 0x0
 int layout support_simple_spinner_dropdown_item 0x0
+int menu slsk_menu_filters 0x0
+int menu slsk_menu_results 0x0
+int navigation slsk_nav_graph 0x0
 int plurals mtrl_badge_content_description 0x0
 int string abc_action_bar_home_description 0x0
 int string abc_action_bar_up_description 0x0
@@ -3713,6 +3848,18 @@ int string abc_activity_chooser_view_see_all 0x0
 int string abc_activitychooserview_choose_application 0x0
 int string abc_capital_off 0x0
 int string abc_capital_on 0x0
+int string abc_font_family_body_1_material 0x0
+int string abc_font_family_body_2_material 0x0
+int string abc_font_family_button_material 0x0
+int string abc_font_family_caption_material 0x0
+int string abc_font_family_display_1_material 0x0
+int string abc_font_family_display_2_material 0x0
+int string abc_font_family_display_3_material 0x0
+int string abc_font_family_display_4_material 0x0
+int string abc_font_family_headline_material 0x0
+int string abc_font_family_menu_material 0x0
+int string abc_font_family_subhead_material 0x0
+int string abc_font_family_title_material 0x0
 int string abc_menu_alt_shortcut_label 0x0
 int string abc_menu_ctrl_shortcut_label 0x0
 int string abc_menu_delete_shortcut_label 0x0
@@ -3869,6 +4016,96 @@ int string searchview_clear_text_content_description 0x0
 int string searchview_navigation_content_description 0x0
 int string side_sheet_accessibility_pane_title 0x0
 int string side_sheet_behavior 0x0
+int string slsk_activity_cancel_group 0x0
+int string slsk_activity_clear_completed 0x0
+int string slsk_activity_downloaded_not_visible 0x0
+int string slsk_activity_empty 0x0
+int string slsk_activity_in_library 0x0
+int string slsk_activity_manual_rescan_failed 0x0
+int string slsk_activity_open_album 0x0
+int string slsk_activity_rescan 0x0
+int string slsk_activity_retry_failed 0x0
+int string slsk_activity_scanning 0x0
+int string slsk_activity_state_aborted 0x0
+int string slsk_activity_state_downloading 0x0
+int string slsk_activity_state_queued_local 0x0
+int string slsk_activity_state_queued_remote 0x0
+int string slsk_activity_state_succeeded 0x0
+int string slsk_activity_state_unknown 0x0
+int string slsk_activity_title 0x0
+int string slsk_activity_transfer_failed 0x0
+int string slsk_cancel 0x0
+int string slsk_error_disconnected 0x0
+int string slsk_error_not_configured 0x0
+int string slsk_error_open_settings 0x0
+int string slsk_error_search_failed 0x0
+int string slsk_error_unauthorized 0x0
+int string slsk_error_unreachable 0x0
+int string slsk_first_use_body_1 0x0
+int string slsk_first_use_body_2 0x0
+int string slsk_first_use_body_3 0x0
+int string slsk_first_use_got_it 0x0
+int string slsk_first_use_title 0x0
+int string slsk_group_busy_slot 0x0
+int string slsk_group_files_videos 0x0
+int string slsk_group_free_slot 0x0
+int string slsk_group_locked_warning 0x0
+int string slsk_group_queue_ahead 0x0
+int string slsk_group_speed 0x0
+int string slsk_results_active_transfers 0x0
+int string slsk_results_banner 0x0
+int string slsk_results_cancel_search 0x0
+int string slsk_results_count 0x0
+int string slsk_results_empty 0x0
+int string slsk_results_empty_hint 0x0
+int string slsk_results_filter 0x0
+int string slsk_results_filter_320 0x0
+int string slsk_results_filter_cleared 0x0
+int string slsk_results_filter_free_slot 0x0
+int string slsk_results_filter_lossless 0x0
+int string slsk_results_load_more 0x0
+int string slsk_results_retry 0x0
+int string slsk_results_searching 0x0
+int string slsk_results_searching_counts 0x0
+int string slsk_results_sort_format 0x0
+int string slsk_retry 0x0
+int string slsk_scope_library 0x0
+int string slsk_scope_soulseek 0x0
+int string slsk_search_cta_subtitle 0x0
+int string slsk_search_cta_title 0x0
+int string slsk_settings_api_key 0x0
+int string slsk_settings_api_key_hint 0x0
+int string slsk_settings_autoscan 0x0
+int string slsk_settings_base_url 0x0
+int string slsk_settings_base_url_hint 0x0
+int string slsk_settings_connected_no 0x0
+int string slsk_settings_connected_yes 0x0
+int string slsk_settings_error_no_url 0x0
+int string slsk_settings_open_activity 0x0
+int string slsk_settings_pinned_cert 0x0
+int string slsk_settings_pinned_cert_hint 0x0
+int string slsk_settings_result_ok 0x0
+int string slsk_settings_result_unauthorized 0x0
+int string slsk_settings_result_unreachable 0x0
+int string slsk_settings_save 0x0
+int string slsk_settings_test 0x0
+int string slsk_settings_testing 0x0
+int string slsk_settings_title 0x0
+int string slsk_settings_unsaved 0x0
+int string slsk_sheet_download 0x0
+int string slsk_sheet_download_none 0x0
+int string slsk_sheet_empty 0x0
+int string slsk_sheet_enqueue_done 0x0
+int string slsk_sheet_enqueue_failed_none 0x0
+int string slsk_sheet_enqueue_partial 0x0
+int string slsk_sheet_folder_title 0x0
+int string slsk_sheet_load_failed 0x0
+int string slsk_sheet_load_full_folder 0x0
+int string slsk_sheet_loading 0x0
+int string slsk_sheet_locked_hint 0x0
+int string slsk_sheet_select_all 0x0
+int string slsk_sheet_view_activity 0x0
+int string slsk_version_notice 0x0
 int string status_bar_notification_info_overflow 0x0
 int style AlertDialog_AppCompat 0x0
 int style AlertDialog_AppCompat_Light 0x0
@@ -5030,6 +5267,12 @@ int styleable ActionMode_titleTextStyle 5
 int[] styleable ActivityChooserView { 0x0, 0x0 }
 int styleable ActivityChooserView_expandActivityOverflowButtonDrawable 0
 int styleable ActivityChooserView_initialActivityCount 1
+int[] styleable ActivityNavigator { 0x0, 0x1010003, 0x0, 0x0, 0x0 }
+int styleable ActivityNavigator_action 0
+int styleable ActivityNavigator_android_name 1
+int styleable ActivityNavigator_data 2
+int styleable ActivityNavigator_dataPattern 3
+int styleable ActivityNavigator_targetPackage 4
 int[] styleable AlertDialog { 0x10100f2, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable AlertDialog_android_layout 0
 int styleable AlertDialog_buttonIconDimen 1
@@ -5973,6 +6216,8 @@ int styleable CustomAttribute_customPixelDimension 7
 int styleable CustomAttribute_customReference 8
 int styleable CustomAttribute_customStringValue 9
 int styleable CustomAttribute_methodName 10
+int[] styleable DialogFragmentNavigator { 0x1010003 }
+int styleable DialogFragmentNavigator_android_name 0
 int[] styleable DrawerArrowToggle { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable DrawerArrowToggle_arrowHeadLength 0
 int styleable DrawerArrowToggle_arrowShaftLength 1
@@ -6048,6 +6293,8 @@ int styleable Fragment_android_tag 2
 int[] styleable FragmentContainerView { 0x1010003, 0x10100d1 }
 int styleable FragmentContainerView_android_name 0
 int styleable FragmentContainerView_android_tag 1
+int[] styleable FragmentNavigator { 0x1010003 }
+int styleable FragmentNavigator_android_name 0
 int[] styleable GradientColor { 0x101020b, 0x10101a2, 0x10101a3, 0x101019e, 0x1010512, 0x1010513, 0x10101a4, 0x101019d, 0x1010510, 0x1010511, 0x1010201, 0x10101a1 }
 int styleable GradientColor_android_centerColor 0
 int styleable GradientColor_android_centerX 1
@@ -6543,6 +6790,36 @@ int[] styleable MotionTelltales { 0x0, 0x0, 0x0 }
 int styleable MotionTelltales_telltales_tailColor 0
 int styleable MotionTelltales_telltales_tailScale 1
 int styleable MotionTelltales_telltales_velocityMode 2
+int[] styleable NavAction { 0x10100d0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
+int styleable NavAction_android_id 0
+int styleable NavAction_destination 1
+int styleable NavAction_enterAnim 2
+int styleable NavAction_exitAnim 3
+int styleable NavAction_launchSingleTop 4
+int styleable NavAction_popEnterAnim 5
+int styleable NavAction_popExitAnim 6
+int styleable NavAction_popUpTo 7
+int styleable NavAction_popUpToInclusive 8
+int styleable NavAction_popUpToSaveState 9
+int styleable NavAction_restoreState 10
+int[] styleable NavArgument { 0x10101ed, 0x1010003, 0x0, 0x0 }
+int styleable NavArgument_android_defaultValue 0
+int styleable NavArgument_android_name 1
+int styleable NavArgument_argType 2
+int styleable NavArgument_nullable 3
+int[] styleable NavDeepLink { 0x0, 0x10104ee, 0x0, 0x0 }
+int styleable NavDeepLink_action 0
+int styleable NavDeepLink_android_autoVerify 1
+int styleable NavDeepLink_mimeType 2
+int styleable NavDeepLink_uri 3
+int[] styleable NavGraphNavigator { 0x0 }
+int styleable NavGraphNavigator_startDestination 0
+int[] styleable NavHost { 0x0 }
+int styleable NavHost_navGraph 0
+int[] styleable NavHostFragment { 0x0 }
+int styleable NavHostFragment_defaultNavHost 0
+int[] styleable NavInclude { 0x0 }
+int styleable NavInclude_graph 0
 int[] styleable NavigationBarActiveIndicator { 0x10101a5, 0x1010155, 0x1010159, 0x0, 0x0 }
 int styleable NavigationBarActiveIndicator_android_color 0
 int styleable NavigationBarActiveIndicator_android_height 1
@@ -6612,6 +6889,10 @@ int styleable NavigationView_subheaderInsetEnd 32
 int styleable NavigationView_subheaderInsetStart 33
 int styleable NavigationView_subheaderTextAppearance 34
 int styleable NavigationView_topInsetScrimEnabled 35
+int[] styleable Navigator { 0x10100d0, 0x1010001, 0x0 }
+int styleable Navigator_android_id 0
+int styleable Navigator_android_label 1
+int styleable Navigator_route 2
 int[] styleable OnClick { 0x0, 0x0 }
 int styleable OnClick_clickAction 0
 int styleable OnClick_targetId 1
@@ -6809,6 +7090,8 @@ int[] styleable StateListDrawableItem { 0x1010199 }
 int styleable StateListDrawableItem_android_drawable 0
 int[] styleable StateSet { 0x0 }
 int styleable StateSet_defaultState 0
+int[] styleable SwipeRefreshLayout { 0x0 }
+int styleable SwipeRefreshLayout_swipeRefreshLayoutProgressSpinnerBackgroundColor 0
 int[] styleable SwitchCompat { 0x1010125, 0x1010124, 0x1010142, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable SwitchCompat_android_textOff 0
 int styleable SwitchCompat_android_textOn 1

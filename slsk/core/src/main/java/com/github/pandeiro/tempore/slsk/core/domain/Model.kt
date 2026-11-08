@@ -95,7 +95,10 @@ object StateTokens {
         matches.all { m -> tokens.any { it.equals(m, ignoreCase = true) } }
 
     fun succeeded(tokens: List<String>) = contains(tokens, "Completed", "Succeeded")
-    fun failed(tokens: List<String>) = contains(tokens, "Aborted", "Rejected", "Errored", "TimedOut")
+
+    /** ANY failure token (composite strings like `Completed, Aborted` carry exactly one). */
+    fun failed(tokens: List<String>) =
+        tokens.any { it.equals("Aborted", true) || it.equals("Rejected", true) || it.equals("Errored", true) || it.equals("TimedOut", true) }
     fun isQueuedRemote(tokens: List<String>) = contains(tokens, "Queued", "Remotely")
     fun isQueuedLocally(tokens: List<String>) = contains(tokens, "Queued") && !isQueuedRemote(tokens)
     fun isDownloading(tokens: List<String>) = tokens.contains("Downloading") || tokens.contains("Transferring")
