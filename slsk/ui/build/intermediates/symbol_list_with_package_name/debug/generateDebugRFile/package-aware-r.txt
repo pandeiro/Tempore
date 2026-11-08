@@ -3484,6 +3484,7 @@ id slsk_activity_error_text
 id slsk_activity_list
 id slsk_activity_scan_banner
 id slsk_activity_toolbar
+id slsk_deeplink_results
 id slsk_file_check
 id slsk_file_locked
 id slsk_file_name

@@ -37,8 +37,29 @@ android.productFlavors.all { flavor ->
 }
 
 android.defaultConfig {
-    versionCode = (baseCode * 100 + temporeRc)
-    versionName = "${baseName}-tempore.${temporeRc}"
+    versionCode (baseCode * 100 + temporeRc)
+    versionName "${baseName}-tempore.${temporeRc}"
+}
+
+// Release signing: when slsk/keystore/local.properties exists (gitignored), sign
+// release builds with the fork's own key; otherwise upstream behaviour (unsigned)
+// is unchanged.
+def ksProps = new File(slskRoot, 'keystore/local.properties')
+if (ksProps.exists()) {
+    def ks = new Properties()
+    ksProps.withInputStream { ks.load(it) }
+    def ksStore = new File(rootDir, ks.getProperty('storeFile'))
+    if (ksStore.exists()) {
+        android.signingConfigs {
+            tempore {
+                storeFile ksStore
+                storePassword ks.getProperty('storePassword')
+                keyAlias ks.getProperty('keyAlias')
+                keyPassword ks.getProperty('keyPassword')
+            }
+        }
+        android.buildTypes.release.signingConfig = android.signingConfigs.tempore
+    }
 }
 
 dependencies {

@@ -25,3 +25,5 @@ app/degoogled/
 app/play/
 .agents/
 .kotlin
+slsk/keystore/*.jks
+slsk/keystore/local.properties

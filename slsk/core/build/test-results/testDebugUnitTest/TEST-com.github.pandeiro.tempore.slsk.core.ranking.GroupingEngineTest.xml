@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.github.pandeiro.tempore.slsk.core.ranking.GroupingEngineTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-08T21:31:52.483Z" hostname="orca" time="0.003">
+<testsuite name="com.github.pandeiro.tempore.slsk.core.ranking.GroupingEngineTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-08T22:12:47.469Z" hostname="orca" time="0.002">
   <properties/>
   <testcase name="disallowed extensions are hidden" classname="com.github.pandeiro.tempore.slsk.core.ranking.GroupingEngineTest" time="0.001"/>
   <testcase name="groups by username and directory" classname="com.github.pandeiro.tempore.slsk.core.ranking.GroupingEngineTest" time="0.0"/>
   <testcase name="locked files stay visible but marked and never become allowedFiles only" classname="com.github.pandeiro.tempore.slsk.core.ranking.GroupingEngineTest" time="0.0"/>
   <testcase name="a directory with no allowed file is dropped entirely" classname="com.github.pandeiro.tempore.slsk.core.ranking.GroupingEngineTest" time="0.0"/>
-  <testcase name="title strips brackets years and disc tokens" classname="com.github.pandeiro.tempore.slsk.core.ranking.GroupingEngineTest" time="0.002"/>
+  <testcase name="title strips brackets years and disc tokens" classname="com.github.pandeiro.tempore.slsk.core.ranking.GroupingEngineTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

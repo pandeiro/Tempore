@@ -44,7 +44,7 @@ class SlskResultsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bind.slskResultsToolbar.inflateMenu(R.menu.slsk_menu_results)
+        // app:menu in slsk_fragment_results.xml provides the actions; inflating again here duplicates them.
         bind.slskResultsToolbar.setNavigationOnClickListener {
             Navigation.findNavController(bind.root).popBackStack()
         }

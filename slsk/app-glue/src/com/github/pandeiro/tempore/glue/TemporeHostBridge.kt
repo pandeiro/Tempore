@@ -18,6 +18,7 @@ import java.lang.ref.WeakReference
  * Credential mapping per slsk/SPIKE.md: token auth (token/salt) when a token and salt
  * are stored and "low security" mode is off; plain password otherwise.
  */
+@androidx.annotation.OptIn(androidx.media3.common.util.UnstableApi::class)
 class TemporeHostBridge : com.github.pandeiro.tempore.slsk.core.gateway.HostBridge, Application.ActivityLifecycleCallbacks {
 
     private var activityRef: WeakReference<MainActivity>? = null

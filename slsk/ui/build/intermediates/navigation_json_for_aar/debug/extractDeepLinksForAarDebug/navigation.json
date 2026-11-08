@@ -2,6 +2,28 @@
   {
     "name": "slsk_nav_graph",
     "navigationXmlIds": [],
-    "deepLinks": []
+    "deepLinks": [
+      {
+        "schemes": [
+          "tempore"
+        ],
+        "host": "slsk",
+        "port": -1,
+        "path": "/results/.*",
+        "sourceFilePosition": {
+          "mSourceFile": {},
+          "mSourcePosition": {
+            "mStartLine": -1,
+            "mStartColumn": -1,
+            "mStartOffset": -1,
+            "mEndLine": -1,
+            "mEndColumn": -1,
+            "mEndOffset": -1
+          }
+        },
+        "isAutoVerify": false,
+        "action": "android.intent.action.VIEW"
+      }
+    ]
   }
 ]

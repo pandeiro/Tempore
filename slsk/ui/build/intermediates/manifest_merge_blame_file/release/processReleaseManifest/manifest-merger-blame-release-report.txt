@@ -1,0 +1,27 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    xmlns:tools="http://schemas.android.com/tools"
+4    package="com.github.pandeiro.tempore.slsk.ui"
+5    tools:node="merge" >
+6
+7    <uses-sdk android:minSdkVersion="24" />
+7-->INJECTED
+7-->INJECTED
+8
+9    <application>
+9-->/Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:6:5-13:19
+10        <activity
+10-->/Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:7:9-12:43
+11            android:name="com.github.pandeiro.tempore.slsk.ui.SlskSettingsActivity"
+11-->/Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:8:13-84
+12            android:label="@string/slsk_app_name"
+12-->/Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:9:13-50
+13            android:parentActivityName="com.eddyizm.tempus.ui.activity.MainActivity"
+13-->/Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:11:13-85
+14            android:theme="@style/AppTheme"
+14-->/Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:10:13-44
+15            tools:targetApi="honeycomb" />
+15-->/Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:12:13-40
+16    </application>
+17
+18</manifest>

@@ -6,7 +6,8 @@
     <application>
         <activity
             android:name="com.github.pandeiro.tempore.slsk.ui.SlskSettingsActivity"
-            android:label="@string/slsk_settings_title"
+            android:label="@string/slsk_app_name"
+            android:theme="@style/AppTheme"
             android:parentActivityName="com.eddyizm.tempus.ui.activity.MainActivity"
             tools:targetApi="honeycomb" />
     </application>

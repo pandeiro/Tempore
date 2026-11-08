@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.github.pandeiro.tempore.slsk.core.ranking.RankingEngineTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-08T21:31:52.487Z" hostname="orca" time="0.001">
+<testsuite name="com.github.pandeiro.tempore.slsk.core.ranking.RankingEngineTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-08T22:12:47.472Z" hostname="orca" time="0.001">
   <properties/>
-  <testcase name="lossless-first, 16slash44 before hi-res before lossy" classname="com.github.pandeiro.tempore.slsk.core.ranking.RankingEngineTest" time="0.0"/>
+  <testcase name="lossless-first, 16slash44 before hi-res before lossy" classname="com.github.pandeiro.tempore.slsk.core.ranking.RankingEngineTest" time="0.001"/>
   <testcase name="locked-only peers still rank (not hidden) but unknown quality is last" classname="com.github.pandeiro.tempore.slsk.core.ranking.RankingEngineTest" time="0.0"/>
   <testcase name="groups offer a mix so a peer with flac and mp3 ranks in the flac tier" classname="com.github.pandeiro.tempore.slsk.core.ranking.RankingEngineTest" time="0.0"/>
-  <testcase name="speed desc, queue asc, fileCount desc on ties" classname="com.github.pandeiro.tempore.slsk.core.ranking.RankingEngineTest" time="0.001"/>
+  <testcase name="speed desc, queue asc, fileCount desc on ties" classname="com.github.pandeiro.tempore.slsk.core.ranking.RankingEngineTest" time="0.0"/>
   <testcase name="no free slot is pushed below a free-slot peer on quality tie" classname="com.github.pandeiro.tempore.slsk.core.ranking.RankingEngineTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

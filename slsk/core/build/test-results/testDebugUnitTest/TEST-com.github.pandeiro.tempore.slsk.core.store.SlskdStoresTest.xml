@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.github.pandeiro.tempore.slsk.core.store.SlskdStoresTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-08T21:31:52.489Z" hostname="orca" time="0.047">
+<testsuite name="com.github.pandeiro.tempore.slsk.core.store.SlskdStoresTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-08T22:12:47.474Z" hostname="orca" time="0.046">
   <properties/>
-  <testcase name="sort_and_filter_flags_default_and_roundtrip" classname="com.github.pandeiro.tempore.slsk.core.store.SlskdStoresTest" time="0.04"/>
+  <testcase name="sort_and_filter_flags_default_and_roundtrip" classname="com.github.pandeiro.tempore.slsk.core.store.SlskdStoresTest" time="0.039"/>
   <testcase name="search_history_roundtrip" classname="com.github.pandeiro.tempore.slsk.core.store.SlskdStoresTest" time="0.004"/>
   <testcase name="completions_pruned_to_30d_window" classname="com.github.pandeiro.tempore.slsk.core.store.SlskdStoresTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>

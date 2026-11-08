@@ -12,6 +12,7 @@
 | S6 | `app/src/main/res/navigation/nav_graph.xml` | final `</navigation>` | +1 line before it: `<include app:graph="@navigation/slsk_nav_graph" />` |
 | S7 | `app/src/main/java/com/eddyizm/tempus/App.java` | `ClientCertManager.setupSslSocketFactory(context);` | +1 line after it: `com.github.pandeiro.tempore.glue.SlskGlueInstaller.install(context);` |
 | R1 | `app/src/main/AndroidManifest.xml` | `<application ...` block | label `@string/app_name` → `@string/slsk_app_name`; icon/roundIcon `@mipmap/ic_launcher` → `@mipmap/slsk_launcher` (Tempore rebrand) |
+| R2 | `app/src/main/res/values/strings.xml` | `<string name="app_name">Tempus</string>` | default-value rename to `Tempore` (default locale = in-app toolbar title; per-locale `values-XX` copies intentionally untouched — non-English UIs still show upstream name) |
 
 Rules (claude spec §11.2, as amended by the Tempore rename):
 - New code lives under `slsk/` (modules `:slsk:core`, `:slsk:ui`, glue sources `slsk/app-glue`, hooks `slsk/gradle/*`, own catalog `slsk/gradle/slsk.versions.toml`, this file, `slsk/tools/`).

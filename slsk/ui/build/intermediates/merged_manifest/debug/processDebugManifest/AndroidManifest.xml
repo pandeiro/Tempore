@@ -9,8 +9,9 @@
     <application>
         <activity
             android:name="com.github.pandeiro.tempore.slsk.ui.SlskSettingsActivity"
-            android:label="@string/slsk_settings_title"
+            android:label="@string/slsk_app_name"
             android:parentActivityName="com.eddyizm.tempus.ui.activity.MainActivity"
+            android:theme="@style/AppTheme"
             tools:targetApi="honeycomb" />
     </application>
 

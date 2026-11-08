@@ -20,6 +20,10 @@ app:startDestination="@+id/slskResultsFragment" >
         app:argType="string"
         app:nullable="true" />
 
+    <deepLink
+        android:id="@+id/slsk_deeplink_results"
+        app:uri="tempore://slsk/results/{slsk_search_id}" />
+
     <action
         android:id="@+id/slsk_action_results_to_activity"
         app:destination="@+id/slskActivityFragment" />

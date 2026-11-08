@@ -41,13 +41,16 @@ object SlskSeams {
         container.addView(toggle, 0)
 
         ioScope.launch {
-            val slskActive = SlskPrefs.isSlskScopeActive(context)
-            soulseekScopeActive = slskActive
+            // Spec §5.2: Soulseek scope is never auto-selected — a persisted Soulseek
+            // scope may not hijack the library search. Reset to Library on every
+            // search-screen entry; the user's choice then lives for this session.
+            if (soulseekScopeActive) {
+                soulseekScopeActive = false
+                SlskPrefs.setSlskScopeActive(context, false)
+            }
             mainHandler.post {
-                toggle.check(
-                    if (slskActive) R.id.slsk_scope_button_soulseek else R.id.slsk_scope_button_library
-                )
-                updateCtaVisibility(container, slskActive)
+                toggle.check(R.id.slsk_scope_button_library)
+                updateCtaVisibility(container, false)
             }
         }
 
@@ -87,8 +90,10 @@ object SlskSeams {
         if (trimmed.isEmpty()) return true
         val view = fragment.view ?: return false
         val run = SlskSearchCoordinator.start(trimmed)
-        val args = android.os.Bundle().apply { putString("slsk_search_id", run.searchId) }
-        Navigation.findNavController(view).navigate(R.id.slskResultsFragment, args)
+        // The slsk graph is a nested <include>; deeplink navigation is the supported
+        // way to reach destinations inside it (recorded in slsk/SEAMS.md, seam S6).
+        val uri = android.net.Uri.parse("tempore://slsk/results/" + java.net.URLEncoder.encode(run.searchId, "UTF-8"))
+        Navigation.findNavController(view).navigate(uri)
         return true
     }
 

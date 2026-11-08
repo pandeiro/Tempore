@@ -1,33 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.github.pandeiro.tempore.slsk.core.gateway.SlskdGatewayHttpTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-11-08T21:31:52.267Z" hostname="orca" time="0.215">
+<testsuite name="com.github.pandeiro.tempore.slsk.core.gateway.SlskdGatewayHttpTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-11-08T22:12:47.242Z" hostname="orca" time="0.226">
   <properties/>
-  <testcase name="abandoned_search_is_stopped_then_deleted" classname="com.github.pandeiro.tempore.slsk.core.gateway.SlskdGatewayHttpTest" time="0.147"/>
-  <testcase name="enqueue_falls_back_to_legacy_endpoint_on_404_batches" classname="com.github.pandeiro.tempore.slsk.core.gateway.SlskdGatewayHttpTest" time="0.01"/>
+  <testcase name="abandoned_search_is_stopped_then_deleted" classname="com.github.pandeiro.tempore.slsk.core.gateway.SlskdGatewayHttpTest" time="0.165"/>
+  <testcase name="enqueue_falls_back_to_legacy_endpoint_on_404_batches" classname="com.github.pandeiro.tempore.slsk.core.gateway.SlskdGatewayHttpTest" time="0.008"/>
   <testcase name="enqueue_batch_posts_top_level_Username_with_files" classname="com.github.pandeiro.tempore.slsk.core.gateway.SlskdGatewayHttpTest" time="0.004"/>
-  <testcase name="enqueue_207_partial_failures_are_surfaced" classname="com.github.pandeiro.tempore.slsk.core.gateway.SlskdGatewayHttpTest" time="0.004"/>
-  <testcase name="cancel_and_clearCompleted_hit_documented_endpoints" classname="com.github.pandeiro.tempore.slsk.core.gateway.SlskdGatewayHttpTest" time="0.004"/>
-  <testcase name="transfers_snapshot_maps_state_tokens_to_lifecycle_groups" classname="com.github.pandeiro.tempore.slsk.core.gateway.SlskdGatewayHttpTest" time="0.006"/>
-  <testcase name="enqueue_dedupes_against_current_transfers" classname="com.github.pandeiro.tempore.slsk.core.gateway.SlskdGatewayHttpTest" time="0.003"/>
-  <testcase name="health_reads_application_version_and_server_flags" classname="com.github.pandeiro.tempore.slsk.core.gateway.SlskdGatewayHttpTest" time="0.004"/>
-  <testcase name="search_polls_state_groups_results_and_does_not_delete_completed_searches" classname="com.github.pandeiro.tempore.slsk.core.gateway.SlskdGatewayHttpTest" time="0.033"/>
+  <testcase name="enqueue_207_partial_failures_are_surfaced" classname="com.github.pandeiro.tempore.slsk.core.gateway.SlskdGatewayHttpTest" time="0.003"/>
+  <testcase name="cancel_and_clearCompleted_hit_documented_endpoints" classname="com.github.pandeiro.tempore.slsk.core.gateway.SlskdGatewayHttpTest" time="0.005"/>
+  <testcase name="transfers_snapshot_maps_state_tokens_to_lifecycle_groups" classname="com.github.pandeiro.tempore.slsk.core.gateway.SlskdGatewayHttpTest" time="0.005"/>
+  <testcase name="enqueue_dedupes_against_current_transfers" classname="com.github.pandeiro.tempore.slsk.core.gateway.SlskdGatewayHttpTest" time="0.004"/>
+  <testcase name="health_reads_application_version_and_server_flags" classname="com.github.pandeiro.tempore.slsk.core.gateway.SlskdGatewayHttpTest" time="0.003"/>
+  <testcase name="search_polls_state_groups_results_and_does_not_delete_completed_searches" classname="com.github.pandeiro.tempore.slsk.core.gateway.SlskdGatewayHttpTest" time="0.029"/>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[Exception in thread "MockWebServer TaskRunner" java.lang.AssertionError
-	at org.junit.Assert.fail(Assert.java:87)
-	at org.junit.Assert.assertTrue(Assert.java:42)
-	at org.junit.Assert.assertTrue(Assert.java:53)
-	at com.github.pandeiro.tempore.slsk.core.gateway.SlskdGatewayHttpTest$search_polls_state_groups_results_and_does_not_delete_completed_searches$1.invokeSuspend$lambda$0(SlskdGatewayHttpTest.kt:93)
-	at com.github.pandeiro.tempore.slsk.core.gateway.RecordingHandler.dispatch(SlskdGatewayHttpTest.kt:33)
-	at okhttp3.mockwebserver.DeprecationBridgeKt$wrap$1.dispatch(DeprecationBridge.kt:40)
-	at mockwebserver3.MockWebServer$SocketHandler.processOneRequest(MockWebServer.kt:573)
-	at mockwebserver3.MockWebServer$SocketHandler.handle(MockWebServer.kt:514)
-	at mockwebserver3.MockWebServer$serveConnection$1.invoke(MockWebServer.kt:420)
-	at mockwebserver3.MockWebServer$serveConnection$1.invoke(MockWebServer.kt:418)
-	at okhttp3.internal.concurrent.TaskQueue$execute$1.runOnce(TaskQueue.kt:119)
-	at okhttp3.internal.concurrent.TaskRunner.runTask(TaskRunner.kt:124)
-	at okhttp3.internal.concurrent.TaskRunner.access$runTask(TaskRunner.kt:44)
-	at okhttp3.internal.concurrent.TaskRunner$runnable$1.run(TaskRunner.kt:73)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-]]></system-err>
+  <system-err><![CDATA[]]></system-err>
 </testsuite>

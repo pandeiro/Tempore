@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 9.2.1" type="incidents">
+
+    <incident
+        id="CustomX509TrustManager"
+        severity="warning"
+        message="Implementing a custom `X509TrustManager` is error-prone and likely to be insecure. It is likely to disable certificate validation altogether, and is non-trivial to implement correctly without calling Android&apos;s default implementation.">
+        <location
+            file="${:slsk:core*debug*MAIN*sourceProvider*0*javaDir*0}/com/github/pandeiro/tempore/slsk/core/gateway/SlskdGatewayImpl.kt"
+            line="419"
+            column="32"
+            startOffset="20073"
+            endLine="419"
+            endColumn="38"
+            endOffset="20079"/>
+    </incident>
+
+</incidents>

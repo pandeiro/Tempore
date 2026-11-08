@@ -20,6 +20,9 @@ import com.github.pandeiro.tempore.slsk.core.secure.StoreError
  */
 object SlskSession {
 
+    /** Set once at install: mirrors the host app's debuggable flag for HTTP logging. */
+    @Volatile
+    private var debuggableHost: Boolean = false
     @Volatile
     private var installed: Boolean = false
 
@@ -44,6 +47,7 @@ object SlskSession {
      */
     @Synchronized
     fun install(context: Context, hostBridge: HostBridge) {
+        debuggableHost = (context.applicationInfo.flags and android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) != 0
         this.hostBridge = hostBridge
         libraryGatewayValue = hostBridge.navidrome()?.let { config ->
             NavidromeClient(baseUrl = config.serverUrl, config = config)
@@ -141,7 +145,7 @@ object SlskSession {
         SlskdGatewayImpl.Factory(
             baseUrl = config.baseUrl,
             apiKey = config.apiKey,
-            debug = false,
+            debug = debuggableHost,
             pinnedCertSha256 = config.pinnedCertSha256,
         ).build()
 }

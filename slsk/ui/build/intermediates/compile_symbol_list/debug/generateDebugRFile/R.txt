@@ -3483,6 +3483,7 @@ int id slsk_activity_error_text 0x0
 int id slsk_activity_list 0x0
 int id slsk_activity_scan_banner 0x0
 int id slsk_activity_toolbar 0x0
+int id slsk_deeplink_results 0x0
 int id slsk_file_check 0x0
 int id slsk_file_locked 0x0
 int id slsk_file_name 0x0

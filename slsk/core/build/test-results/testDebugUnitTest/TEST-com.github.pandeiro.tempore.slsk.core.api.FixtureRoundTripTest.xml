@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.github.pandeiro.tempore.slsk.core.api.FixtureRoundTripTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-11-08T21:31:52.179Z" hostname="orca" time="0.081">
+<testsuite name="com.github.pandeiro.tempore.slsk.core.api.FixtureRoundTripTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-11-08T22:12:47.164Z" hostname="orca" time="0.072">
   <properties/>
-  <testcase name="lossy and archive entries flow through mapping without crashing" classname="com.github.pandeiro.tempore.slsk.core.api.FixtureRoundTripTest" time="0.047"/>
-  <testcase name="state fixture parses Completed ResponseLimitReached" classname="com.github.pandeiro.tempore.slsk.core.api.FixtureRoundTripTest" time="0.005"/>
+  <testcase name="lossy and archive entries flow through mapping without crashing" classname="com.github.pandeiro.tempore.slsk.core.api.FixtureRoundTripTest" time="0.043"/>
+  <testcase name="state fixture parses Completed ResponseLimitReached" classname="com.github.pandeiro.tempore.slsk.core.api.FixtureRoundTripTest" time="0.004"/>
   <testcase name="mp3 files with empty extension derive quality from bitrate" classname="com.github.pandeiro.tempore.slsk.core.api.FixtureRoundTripTest" time="0.004"/>
-  <testcase name="flac 16slash44 classifies LOSSLESS_16_44" classname="com.github.pandeiro.tempore.slsk.core.api.FixtureRoundTripTest" time="0.006"/>
-  <testcase name="Completed Aborted maps to FAILED" classname="com.github.pandeiro.tempore.slsk.core.api.FixtureRoundTripTest" time="0.003"/>
-  <testcase name="Completed Succeeded maps to SUCCEEDED in transfers fixture" classname="com.github.pandeiro.tempore.slsk.core.api.FixtureRoundTripTest" time="0.003"/>
-  <testcase name="hi-res depth24 or rate96k classifies LOSSLESS_HIREZ" classname="com.github.pandeiro.tempore.slsk.core.api.FixtureRoundTripTest" time="0.003"/>
-  <testcase name="grouping produces groups per directory with allowlist applied" classname="com.github.pandeiro.tempore.slsk.core.api.FixtureRoundTripTest" time="0.005"/>
-  <testcase name="fixture parses with the production Json settings" classname="com.github.pandeiro.tempore.slsk.core.api.FixtureRoundTripTest" time="0.002"/>
+  <testcase name="flac 16slash44 classifies LOSSLESS_16_44" classname="com.github.pandeiro.tempore.slsk.core.api.FixtureRoundTripTest" time="0.004"/>
+  <testcase name="Completed Aborted maps to FAILED" classname="com.github.pandeiro.tempore.slsk.core.api.FixtureRoundTripTest" time="0.004"/>
+  <testcase name="Completed Succeeded maps to SUCCEEDED in transfers fixture" classname="com.github.pandeiro.tempore.slsk.core.api.FixtureRoundTripTest" time="0.002"/>
+  <testcase name="hi-res depth24 or rate96k classifies LOSSLESS_HIREZ" classname="com.github.pandeiro.tempore.slsk.core.api.FixtureRoundTripTest" time="0.002"/>
+  <testcase name="grouping produces groups per directory with allowlist applied" classname="com.github.pandeiro.tempore.slsk.core.api.FixtureRoundTripTest" time="0.004"/>
+  <testcase name="fixture parses with the production Json settings" classname="com.github.pandeiro.tempore.slsk.core.api.FixtureRoundTripTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

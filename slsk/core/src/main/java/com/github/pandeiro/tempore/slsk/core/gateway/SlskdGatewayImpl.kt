@@ -70,6 +70,9 @@ open class SlskdGatewayImpl private constructor(
     /** Last search hits by username -> directory -> files (folder-contents fallback). */
     private val lastSearchFiles: MutableMap<String, MutableMap<String, MutableList<RemoteFile>>> = HashMap()
 
+    /** Last non-empty grouped result set; returned when a poll fetch fails mid-search so the UI list never flickers empty. */
+    private var lastKnownGroups: List<ResultGroup> = emptyList()
+
     // ------------------------------------------------------------------ health
 
     override suspend fun health(): Health = withContext(io) {
@@ -147,9 +150,18 @@ open class SlskdGatewayImpl private constructor(
     }
 
     private suspend fun groupAndRemember(state: SearchStateDto): List<ResultGroup> {
-        val responses = state.responses
-            ?: runCatching { api.searchResponses(state.id ?: "") }.getOrNull()
-                ?.body().orEmpty()
+        // Live slskd 0.26.1 quirk: GET /searches/{id} reports responseCount but ships an
+        // empty responses array; the per-response payload only lives on the
+        // /responses sub-resource. Fetch it every poll (recorded in slsk/SPIKE.md).
+        val inline = state.responses
+        val responses = if (!inline.isNullOrEmpty()) inline
+        else runCatching { api.searchResponses(state.id ?: "") }.getOrNull()
+            ?.body().orEmpty()
+        if (responses.isEmpty() && (state.responseCount ?: 0) > 0) {
+            // Responses exist server-side but this fetch failed/returned nothing:
+            // keep the last known result set instead of wiping the list mid-search.
+            return lastKnownGroups
+        }
         val peers = responses.map {
             GroupingEngine.PeerFiles(
                 username = it.username,
@@ -160,6 +172,7 @@ open class SlskdGatewayImpl private constructor(
             )
         }
         val groups = GroupingEngine().group(peers)
+        lastKnownGroups = groups
         for (group in groups) {
             val directories = lastSearchFiles.getOrPut(group.username) { HashMap() }
             val existing = directories.getOrPut(group.directory) { mutableListOf() }

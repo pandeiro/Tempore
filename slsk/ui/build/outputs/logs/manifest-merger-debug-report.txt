@@ -1,7 +1,7 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:2:1-13:12
-INJECTED from /Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:2:1-13:12
+ADDED from /Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:2:1-14:12
+INJECTED from /Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:2:1-14:12
 	package
 		INJECTED from /Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml
 	tools:node
@@ -11,15 +11,17 @@ INJECTED from /Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:2:1-1
 	xmlns:android
 		ADDED from /Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:2:11-69
 application
-ADDED from /Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:6:5-12:19
+ADDED from /Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:6:5-13:19
 activity#com.github.pandeiro.tempore.slsk.ui.SlskSettingsActivity
-ADDED from /Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:7:9-11:43
+ADDED from /Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:7:9-12:43
 	android:parentActivityName
-		ADDED from /Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:10:13-85
+		ADDED from /Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:11:13-85
 	android:label
-		ADDED from /Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:9:13-56
+		ADDED from /Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:9:13-50
 	tools:targetApi
-		ADDED from /Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:11:13-40
+		ADDED from /Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:12:13-40
+	android:theme
+		ADDED from /Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:10:13-44
 	android:name
 		ADDED from /Users/mu/Repos/tempore/slsk/ui/src/main/AndroidManifest.xml:8:13-84
 uses-sdk
