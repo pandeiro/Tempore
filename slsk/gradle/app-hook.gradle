@@ -1,0 +1,46 @@
+// Applied from the end of app/build.gradle (seam S2).
+// - wires :slsk:ui (+ its transitive :slsk:core) into every variant
+// - adds slsk/app-glue sources + resources to the app module (HostBridge, branding overlay)
+// - rebrands: applicationId com.github.pandeiro.tempore.*, versionName/Code -tempore.N
+// Setting ids is done here (still during evaluation); afterEvaluate is too late in AGP 9.
+def slskRoot = new File(rootDir, 'slsk')
+def temporeSuffix = '.tempore'
+def temporeRc = 1
+
+android {
+    sourceSets {
+        main {
+            java.srcDirs += [new File(slskRoot, 'app-glue/src')]
+            kotlin.srcDirs += [new File(slskRoot, 'app-glue/src')]
+            res.srcDirs += [new File(slskRoot, 'app-glue/res')]
+        }
+    }
+}
+
+def baseCode = android.defaultConfig.versionCode
+def baseName = android.defaultConfig.versionName ?: ''
+
+android.productFlavors.all { flavor ->
+    switch (flavor.name) {
+        case 'tempus':
+            flavor.applicationId = "com.github.pandeiro${temporeSuffix}"
+            break
+        case 'degoogled':
+            flavor.applicationId = "com.github.pandeiro${temporeSuffix}.degoogled"
+            break
+        case 'play':
+            flavor.applicationId = "com.github.pandeiro${temporeSuffix}.play"
+            break
+        default:
+            break
+    }
+}
+
+android.defaultConfig {
+    versionCode = (baseCode * 100 + temporeRc)
+    versionName = "${baseName}-tempore.${temporeRc}"
+}
+
+dependencies {
+    implementation project(':slsk:ui')
+}

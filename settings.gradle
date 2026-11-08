@@ -24,3 +24,4 @@ dependencyResolutionManagement {
 
 include ':app'
 rootProject.name = "Tempus"
+apply from: 'slsk/gradle/settings-hook.gradle'

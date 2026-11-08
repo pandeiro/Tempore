@@ -191,3 +191,5 @@ java {
         languageVersion = JavaLanguageVersion.of(21)
     }
 }
+
+apply from: '../slsk/gradle/app-hook.gradle'
