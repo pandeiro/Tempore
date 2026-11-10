@@ -75,15 +75,16 @@ interface; Library search and Soulseek search are never blended.
 - New code: `:slsk:core` (no upstream imports), `:slsk:ui` (`slsk_` resource prefix), glue
   sources compiled into `:app` via the S2 hook; hook scripts `slsk/gradle/*.gradle`;
   own catalog `slsk/gradle/slsk.versions.toml`; guard script `slsk/tools/check-seams.sh`
-  budget ≤12 files / ≤150 added lines vs upstream merge-base (excl. `slsk/`, `docs/`,
+  budget ≤13 files / ≤150 added lines vs upstream merge-base (excl. `slsk/`, fork-doc layer,
   `slsk_*.yml`).
 - Upstream edits allowed only at registered seams: S1 `settings.gradle`, S2 `app/build.gradle`,
   S3 `SearchFragment.java`, S4 `fragment_search.xml`, S5 `global_preferences.xml` +
   `SettingsContainerFragment.java`, S6 `nav_graph.xml`, S7 `App.java`, R1 manifest,
-  R2 default `app_name` — all recorded with anchors in `slsk/SEAMS.md`.
-- Sync: fast-forward upstream remotes nightly-unused; on each upstream release tag create a
-  `sync/YYYY-MM-DD` branch, merge, re-apply seams per SEAMS.md, re-run
-  `slsk/tools/check-seams.sh` + the build gate below.
+  R2 default `app_name`, R3 rebrand icon recolors — all recorded with anchors in
+  `slsk/SEAMS.md`.
+- Sync: upstream remotes are not auto-synced by CI; on each upstream release create a
+  `sync/YYYY-MM-DD` branch off main, merge the upstream tag, re-apply seams per SEAMS.md,
+  re-run `slsk/tools/check-seams.sh` + the build gate below.
 
 ### 2.6 Verified live environment (acceptance harness)
 - Device: Pixel 10a via adb UI automation; servers: slskd 0.26.1.0 (VPS) + Navidrome 0.64.2.
@@ -240,6 +241,13 @@ scratch branch (green/red/conflict report only) — TODO optional for this fork.
   `README.md`; `PLAN.md`/`README.md`/`AGENTS.md`/`CHANGELOG.md` declared the fork
   documentation layer in the seam budget (`slsk/tools/check-seams.sh` +
   `slsk/SEAMS.md` rules).
+
+### 2026-11-09 — In-app brand color (seam R3)
+- `ic_toolbar_tempo.xml` + `ic_splash_logo.xml` gradient stops recolored tempus-red
+  `#FFEC4A4A` → tempore sandstone `#FFC98352` (home/drawer toolbar disc, cold-start splash,
+  widget placeholder). Budget consciously raised 12 → 13 files; degoogled icon variants
+  intentionally untouched; launcher pair superseded by `@mipmap/slsk_launcher`; `logo.xml`
+  unreferenced, left as-is.
 
 ## 7. Backlog (post-MVP candidates)
 

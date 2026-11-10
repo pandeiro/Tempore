@@ -12,9 +12,10 @@ BASE=$(git merge-base HEAD upstream/main 2>/dev/null || echo HEAD)
 read -r FILES ADDED <<<"$(git diff --numstat "$BASE" HEAD -- . ':!slsk' ':!PLAN.md' ':!README.md' ':!AGENTS.md' ':!CHANGELOG.md' ':!.github/workflows/slsk_*.yml' \
   | awk '{f++; a+=$1} END {print (f+0)" "(a+0)}')"
 echo "seam diff outside slsk/ + fork docs: $FILES files, $ADDED added lines"
-if [ "$FILES" -gt 12 ] || [ "$ADDED" -gt 150 ]; then
-  echo "FAIL: seam budget exceeded (max 12 files / 150 added lines)" >&2
-  git diff --numstat "$BASE" HEAD -- . ':!slsk' ':!docs' ':!PLAN.md' ':!README.md' ':!AGENTS.md' ':!CHANGELOG.md' ':!.github/workflows/slsk_*.yml'
+# fork-owned rebrand-identity resources (seam R3) raised this from 12.
+if [ "$FILES" -gt 13 ] || [ "$ADDED" -gt 150 ]; then
+  echo "FAIL: seam budget exceeded (max 13 files / 150 added lines)" >&2
+  git diff --numstat "$BASE" HEAD -- . ':!slsk' ':!PLAN.md' ':!README.md' ':!AGENTS.md' ':!CHANGELOG.md' ':!.github/workflows/slsk_*.yml'
   exit 1
 fi
 
@@ -40,5 +41,7 @@ anchor_check app/src/main/res/navigation/nav_graph.xml '<include app:graph="@nav
 anchor_check app/src/main/java/com/eddyizm/tempus/App.java 'com.github.pandeiro.tempore.glue.SlskGlueInstaller.install(context);'
 anchor_check app/src/main/AndroidManifest.xml 'android:icon="@mipmap/slsk_launcher"'
 anchor_check app/src/main/AndroidManifest.xml 'android:label="@string/slsk_app_name"'
+anchor_check app/src/main/res/drawable/ic_toolbar_tempo.xml '#FFC98352'
+anchor_check app/src/main/res/drawable/ic_splash_logo.xml '#FFC98352'
 
 echo "OK: seam budget + anchors pass"

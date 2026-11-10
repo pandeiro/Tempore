@@ -1,9 +1,0 @@
-com.github.pandeiro.tempore.slsk.core-pngs-0 /Users/mu/Repos/tempore/slsk/core/build/generated/res/pngs/release
-com.github.pandeiro.tempore.slsk.core-updated_navigation_xml-1 /Users/mu/Repos/tempore/slsk/core/build/generated/updated_navigation_xml/release
-com.github.pandeiro.tempore.slsk.core-mergeReleaseResources-2 /Users/mu/Repos/tempore/slsk/core/build/intermediates/incremental/release/mergeReleaseResources/merged.dir
-com.github.pandeiro.tempore.slsk.core-mergeReleaseResources-3 /Users/mu/Repos/tempore/slsk/core/build/intermediates/incremental/release/mergeReleaseResources/stripped.dir
-com.github.pandeiro.tempore.slsk.core-release-4 /Users/mu/Repos/tempore/slsk/core/build/intermediates/merged_res/release/mergeReleaseResources
-com.github.pandeiro.tempore.slsk.core-release-5 /Users/mu/Repos/tempore/slsk/core/build/intermediates/packaged_res/release/packageReleaseResources
-com.github.pandeiro.tempore.slsk.core-main-6 /Users/mu/Repos/tempore/slsk/core/src/main/res
-com.github.pandeiro.tempore.slsk.core-release-7 /Users/mu/Repos/tempore/slsk/core/src/release/res
-gradleHome-0 /Users/mu/.gradle

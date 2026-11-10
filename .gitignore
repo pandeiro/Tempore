@@ -27,3 +27,7 @@ app/play/
 .kotlin
 slsk/keystore/*.jks
 slsk/keystore/local.properties
+
+# per-module build outputs (commit hygiene)
+slsk/*/build/
+slsk/*/build.kts/
