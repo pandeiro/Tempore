@@ -255,6 +255,25 @@ scratch branch (green/red/conflict report only) — TODO optional for this fork.
   sync flowchart, alternatives table. Declared part of the fork documentation layer
   (seam-budget exclusion), referenced from `AGENTS.md` + `README.md`.
 
+### 2026-11-10 — PR review fixes (security + correctness)
+- **Strict TLS pinning (#1, high)**: a configured cert pin is now the sole identity — a
+  mismatching (or expired/invalid) chain fails the handshake with no system-CA fallback and
+  no MITM window even with hostname verification effectively bypassed for LAN-IP slskd.
+  Transport rules live in `slsk/core/gateway/SlskTls.kt`; pinned vs. mismatching chains
+  proven with real TLS handshakes (okhttp-tls + MockWebServer).
+- **Plain-HTTP warning (#2)**: inline ⚠ warning in slskd settings whenever the effective
+  URL is `http://` (kept the http-prepend for LAN convenience; `Tailscale`/HTTPS advised).
+- **Test connection (#3)** now builds a throwaway gateway for the typed config — never
+  persists credentials and always probes what the user typed.
+- **Keystore robustness (#4)**: `load()` wraps IV/cipher init into `StoreError`; `install()`
+  treats ANY storage failure as surfaceable (setup card), and Settings' save catches and
+  displays secure-storage errors instead of crashing.
+- **Folder sheet (#5)**: checkboxes can now deselect files (locked stay pinned).
+- **TimeSpan parsing (#6)**: day-form `1.02:03:04.5` parses correctly (fixes remaining-time
+  display); unit-covered (`SlskdMapperTimeSpanTest`).
+- Nits: `SlskdConfig.toString()` redacts the API key; transfers fixture per-file usernames
+  fully aliased.
+
 ## 7. Backlog (post-MVP candidates)
 
 - Revisit `POST /transfers/downloads/batches` when the server upgrades past slskd 0.26.x

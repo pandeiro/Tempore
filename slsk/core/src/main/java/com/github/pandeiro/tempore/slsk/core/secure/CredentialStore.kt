@@ -23,6 +23,10 @@ data class SlskdConfig(
             && other.apiKey == apiKey
             && other.pinnedCertSha256 == pinnedCertSha256)
 
+    /** PR review #7: nothing may ever print the key, including an accidental log of this object. */
+    override fun toString(): String =
+        "SlskdConfig(baseUrl=$baseUrl, apiKey=***, pinnedCertSha256=$pinnedCertSha256)"
+
     override fun hashCode(): Int =
         31 * baseUrl.hashCode() + apiKey.hashCode() + (pinnedCertSha256?.hashCode() ?: 0)
 }

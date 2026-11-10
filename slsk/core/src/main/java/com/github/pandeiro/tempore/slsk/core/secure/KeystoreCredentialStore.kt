@@ -55,7 +55,13 @@ class KeystoreCredentialStore private constructor(
             prefs.edit().remove(BLOB_KEY).apply()
             throw StoreError.Decrypt("stored slsk credential blob is malformed", null)
         }
-        val cipher = cipherFor(Cipher.DECRYPT_MODE, parts[0])
+        // PR review #4: Base64-decoding the IV and init-ing the cipher can throw for a
+        // corrupted blob; failure here must surface as StoreError, not crash the process.
+        val cipher = try {
+            cipherFor(Cipher.DECRYPT_MODE, parts[0])
+        } catch (e: Exception) {
+            throw StoreError.Decrypt("stored slsk credentials are undecryptable on this device: ${e.message}", e)
+        }
         val plaintext = try {
             cipher.doFinal(Base64.decode(parts[1], Base64.NO_WRAP))
         } catch (e: Exception) {

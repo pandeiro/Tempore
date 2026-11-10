@@ -36,6 +36,9 @@ object SlskSessionAccess {
         SlskSession.saveConfig(config)
     }
 
+    /** Throws-away gateway for the settings Test-connection probe (never persists). */
+    fun probeGateway(config: SlskdConfig): SoulseekGateway = SlskSession.probeGateway(config)
+
     fun clear() {
         SlskSession.clearConfig()
     }

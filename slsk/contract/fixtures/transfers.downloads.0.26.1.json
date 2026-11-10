@@ -1,6 +1,6 @@
 [
  {
-  "username": "REDACTED",
+  "username": "PEER01",
   "directories": [
    {
     "directory": "@complete\\A Tribe Called Quest\\Midnight Marauders",
@@ -8,7 +8,7 @@
     "files": [
      {
       "id": "6a7c31d4-00cf-415e-b33e-2b368ec4b1c2",
-      "username": "fahtjones",
+      "username": "PEER02",
       "direction": "Download",
       "filename": "@complete\\A Tribe Called Quest\\Midnight Marauders\\01 A Tribe Called Quest - Midnight Marauders Tour Guide.flac",
       "size": 4231403,
@@ -28,7 +28,7 @@
      },
      {
       "id": "6c524194-2097-48e5-8326-f5ba3555803c",
-      "username": "fahtjones",
+      "username": "PEER02",
       "direction": "Download",
       "filename": "@complete\\A Tribe Called Quest\\Midnight Marauders\\02 A Tribe Called Quest - Steve Biko (Stir It Up).flac",
       "size": 20093597,
@@ -48,7 +48,7 @@
      },
      {
       "id": "ab649efd-e2a5-4562-98cc-56652b9daa6b",
-      "username": "fahtjones",
+      "username": "PEER02",
       "direction": "Download",
       "filename": "@complete\\A Tribe Called Quest\\Midnight Marauders\\03 A Tribe Called Quest - Award Tour.flac",
       "size": 25469910,
@@ -68,7 +68,7 @@
      },
      {
       "id": "610fd014-c952-4831-9c59-33e1c3e18428",
-      "username": "fahtjones",
+      "username": "PEER02",
       "direction": "Download",
       "filename": "@complete\\A Tribe Called Quest\\Midnight Marauders\\04 A Tribe Called Quest - 8 Million Stories.flac",
       "size": 24636009,
@@ -88,7 +88,7 @@
      },
      {
       "id": "d1725bc9-31cc-4269-842f-d51c05d019f3",
-      "username": "fahtjones",
+      "username": "PEER02",
       "direction": "Download",
       "filename": "@complete\\A Tribe Called Quest\\Midnight Marauders\\05 A Tribe Called Quest - Sucka Nigga.flac",
       "size": 24800988,
@@ -108,7 +108,7 @@
      },
      {
       "id": "1826b2c8-7d80-4e6b-a1d9-05eda55784ca",
-      "username": "fahtjones",
+      "username": "PEER02",
       "direction": "Download",
       "filename": "@complete\\A Tribe Called Quest\\Midnight Marauders\\06 A Tribe Called Quest - Midnight.flac",
       "size": 26957096,
@@ -128,7 +128,7 @@
      },
      {
       "id": "08314a31-4577-4bbb-9df2-205d0e13256c",
-      "username": "fahtjones",
+      "username": "PEER02",
       "direction": "Download",
       "filename": "@complete\\A Tribe Called Quest\\Midnight Marauders\\07 A Tribe Called Quest - We Can Get Down.flac",
       "size": 26890339,
@@ -148,7 +148,7 @@
      },
      {
       "id": "0018f331-6fcf-4d25-afc5-e0f642f842a0",
-      "username": "fahtjones",
+      "username": "PEER02",
       "direction": "Download",
       "filename": "@complete\\A Tribe Called Quest\\Midnight Marauders\\08 A Tribe Called Quest - Electric Relaxation.flac",
       "size": 24630686,
@@ -168,7 +168,7 @@
      },
      {
       "id": "33009dbd-e0ca-43ea-99d5-a43b7cb220aa",
-      "username": "fahtjones",
+      "username": "PEER02",
       "direction": "Download",
       "filename": "@complete\\A Tribe Called Quest\\Midnight Marauders\\09 A Tribe Called Quest - Clap Your Hands.flac",
       "size": 21722788,
@@ -188,7 +188,7 @@
      },
      {
       "id": "af19f04e-f1a0-4e5d-99d0-baeba4365f1c",
-      "username": "fahtjones",
+      "username": "PEER02",
       "direction": "Download",
       "filename": "@complete\\A Tribe Called Quest\\Midnight Marauders\\10 A Tribe Called Quest - Oh My God.flac",
       "size": 22652288,
@@ -208,7 +208,7 @@
      },
      {
       "id": "2af703c2-8423-4034-8014-58a99e9742d1",
-      "username": "fahtjones",
+      "username": "PEER02",
       "direction": "Download",
       "filename": "@complete\\A Tribe Called Quest\\Midnight Marauders\\11 A Tribe Called Quest - Keep It Rollin'.flac",
       "size": 17994480,
@@ -228,7 +228,7 @@
      },
      {
       "id": "8cb816de-8242-4fc5-8939-fa7ce088f44e",
-      "username": "fahtjones",
+      "username": "PEER02",
       "direction": "Download",
       "filename": "@complete\\A Tribe Called Quest\\Midnight Marauders\\12 A Tribe Called Quest - The Chase, Part II.flac",
       "size": 25079283,
@@ -248,7 +248,7 @@
      },
      {
       "id": "da8f02a5-34d0-4473-8d55-1a4fa437a1e5",
-      "username": "fahtjones",
+      "username": "PEER02",
       "direction": "Download",
       "filename": "@complete\\A Tribe Called Quest\\Midnight Marauders\\13 A Tribe Called Quest - Lyrics to Go.flac",
       "size": 25362169,
@@ -268,7 +268,7 @@
      },
      {
       "id": "0bf808ad-7be8-434e-83ec-48d0a230c9de",
-      "username": "fahtjones",
+      "username": "PEER02",
       "direction": "Download",
       "filename": "@complete\\A Tribe Called Quest\\Midnight Marauders\\14 A Tribe Called Quest - God Lives Through.flac",
       "size": 28790037,
@@ -288,7 +288,7 @@
      },
      {
       "id": "9daacc01-3d1c-4192-a63f-29560935e751",
-      "username": "fahtjones",
+      "username": "PEER02",
       "direction": "Download",
       "filename": "@complete\\A Tribe Called Quest\\Midnight Marauders\\cover.jpg",
       "size": 198556,
@@ -311,7 +311,7 @@
   ]
  },
  {
-  "username": "REDACTED",
+  "username": "PEER01",
   "directories": [
    {
     "directory": "shared\\FLAC\\Bobby Timmons - This Here Is Bobby Timmons (1960) [FLAC]",
@@ -319,7 +319,7 @@
     "files": [
      {
       "id": "0b560d16-729a-4b5a-8c2b-563cba8a4d81",
-      "username": "abon999",
+      "username": "PEER03",
       "direction": "Download",
       "filename": "shared\\FLAC\\Bobby Timmons - This Here Is Bobby Timmons (1960) [FLAC]\\01 - This Here.flac",
       "size": 21946755,
@@ -339,7 +339,7 @@
      },
      {
       "id": "15cb0b2c-aa63-49cf-8856-c83181617741",
-      "username": "abon999",
+      "username": "PEER03",
       "direction": "Download",
       "filename": "shared\\FLAC\\Bobby Timmons - This Here Is Bobby Timmons (1960) [FLAC]\\02 - Moanin'.flac",
       "size": 30897619,
@@ -359,7 +359,7 @@
      },
      {
       "id": "3b03034d-ae5c-4a52-b9b5-abc8a1ade8a7",
-      "username": "abon999",
+      "username": "PEER03",
       "direction": "Download",
       "filename": "shared\\FLAC\\Bobby Timmons - This Here Is Bobby Timmons (1960) [FLAC]\\03 - Lush Life.flac",
       "size": 12166926,
@@ -379,7 +379,7 @@
      },
      {
       "id": "301c97bd-961c-4d50-bbbc-e3a415a39576",
-      "username": "abon999",
+      "username": "PEER03",
       "direction": "Download",
       "filename": "shared\\FLAC\\Bobby Timmons - This Here Is Bobby Timmons (1960) [FLAC]\\04 - The Party's Over.flac",
       "size": 25993337,
@@ -399,7 +399,7 @@
      },
      {
       "id": "c9ccc78f-3907-4e25-b7c0-f568d3c5b426",
-      "username": "abon999",
+      "username": "PEER03",
       "direction": "Download",
       "filename": "shared\\FLAC\\Bobby Timmons - This Here Is Bobby Timmons (1960) [FLAC]\\05 - Prelude to a Kiss.flac",
       "size": 16981259,
@@ -419,7 +419,7 @@
      },
      {
       "id": "c059d159-c3d8-4d26-b957-2b83127f1592",
-      "username": "abon999",
+      "username": "PEER03",
       "direction": "Download",
       "filename": "shared\\FLAC\\Bobby Timmons - This Here Is Bobby Timmons (1960) [FLAC]\\06 - Dat Dere.flac",
       "size": 32284334,
@@ -439,7 +439,7 @@
      },
      {
       "id": "62de4490-a7a2-4bdb-8954-5f2589313828",
-      "username": "abon999",
+      "username": "PEER03",
       "direction": "Download",
       "filename": "shared\\FLAC\\Bobby Timmons - This Here Is Bobby Timmons (1960) [FLAC]\\07 - My Funny Valentine.flac",
       "size": 27048857,
@@ -459,7 +459,7 @@
      },
      {
       "id": "ce440ce4-06d8-4ea6-ab1d-8e79d2a93867",
-      "username": "abon999",
+      "username": "PEER03",
       "direction": "Download",
       "filename": "shared\\FLAC\\Bobby Timmons - This Here Is Bobby Timmons (1960) [FLAC]\\08 - Come Rain or Come Shine.flac",
       "size": 26851032,
@@ -479,7 +479,7 @@
      },
      {
       "id": "e1edec1b-0ede-4241-86bf-c56dba5885ba",
-      "username": "abon999",
+      "username": "PEER03",
       "direction": "Download",
       "filename": "shared\\FLAC\\Bobby Timmons - This Here Is Bobby Timmons (1960) [FLAC]\\09 - Joy Ride.flac",
       "size": 26949956,
@@ -499,7 +499,7 @@
      },
      {
       "id": "c8497b1a-c4b2-4692-a340-70a928377c8d",
-      "username": "abon999",
+      "username": "PEER03",
       "direction": "Download",
       "filename": "shared\\FLAC\\Bobby Timmons - This Here Is Bobby Timmons (1960) [FLAC]\\Bobby Timmons - This Here Is Bobby Timmons.log",
       "size": 8571,
@@ -519,7 +519,7 @@
      },
      {
       "id": "f7c565b7-4359-4206-8ae5-cb4585cf94d2",
-      "username": "abon999",
+      "username": "PEER03",
       "direction": "Download",
       "filename": "shared\\FLAC\\Bobby Timmons - This Here Is Bobby Timmons (1960) [FLAC]\\cover.jpg",
       "size": 25899,
@@ -542,7 +542,7 @@
   ]
  },
  {
-  "username": "REDACTED",
+  "username": "PEER01",
   "directories": [
    {
     "directory": "music\\Art Blakey & The Jazz Messengers\\Ugetsu - Art Blakey's Jazz Messengers At Birdland (2011)",
@@ -550,7 +550,7 @@
     "files": [
      {
       "id": "136b23a7-fc43-4f3a-9a01-6b628c511b62",
-      "username": "bobochill",
+      "username": "PEER04",
       "direction": "Download",
       "filename": "music\\Art Blakey & The Jazz Messengers\\Ugetsu - Art Blakey's Jazz Messengers At Birdland (2011)\\Art Blakey & The Jazz Messengers - Ugetsu - Art Blakey's Jazz Messengers At Birdland - 01 - One By One.flac",
       "size": 52291063,
@@ -570,7 +570,7 @@
      },
      {
       "id": "3c63edf6-1b5a-4a10-a0f0-32d36356a86a",
-      "username": "bobochill",
+      "username": "PEER04",
       "direction": "Download",
       "filename": "music\\Art Blakey & The Jazz Messengers\\Ugetsu - Art Blakey's Jazz Messengers At Birdland (2011)\\Art Blakey & The Jazz Messengers - Ugetsu - Art Blakey's Jazz Messengers At Birdland - 02 - Ugetsu.flac",
       "size": 91295250,
@@ -590,7 +590,7 @@
      },
      {
       "id": "f701628c-7bb5-4c20-a452-d9886b0a55cb",
-      "username": "bobochill",
+      "username": "PEER04",
       "direction": "Download",
       "filename": "music\\Art Blakey & The Jazz Messengers\\Ugetsu - Art Blakey's Jazz Messengers At Birdland (2011)\\Art Blakey & The Jazz Messengers - Ugetsu - Art Blakey's Jazz Messengers At Birdland - 03 - Time Off.flac",
       "size": 42926427,
@@ -610,7 +610,7 @@
      },
      {
       "id": "dcc98a61-0a98-4d71-9d20-76fbdd802429",
-      "username": "bobochill",
+      "username": "PEER04",
       "direction": "Download",
       "filename": "music\\Art Blakey & The Jazz Messengers\\Ugetsu - Art Blakey's Jazz Messengers At Birdland (2011)\\Art Blakey & The Jazz Messengers - Ugetsu - Art Blakey's Jazz Messengers At Birdland - 04 - Ping-Pong.flac",
       "size": 68668498,
@@ -630,7 +630,7 @@
      },
      {
       "id": "9f62cc02-1987-42a1-ac82-a2ce8fd065da",
-      "username": "bobochill",
+      "username": "PEER04",
       "direction": "Download",
       "filename": "music\\Art Blakey & The Jazz Messengers\\Ugetsu - Art Blakey's Jazz Messengers At Birdland (2011)\\Art Blakey & The Jazz Messengers - Ugetsu - Art Blakey's Jazz Messengers At Birdland - 05 - I Didn't Know What Time It Was.flac",
       "size": 49235896,
@@ -650,7 +650,7 @@
      },
      {
       "id": "18483959-1f5e-4dff-a5a1-644ea4fa5036",
-      "username": "bobochill",
+      "username": "PEER04",
       "direction": "Download",
       "filename": "music\\Art Blakey & The Jazz Messengers\\Ugetsu - Art Blakey's Jazz Messengers At Birdland (2011)\\Art Blakey & The Jazz Messengers - Ugetsu - Art Blakey's Jazz Messengers At Birdland - 06 - On The Ginza.flac",
       "size": 57064221,
@@ -670,7 +670,7 @@
      },
      {
       "id": "0b66c955-2832-40d3-bf58-fe2bc3141fde",
-      "username": "bobochill",
+      "username": "PEER04",
       "direction": "Download",
       "filename": "music\\Art Blakey & The Jazz Messengers\\Ugetsu - Art Blakey's Jazz Messengers At Birdland (2011)\\Art Blakey & The Jazz Messengers - Ugetsu - Art Blakey's Jazz Messengers At Birdland - 07 - Eva (bonus track).flac",
       "size": 43308006,
@@ -690,7 +690,7 @@
      },
      {
       "id": "6cfb8616-f95c-4867-94ff-29d1e606f273",
-      "username": "bobochill",
+      "username": "PEER04",
       "direction": "Download",
       "filename": "music\\Art Blakey & The Jazz Messengers\\Ugetsu - Art Blakey's Jazz Messengers At Birdland (2011)\\Art Blakey & The Jazz Messengers - Ugetsu - Art Blakey's Jazz Messengers At Birdland - 08 - The High Priest (bonus track).flac",
       "size": 44085075,
@@ -710,7 +710,7 @@
      },
      {
       "id": "0a4c5d6d-ce6e-49dc-828e-5d1c47508db9",
-      "username": "bobochill",
+      "username": "PEER04",
       "direction": "Download",
       "filename": "music\\Art Blakey & The Jazz Messengers\\Ugetsu - Art Blakey's Jazz Messengers At Birdland (2011)\\Art Blakey & The Jazz Messengers - Ugetsu - Art Blakey's Jazz Messengers At Birdland - 09 - Conception (bonus track).flac",
       "size": 32306082,
@@ -730,7 +730,7 @@
      },
      {
       "id": "c7b0cc6d-7cf1-4115-9fb9-79429f664aa3",
-      "username": "bobochill",
+      "username": "PEER04",
       "direction": "Download",
       "filename": "music\\Art Blakey & The Jazz Messengers\\Ugetsu - Art Blakey's Jazz Messengers At Birdland (2011)\\Art Blakey & The Jazz Messengers - Ugetsu - Art Blakey's Jazz Messengers At Birdland - 10 - The Theme (bonus track).flac",
       "size": 12459685,
@@ -753,7 +753,7 @@
   ]
  },
  {
-  "username": "REDACTED",
+  "username": "PEER01",
   "directories": [
    {
     "directory": "music\\Art Blakey & The Jazz Messengers\\Caravan (1962)",
@@ -761,7 +761,7 @@
     "files": [
      {
       "id": "6afcaccf-63a5-45e3-97bf-f1bf3e7fdfbb",
-      "username": "stripewhites",
+      "username": "PEER05",
       "direction": "Download",
       "filename": "music\\Art Blakey & The Jazz Messengers\\Caravan (1962)\\01 - Caravan.flac",
       "size": 64345572,
@@ -781,7 +781,7 @@
      },
      {
       "id": "d293e375-bb8b-4341-9249-93bd65022eea",
-      "username": "stripewhites",
+      "username": "PEER05",
       "direction": "Download",
       "filename": "music\\Art Blakey & The Jazz Messengers\\Caravan (1962)\\02 - Sweet \u2019n\u2019 Sour.flac",
       "size": 36752017,
@@ -801,7 +801,7 @@
      },
      {
       "id": "bcfd1a9c-7423-4845-ae0c-bddb7c325936",
-      "username": "stripewhites",
+      "username": "PEER05",
       "direction": "Download",
       "filename": "music\\Art Blakey & The Jazz Messengers\\Caravan (1962)\\04 - This Is for Albert.flac",
       "size": 54769451,
@@ -821,7 +821,7 @@
      },
      {
       "id": "41271ca7-f128-402b-b76b-e2206b9eb96d",
-      "username": "stripewhites",
+      "username": "PEER05",
       "direction": "Download",
       "filename": "music\\Art Blakey & The Jazz Messengers\\Caravan (1962)\\06 - Thermo.flac",
       "size": 45694210,
@@ -841,7 +841,7 @@
      },
      {
       "id": "50f6c8f6-093c-4f9a-9102-d66f43160215",
-      "username": "stripewhites",
+      "username": "PEER05",
       "direction": "Download",
       "filename": "music\\Art Blakey & The Jazz Messengers\\Caravan (1962)\\07 - Thermo (take 2).flac",
       "size": 45724894,
@@ -861,7 +861,7 @@
      },
      {
       "id": "78614dd3-e710-4866-aca9-12a424d3176c",
-      "username": "stripewhites",
+      "username": "PEER05",
       "direction": "Download",
       "filename": "music\\Art Blakey & The Jazz Messengers\\Caravan (1962)\\08 - Sweet \u2019n\u2019 Sour (take 4).flac",
       "size": 35298989,
@@ -881,7 +881,7 @@
      },
      {
       "id": "75d91b77-2c27-4a1d-8e85-2097311e3424",
-      "username": "stripewhites",
+      "username": "PEER05",
       "direction": "Download",
       "filename": "music\\Art Blakey & The Jazz Messengers\\Caravan (1962)\\05 - Skylark.flac",
       "size": 28795651,
@@ -901,7 +901,7 @@
      },
      {
       "id": "5fc32da2-296d-4698-9d0e-e6b001025541",
-      "username": "stripewhites",
+      "username": "PEER05",
       "direction": "Download",
       "filename": "music\\Art Blakey & The Jazz Messengers\\Caravan (1962)\\03 - In the Small Wee Hours of the Morning.flac",
       "size": 22007883,
@@ -924,7 +924,7 @@
   ]
  },
  {
-  "username": "REDACTED",
+  "username": "PEER01",
   "directories": [
    {
     "directory": "@@dwusf\\Music\\Wayne Shorter\\1964 Juju [2024 Remaster] {Blue Note UCCQ-9708}",
@@ -932,7 +932,7 @@
     "files": [
      {
       "id": "2ce744b2-769f-4f44-8f70-1cacb5c5081f",
-      "username": "TheBigLebowski",
+      "username": "PEER06",
       "direction": "Download",
       "filename": "@@dwusf\\Music\\Wayne Shorter\\1964 Juju [2024 Remaster] {Blue Note UCCQ-9708}\\01 Juju.flac",
       "size": 60231997,
@@ -952,7 +952,7 @@
      },
      {
       "id": "b4676d12-ecde-4e1b-b9f5-ff1352c1481b",
-      "username": "TheBigLebowski",
+      "username": "PEER06",
       "direction": "Download",
       "filename": "@@dwusf\\Music\\Wayne Shorter\\1964 Juju [2024 Remaster] {Blue Note UCCQ-9708}\\02 Deluge.flac",
       "size": 46984140,
@@ -972,7 +972,7 @@
      },
      {
       "id": "29796ebf-ea5f-450a-8a5c-be0594977bea",
-      "username": "TheBigLebowski",
+      "username": "PEER06",
       "direction": "Download",
       "filename": "@@dwusf\\Music\\Wayne Shorter\\1964 Juju [2024 Remaster] {Blue Note UCCQ-9708}\\03 House of Jade.flac",
       "size": 41554960,
@@ -992,7 +992,7 @@
      },
      {
       "id": "db782b70-aa76-41a3-9cdc-19a791b3daeb",
-      "username": "TheBigLebowski",
+      "username": "PEER06",
       "direction": "Download",
       "filename": "@@dwusf\\Music\\Wayne Shorter\\1964 Juju [2024 Remaster] {Blue Note UCCQ-9708}\\04 Mahjong.flac",
       "size": 51160558,
@@ -1012,7 +1012,7 @@
      },
      {
       "id": "3c7093f3-9e97-4698-9671-91f97600927c",
-      "username": "TheBigLebowski",
+      "username": "PEER06",
       "direction": "Download",
       "filename": "@@dwusf\\Music\\Wayne Shorter\\1964 Juju [2024 Remaster] {Blue Note UCCQ-9708}\\05 Yes or No.flac",
       "size": 47305363,
@@ -1032,7 +1032,7 @@
      },
      {
       "id": "7bd49a82-3381-4392-96ac-72bcd45ccf00",
-      "username": "TheBigLebowski",
+      "username": "PEER06",
       "direction": "Download",
       "filename": "@@dwusf\\Music\\Wayne Shorter\\1964 Juju [2024 Remaster] {Blue Note UCCQ-9708}\\06 Twelve More Bars to Go.flac",
       "size": 38067493,
@@ -1052,7 +1052,7 @@
      },
      {
       "id": "e33bc3ae-dbfa-4ed5-9f16-e60e091a099d",
-      "username": "TheBigLebowski",
+      "username": "PEER06",
       "direction": "Download",
       "filename": "@@dwusf\\Music\\Wayne Shorter\\1964 Juju [2024 Remaster] {Blue Note UCCQ-9708}\\Wayne Shorter - Juju.log",
       "size": 5893,
@@ -1072,7 +1072,7 @@
      },
      {
       "id": "5bb475a3-f5f5-4d21-9ac1-0a74d6c47b7f",
-      "username": "TheBigLebowski",
+      "username": "PEER06",
       "direction": "Download",
       "filename": "@@dwusf\\Music\\Wayne Shorter\\1964 Juju [2024 Remaster] {Blue Note UCCQ-9708}\\cover.jpg",
       "size": 116778,
@@ -1092,7 +1092,7 @@
      },
      {
       "id": "af3653f8-02a4-4c61-8777-42baf29d6364",
-      "username": "TheBigLebowski",
+      "username": "PEER06",
       "direction": "Download",
       "filename": "@@dwusf\\Music\\Wayne Shorter\\1964 Juju [2024 Remaster] {Blue Note UCCQ-9708}\\riplog.txt",
       "size": 2620,
@@ -1115,7 +1115,7 @@
   ]
  },
  {
-  "username": "REDACTED",
+  "username": "PEER01",
   "directories": [
    {
     "directory": "@@jgatd\\Slsk\\Label\\# Blue Note\\2014 - Blue Note 75th Anniversary MQS Collection\\65 - Wayne Shorter - Adam's Apple (1966)",
@@ -1123,7 +1123,7 @@
     "files": [
      {
       "id": "2e8821cd-c00d-44a7-abc0-f326c856e8b5",
-      "username": "0rbital",
+      "username": "PEER07",
       "direction": "Download",
       "filename": "@@jgatd\\Slsk\\Label\\# Blue Note\\2014 - Blue Note 75th Anniversary MQS Collection\\65 - Wayne Shorter - Adam's Apple (1966)\\01 - Adam's Apple.mp3",
       "size": 16547893,
@@ -1143,7 +1143,7 @@
      },
      {
       "id": "03a44e2b-aacb-4066-833f-fada8c143588",
-      "username": "0rbital",
+      "username": "PEER07",
       "direction": "Download",
       "filename": "@@jgatd\\Slsk\\Label\\# Blue Note\\2014 - Blue Note 75th Anniversary MQS Collection\\65 - Wayne Shorter - Adam's Apple (1966)\\02 - 502 Blues (Drinkin' And Drivin').mp3",
       "size": 15942937,
@@ -1163,7 +1163,7 @@
      },
      {
       "id": "324f1d68-d9fd-4b38-b15c-178280fb2297",
-      "username": "0rbital",
+      "username": "PEER07",
       "direction": "Download",
       "filename": "@@jgatd\\Slsk\\Label\\# Blue Note\\2014 - Blue Note 75th Anniversary MQS Collection\\65 - Wayne Shorter - Adam's Apple (1966)\\03 - El Gaucho.mp3",
       "size": 15806009,
@@ -1183,7 +1183,7 @@
      },
      {
       "id": "61299cf0-b1a1-485f-a823-5306b907d5ba",
-      "username": "0rbital",
+      "username": "PEER07",
       "direction": "Download",
       "filename": "@@jgatd\\Slsk\\Label\\# Blue Note\\2014 - Blue Note 75th Anniversary MQS Collection\\65 - Wayne Shorter - Adam's Apple (1966)\\04 - Footprints.mp3",
       "size": 18137179,
@@ -1203,7 +1203,7 @@
      },
      {
       "id": "9e8d0325-2cf4-4bdb-a14c-34bdc33cf908",
-      "username": "0rbital",
+      "username": "PEER07",
       "direction": "Download",
       "filename": "@@jgatd\\Slsk\\Label\\# Blue Note\\2014 - Blue Note 75th Anniversary MQS Collection\\65 - Wayne Shorter - Adam's Apple (1966)\\05 - Teru.mp3",
       "size": 15086065,
@@ -1223,7 +1223,7 @@
      },
      {
       "id": "1785a096-0ad4-4320-84ba-82a52c3a49a0",
-      "username": "0rbital",
+      "username": "PEER07",
       "direction": "Download",
       "filename": "@@jgatd\\Slsk\\Label\\# Blue Note\\2014 - Blue Note 75th Anniversary MQS Collection\\65 - Wayne Shorter - Adam's Apple (1966)\\06 - Chief Crazy Horse.mp3",
       "size": 18413046,
@@ -1243,7 +1243,7 @@
      },
      {
       "id": "7a4428d4-c50e-4042-8e0d-fd18f9fe425f",
-      "username": "0rbital",
+      "username": "PEER07",
       "direction": "Download",
       "filename": "@@jgatd\\Slsk\\Label\\# Blue Note\\2014 - Blue Note 75th Anniversary MQS Collection\\65 - Wayne Shorter - Adam's Apple (1966)\\Info.txt",
       "size": 200,
@@ -1263,7 +1263,7 @@
      },
      {
       "id": "e7714cce-ee5c-40ed-bb6d-42d509255de5",
-      "username": "0rbital",
+      "username": "PEER07",
       "direction": "Download",
       "filename": "@@jgatd\\Slsk\\Label\\# Blue Note\\2014 - Blue Note 75th Anniversary MQS Collection\\65 - Wayne Shorter - Adam's Apple (1966)\\front.jpg",
       "size": 122696,
@@ -1289,7 +1289,7 @@
     "files": [
      {
       "id": "cbc2444f-f7c2-42f2-b160-545877f5c897",
-      "username": "0rbital",
+      "username": "PEER07",
       "direction": "Download",
       "filename": "@@jgatd\\Slsk\\Label\\# Blue Note\\2014 - Blue Note 75th Anniversary MQS Collection\\51 - Wayne Shorter - Night Dreamer (1964)\\01 - Night Dreamer.mp3",
       "size": 17524119,
@@ -1309,7 +1309,7 @@
      },
      {
       "id": "c11298b2-68e0-4d37-85ec-db1bb5cc5dea",
-      "username": "0rbital",
+      "username": "PEER07",
       "direction": "Download",
       "filename": "@@jgatd\\Slsk\\Label\\# Blue Note\\2014 - Blue Note 75th Anniversary MQS Collection\\51 - Wayne Shorter - Night Dreamer (1964)\\02 - Oriental Folk Song.mp3",
       "size": 16560733,
@@ -1329,7 +1329,7 @@
      },
      {
       "id": "a3bca9f7-bef8-49a4-acb3-ca5e893bec6c",
-      "username": "0rbital",
+      "username": "PEER07",
       "direction": "Download",
       "filename": "@@jgatd\\Slsk\\Label\\# Blue Note\\2014 - Blue Note 75th Anniversary MQS Collection\\51 - Wayne Shorter - Night Dreamer (1964)\\03 - Virgo.mp3",
       "size": 17152119,
@@ -1349,7 +1349,7 @@
      },
      {
       "id": "92f2aa48-93ee-4a74-9d41-a5e3abd21952",
-      "username": "0rbital",
+      "username": "PEER07",
       "direction": "Download",
       "filename": "@@jgatd\\Slsk\\Label\\# Blue Note\\2014 - Blue Note 75th Anniversary MQS Collection\\51 - Wayne Shorter - Night Dreamer (1964)\\04 - Black Nile.mp3",
       "size": 15584782,
@@ -1369,7 +1369,7 @@
      },
      {
       "id": "dc58bae9-c25e-4979-89b6-8b14cd846194",
-      "username": "0rbital",
+      "username": "PEER07",
       "direction": "Download",
       "filename": "@@jgatd\\Slsk\\Label\\# Blue Note\\2014 - Blue Note 75th Anniversary MQS Collection\\51 - Wayne Shorter - Night Dreamer (1964)\\05 - Charcoal Blues.mp3",
       "size": 16620284,
@@ -1389,7 +1389,7 @@
      },
      {
       "id": "0a3735ea-ed57-494d-98a6-adee9d5d9da7",
-      "username": "0rbital",
+      "username": "PEER07",
       "direction": "Download",
       "filename": "@@jgatd\\Slsk\\Label\\# Blue Note\\2014 - Blue Note 75th Anniversary MQS Collection\\51 - Wayne Shorter - Night Dreamer (1964)\\06 - Armageddon.mp3",
       "size": 15354904,
@@ -1409,7 +1409,7 @@
      },
      {
       "id": "d36e57d1-3a7b-4c96-97e0-9fd6ea57f7af",
-      "username": "0rbital",
+      "username": "PEER07",
       "direction": "Download",
       "filename": "@@jgatd\\Slsk\\Label\\# Blue Note\\2014 - Blue Note 75th Anniversary MQS Collection\\51 - Wayne Shorter - Night Dreamer (1964)\\Info.txt",
       "size": 187,
@@ -1429,7 +1429,7 @@
      },
      {
       "id": "671f8988-9756-4e41-b14e-3647abf3781b",
-      "username": "0rbital",
+      "username": "PEER07",
       "direction": "Download",
       "filename": "@@jgatd\\Slsk\\Label\\# Blue Note\\2014 - Blue Note 75th Anniversary MQS Collection\\51 - Wayne Shorter - Night Dreamer (1964)\\front.jpg",
       "size": 93726,
@@ -1452,7 +1452,7 @@
   ]
  },
  {
-  "username": "REDACTED",
+  "username": "PEER01",
   "directories": [
    {
     "directory": "music\\Wayne Shorter\\Speak No Evil",
@@ -1460,7 +1460,7 @@
     "files": [
      {
       "id": "5f0187ca-3753-4e99-b136-3595b0f501e4",
-      "username": "unrankedtote",
+      "username": "PEER08",
       "direction": "Download",
       "filename": "music\\Wayne Shorter\\Speak No Evil\\Wayne Shorter_Speak No Evil_01_Witch Hunt.flac",
       "size": 50196412,
@@ -1480,7 +1480,7 @@
      },
      {
       "id": "439920f4-df43-40a5-9034-e43b609dc57f",
-      "username": "unrankedtote",
+      "username": "PEER08",
       "direction": "Download",
       "filename": "music\\Wayne Shorter\\Speak No Evil\\Wayne Shorter_Speak No Evil_02_Fee-Fi-Fo-Fum.flac",
       "size": 34440252,
@@ -1500,7 +1500,7 @@
      },
      {
       "id": "f2fef4c9-71af-4ee2-8687-c3aa2b9a0d50",
-      "username": "unrankedtote",
+      "username": "PEER08",
       "direction": "Download",
       "filename": "music\\Wayne Shorter\\Speak No Evil\\Wayne Shorter_Speak No Evil_03_Dance Cadaverous.flac",
       "size": 36734637,
@@ -1520,7 +1520,7 @@
      },
      {
       "id": "eee0dedd-ff49-4549-8eb4-e5414fea4864",
-      "username": "unrankedtote",
+      "username": "PEER08",
       "direction": "Download",
       "filename": "music\\Wayne Shorter\\Speak No Evil\\Wayne Shorter_Speak No Evil_04_Speak No Evil.flac",
       "size": 50664263,
@@ -1540,7 +1540,7 @@
      },
      {
       "id": "a612e0a3-063b-459e-89cc-eff81c6cd45c",
-      "username": "unrankedtote",
+      "username": "PEER08",
       "direction": "Download",
       "filename": "music\\Wayne Shorter\\Speak No Evil\\Wayne Shorter_Speak No Evil_05_Infant Eyes.flac",
       "size": 31389914,
@@ -1560,7 +1560,7 @@
      },
      {
       "id": "42d8d4d4-906b-4c05-ba13-6dff253e284b",
-      "username": "unrankedtote",
+      "username": "PEER08",
       "direction": "Download",
       "filename": "music\\Wayne Shorter\\Speak No Evil\\Wayne Shorter_Speak No Evil_06_Wild Flower.flac",
       "size": 36315649,
@@ -1580,7 +1580,7 @@
      },
      {
       "id": "c3e47044-bf41-4885-b9ee-826426522d42",
-      "username": "unrankedtote",
+      "username": "PEER08",
       "direction": "Download",
       "filename": "music\\Wayne Shorter\\Speak No Evil\\cover.jpg",
       "size": 105269,

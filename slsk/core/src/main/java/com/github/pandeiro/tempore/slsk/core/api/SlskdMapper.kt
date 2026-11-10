@@ -134,26 +134,22 @@ internal object SlskdMapper {
 
     /**
      * Parses .NET TimeSpan strings seen on live transfers (`00:00:05.9661420`,
-     * `1.02:03:04.5`, `00:10:00`). Returns null for null/blank/unparseable.
+     * `1.02:03:04.5`, `00:10:00`, `05:00`). Returns null for null/blank/unparseable.
      */
     fun parseTimeSpanSeconds(raw: String?): Long? {
-        val value = raw?.trim().takeUnless { it.isNullOrEmpty() } ?: return null
-        val negative = value.startsWith("-") || value.startsWith("+")
-        val body = if (value[0] == '-' || value[0] == '+') value.substring(1) else value
-        val colonCount = body.count { it == ':' }
-        // `.NET always prints at least h:mm:ss for non-independent values; a leading `d.`
-        // (day) adds a fourth field. A TimeStamp-like `<hh:mm:ss>.<fraction>` splits at the
-        // FIRST '.', which can only be the decimal separator or the day boundary.
-        val dot = body.indexOf('.')
-        val whole = if (dot >= 0) body.substring(0, dot) else body
-        val parts = whole.split(':')
-        if (parts.size !in 2..4) return null
-        val day = if (parts.size == 4) parts[0].toLongOrNull() ?: return null else 0L
-        val clock = if (parts.size == 4) parts.drop(1) else parts
-        val hours = clock[0].toLongOrNull() ?: return null
-        val minutes = clock[1].toLongOrNull() ?: return null
-        val seconds = clock.getOrNull(2)?.toLongOrNull() ?: 0L
-        val sign = if (negative) -1L else 1L
+        val value = raw?.trim()?.takeIf { it.isNotEmpty() } ?: return null
+        val sign = if (value.startsWith("-")) -1L else 1L
+        val body = value.dropWhile { it == '-' || it == '+' }
+        // Grammar: [d.]h:m[:s][.fraction] — the day field is present only when a '.' is
+        // followed by an `h:m` tail; the fraction may trail the seconds group
+        // (PR review #6: the day form `1.02:03:04.5` used to split at the wrong '.').
+        val match = Regex("""^(?:([0-9]+)\.)?([0-9]+):([0-9]+)(?::([0-9]+))?(?:\.[0-9]+)?$""")
+            .find(body) ?: return null
+        val g = match.groupValues
+        val day = g[1].toLongOrNull() ?: 0L
+        val hours = g[2].toLongOrNull() ?: 0L
+        val minutes = g[3].toLongOrNull() ?: 0L
+        val seconds = g[4].toLongOrNull() ?: 0L
         return sign * (((day * 24 + hours) * 60 + minutes) * 60 + seconds)
     }
 }

@@ -21,16 +21,9 @@ import com.github.pandeiro.tempore.slsk.core.domain.StateTokens
 import com.github.pandeiro.tempore.slsk.core.domain.TransferGroup
 import com.github.pandeiro.tempore.slsk.core.ranking.GroupingEngine
 import java.io.IOException
-import java.security.MessageDigest
-import java.security.SecureRandom
 import java.security.cert.X509Certificate
 import java.util.UUID
 import java.util.concurrent.TimeUnit
-import javax.net.ssl.HostnameVerifier
-import javax.net.ssl.SSLContext
-import javax.net.ssl.TrustManager
-import javax.net.ssl.TrustManagerFactory
-import javax.net.ssl.X509TrustManager
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
@@ -56,9 +49,9 @@ import retrofit2.converter.kotlinx.serialization.asConverterFactory
  *    client where the read timeout is `searchTimeout + 15 s`;
  *  - the API key never reaches logs: `X-API-Key` is redacted and the logging interceptor
  *    only exists in debug builds;
- *  - optional trust-on-first-use pinning: when `pinnedCertSha256` is set, this client only
- *    accepts chains whose digest matches the pin OR that the system already trusts; the
- *    verifier is scoped to this client, never a global trust-all.
+ *  - optional strict pinning: when `pinnedCertSha256` is set, this client only accepts
+ *    chains whose SHA-256 matches the pin (validity-checked); without a pin, ordinary
+ *    system trust applies. Never a global trust-all.
  */
 open class SlskdGatewayImpl private constructor(
     private val api: SlskdApi,
@@ -390,7 +383,7 @@ open class SlskdGatewayImpl private constructor(
                 .readTimeout(20, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
                 .apply {
-                    if (pinnedCertSha256 != null) applyTofuPinning(this, pinnedCertSha256)
+                    if (pinnedCertSha256 != null) SlskTls.applyStrictPinning(this, pinnedCertSha256)
                     if (apiKey.isNotBlank()) {
                         val apiKeyInterceptor = okhttp3.Interceptor { chain ->
                             chain.proceed(chain.request().newBuilder().header("X-API-Key", apiKey).build())
@@ -408,45 +401,7 @@ open class SlskdGatewayImpl private constructor(
                 }
                 .build()
 
-        /**
-         * Trust-on-first-use scoped to this client: accepts the chain that carries the
-         * pinned SHA-256 leaf (or any member) AND anything the system normally trusts
-         * (reverse proxy with a real certificate). Never a global trust-all.
-         */
-        private fun applyTofuPinning(builder: OkHttpClient.Builder, pinned: String) {
-            val normalized = pinned.lowercase().replace(":", "")
-            val system = defaultTrustManager()
-            val trustManager = object : X509TrustManager {
-                override fun getAcceptedIssuers(): Array<X509Certificate> = system.acceptedIssuers
-
-                override fun checkClientTrusted(chain: Array<X509Certificate>, authType: String) =
-                    system.checkClientTrusted(chain, authType)
-
-                override fun checkServerTrusted(chain: Array<X509Certificate>, authType: String) {
-                    for (cert in chain) {
-                        val digest = MessageDigest.getInstance("SHA-256").digest(cert.encoded)
-                        if (hex(digest) == normalized) return
-                    }
-                    // No pin match: fall back to ordinary validation (real cert, chain CAs).
-                    system.checkServerTrusted(chain, authType)
-                }
-            }
-            val context = SSLContext.getInstance("TLS")
-            context.init(null, arrayOf<TrustManager>(trustManager), SecureRandom())
-            builder.sslSocketFactory(context.socketFactory, trustManager)
-            // Hostname can legitimately be a LAN IP for slskd; identity is enforced by the
-            // pin above, so the verifier (scoped to this client only) accepts the hostname.
-            builder.hostnameVerifier(HostnameVerifier { _, _ -> true })
-        }
-
-        private fun defaultTrustManager(): X509TrustManager {
-            val factory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm())
-            factory.init(null as java.security.KeyStore?)
-            return factory.trustManagers.filterIsInstance<X509TrustManager>().first()
-        }
-
-        private fun hex(bytes: ByteArray): String =
-            bytes.joinToString("") { "%02x".format(it) }
+        // strict pin mode lives in SlskTls.
     }
 }
 

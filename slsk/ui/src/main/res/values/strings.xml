@@ -105,4 +105,5 @@
     <string name="slsk_settings_unsaved">Unsaved changes \u2014 save before leaving.</string>
     <string name="slsk_settings_open_activity">Soulseek activity</string>
     <string name="slsk_settings_error_no_url">Enter the slskd base URL first</string>
+    <string name="slsk_settings_transport_warning" translatable="false">⚠ Plain HTTP: slskd traffic and the API key travel unencrypted on this network. Prefer HTTPS or a private tunnel (e.g. Tailscale), and restrict the API key with a CIDR allowlist if the host is LAN-only.</string>
 </resources>

@@ -29,6 +29,16 @@ class SlskSettingsActivity : androidx.appcompat.app.AppCompatActivity() {
 
         bind.slskSettingsBaseUrl.setText(SlskSessionAccess.currentConfig()?.baseUrl ?: "")
         bind.slskSettingsPinnedCert.setText(SlskSessionAccess.currentConfig()?.pinnedCertSha256 ?: "")
+        // PR review #2: plain-HTTP setup carries the API key unencrypted — warn inline.
+        updateTransportWarning()
+        bind.slskSettingsBaseUrl.addTextChangedListener(object : android.text.TextWatcher {
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                updateTransportWarning()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun afterTextChanged(s: android.text.Editable?) {}
+        })
         // API key stays blank: hint explains "leave unchanged keeps the saved key" (masked, §6.1 no-logging rule)
         bind.slskSettingsApiKey.hint = if (SlskSessionAccess.currentConfig()?.apiKey != null) {
             getString(R.string.slsk_settings_api_key_hint)
@@ -63,6 +73,12 @@ class SlskSettingsActivity : androidx.appcompat.app.AppCompatActivity() {
         else "http://$trimmed"
     }
 
+    private fun updateTransportWarning() {
+        val effective = normalizeBaseUrl(bind.slskSettingsBaseUrl.text?.toString() ?: "")
+        bind.slskTransportWarning.visibility =
+            if (effective.startsWith("http://")) android.view.View.VISIBLE else android.view.View.GONE
+    }
+
     private fun buildConfig(): SlskdConfig? {
         val url = normalizeBaseUrl(bind.slskSettingsBaseUrl.text?.toString() ?: "")
         if (!Patterns.WEB_URL.matcher(url).matches()) {
@@ -79,25 +95,29 @@ class SlskSettingsActivity : androidx.appcompat.app.AppCompatActivity() {
 
     private fun save() {
         val config = buildConfig() ?: return
-        SlskSessionAccess.save(config)
-        Toast.makeText(this, R.string.slsk_settings_save, Toast.LENGTH_SHORT).show()
+        try {
+            SlskSessionAccess.save(config)
+            Toast.makeText(this, R.string.slsk_settings_save, Toast.LENGTH_SHORT).show()
+        } catch (e: Exception) {
+            // PR review #4: a broken Keystore must surface here, not crash the screen.
+            android.util.Log.e("SlskSettings", "failed to store slsk credentials", e)
+            bind.slskSettingsResult.text = getString(
+                R.string.slsk_settings_result_unreachable,
+                e.message ?: "secure storage error",
+            )
+        }
     }
 
     private fun testConnection() {
         val config = buildConfig() ?: return
-        // probe what the user typed without overwriting the store first
+        // Probe the *typed* configuration through a throwaway gateway; the store is only
+        // written by Save (PR review #3).
         bind.slskSettingsTest.isEnabled = false
         bind.slskSettingsResult.setText(R.string.slsk_settings_testing)
         lifecycleScope.launch {
             val result = withContext(Dispatchers.IO) {
                 try {
-                    val gatewayBefore = SlskSessionAccess.gatewayOrNull()
-                    // save first so the gateway speaks to THIS address, then restore
-                    val previous = SlskSessionAccess.currentConfig()
-                    SlskSessionAccess.save(config)
-                    val gateway = SlskSessionAccess.gatewayOrNull()
-                    if (previous != null && !sameConfig(previous, config)) SlskSessionAccess.save(previous)
-                    gateway?.let { SlskSessionAccess.gateway.health() }
+                    SlskSessionAccess.probeGateway(config).health()
                 } catch (t: Throwable) {
                     null
                 }
@@ -116,9 +136,6 @@ class SlskSettingsActivity : androidx.appcompat.app.AppCompatActivity() {
             }
         }
     }
-
-    private fun sameConfig(a: SlskdConfig, b: SlskdConfig): Boolean =
-        a == b
 
     private fun openActivity() {
         val slot = android.view.View.generateViewId()

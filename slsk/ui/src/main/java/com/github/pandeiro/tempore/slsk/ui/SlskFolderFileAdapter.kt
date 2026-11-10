@@ -35,7 +35,12 @@ class SlskFolderFileAdapter(
         bind.slskFileCheck.isChecked = isSelected(file)
         bind.slskFileCheck.setOnCheckedChangeListener(null)
         bind.slskFileCheck.setOnCheckedChangeListener { _, checked ->
-            if (checked && !file.isLocked) onToggle(file)
+            // PR review #5: unchecked must also toggle off; locked stays pinned to its state.
+            if (file.isLocked) {
+                bind.slskFileCheck.isChecked = isSelected(file)
+                return@setOnCheckedChangeListener
+            }
+            onToggle(file)
         }
         bind.slskFileSize.text = formatBytes(file.size)
         bind.slskFileQuality.text = buildString {

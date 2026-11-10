@@ -66,9 +66,14 @@ object SlskSession {
         storeErrorDescription = null
         val config = try {
             store.load()
-        } catch (e: StoreError.Decrypt) {
+        } catch (e: StoreError) {
             // Surface it; the store itself stays usable so saveConfig can overwrite the blob.
             storeErrorDescription = e.message
+            null
+        } catch (t: Throwable) {
+            // PR review #4: never let an unexpected crypto/parsing failure crash startup —
+            // fall back to the demo gateway and surface the failure to the settings screen.
+            storeErrorDescription = t.message ?: "secure storage failure"
             null
         }
         currentConfigValue = config
@@ -148,4 +153,12 @@ object SlskSession {
             debug = debuggableHost,
             pinnedCertSha256 = config.pinnedCertSha256,
         ).build()
+
+    /**
+     * Throws-away gateway used by the settings "Test connection" probe (PR review #3):
+     * builds a gateway for the *typed* configuration without persisting anything, so a
+     * test never writes credentials and never re-points the live session.
+     */
+    @Synchronized
+    fun probeGateway(config: SlskdConfig): SoulseekGateway = buildGateway(config)
 }
