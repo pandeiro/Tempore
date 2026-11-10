@@ -267,6 +267,13 @@ public class SettingsContainerFragment extends PreferenceFragmentCompat {
         }
 
         SwitchPreference downloadWifiOnlyPreference = findPreference("download_wifi_only");
+        Preference slskSettingsEntry = findPreference("slsk_settings_entry");
+        if (slskSettingsEntry != null) {
+            slskSettingsEntry.setOnPreferenceClickListener(preference -> {
+                startActivity(new Intent(requireContext(), com.github.pandeiro.tempore.slsk.ui.SlskSettingsActivity.class));
+                return true;
+            });
+        }
         if (downloadWifiOnlyPreference != null) {
             downloadWifiOnlyPreference.setOnPreferenceChangeListener((preference, newValue) -> {
                 if (newValue instanceof Boolean) {

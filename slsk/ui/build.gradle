@@ -1,0 +1,47 @@
+plugins {
+    alias(slsk.plugins.android.library)
+}
+
+android {
+    namespace 'com.github.pandeiro.tempore.slsk.ui'
+    compileSdk 37
+
+    defaultConfig {
+        minSdkVersion 24
+    }
+
+    resourcePrefix 'slsk_'
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    buildTypes {
+        release {
+            consumerProguardFiles 'consumer-rules.pro'
+        }
+    }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+dependencies {
+    api project(':slsk:core')
+
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.8.6'
+    implementation slsk.androidx.datastore.preferences
+    implementation slsk.androidx.swiperefreshlayout
+    implementation slsk.androidx.appcompat
+
+    implementation slsk.androidx.constraintlayout
+    implementation slsk.androidx.lifecycle.viewmodel.ktx
+    implementation slsk.androidx.lifecycle.runtime.ktx
+    implementation slsk.material
+    implementation slsk.coroutines.android
+}
+
+evaluationDependsOn(':slsk:core')

@@ -1,0 +1,4349 @@
+[
+ {
+  "fileCount": 18,
+  "files": [
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows Disc 01 - 01 - 15 Step.flac",
+    "length": 237,
+    "sampleRate": 44100,
+    "size": 27046286,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows Disc 01 - 02 - Bodysnatchers.flac",
+    "length": 242,
+    "sampleRate": 44100,
+    "size": 29895142,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows Disc 01 - 03 - Nude.flac",
+    "length": 255,
+    "sampleRate": 44100,
+    "size": 27395354,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows Disc 01 - 04 - Weird Fishes+Arpeggi.flac",
+    "length": 318,
+    "sampleRate": 44100,
+    "size": 35631722,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows Disc 01 - 05 - All I Need.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 24506534,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows Disc 01 - 06 - Faust Arp.flac",
+    "length": 129,
+    "sampleRate": 44100,
+    "size": 13212732,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows Disc 01 - 07 - Reckoner.flac",
+    "length": 290,
+    "sampleRate": 44100,
+    "size": 35425592,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows Disc 01 - 08 - House of Cards.flac",
+    "length": 328,
+    "sampleRate": 44100,
+    "size": 32922191,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows Disc 01 - 09 - Jigsaw Falling Into Place.flac",
+    "length": 248,
+    "sampleRate": 44100,
+    "size": 31327289,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows Disc 01 - 10 - Videotape.flac",
+    "length": 279,
+    "sampleRate": 44100,
+    "size": 24526216,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows Disc 02 - 01 - MK 1.flac",
+    "length": 62,
+    "sampleRate": 44100,
+    "size": 5015042,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows Disc 02 - 02 - Down Is the New Up.flac",
+    "length": 299,
+    "sampleRate": 44100,
+    "size": 34759329,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows Disc 02 - 03 - Go Slowly.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 25878821,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows Disc 02 - 04 - MK 2.flac",
+    "length": 53,
+    "sampleRate": 44100,
+    "size": 3451226,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows Disc 02 - 05 - Last Flowers.flac",
+    "length": 266,
+    "sampleRate": 44100,
+    "size": 26478237,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows Disc 02 - 06 - Up on the Ladder.flac",
+    "length": 257,
+    "sampleRate": 44100,
+    "size": 26465255,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows Disc 02 - 07 - Bangers + Mash.flac",
+    "length": 199,
+    "sampleRate": 44100,
+    "size": 27016684,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows Disc 02 - 08 - 4 Minute Warning.flac",
+    "length": 244,
+    "sampleRate": 44100,
+    "size": 23930817,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": true,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 0,
+  "token": 86580,
+  "uploadSpeed": 11478129,
+  "username": "PEER01"
+ },
+ {
+  "fileCount": 10,
+  "files": [
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\01 15 Step.flac",
+    "length": 238,
+    "sampleRate": 44100,
+    "size": 27201545,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\02 Bodysnatchers.flac",
+    "length": 242,
+    "sampleRate": 44100,
+    "size": 30080448,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\03 Nude.flac",
+    "length": 255,
+    "sampleRate": 44100,
+    "size": 27544195,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\04 Weird Fishes - Arpeggi.flac",
+    "length": 318,
+    "sampleRate": 44100,
+    "size": 35701551,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\05 All I Need.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 24653233,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\06 Faust Arp.flac",
+    "length": 129,
+    "sampleRate": 44100,
+    "size": 13299232,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\07 Reckoner.flac",
+    "length": 290,
+    "sampleRate": 44100,
+    "size": 35641501,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\08 House of Cards.flac",
+    "length": 328,
+    "sampleRate": 44100,
+    "size": 32930594,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\09 Jigsaw Falling Into Place.flac",
+    "length": 248,
+    "sampleRate": 44100,
+    "size": 31560285,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\10 Videotape.flac",
+    "length": 281,
+    "sampleRate": 44100,
+    "size": 24458426,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": true,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 0,
+  "token": 86580,
+  "uploadSpeed": 7185857,
+  "username": "PEER02"
+ },
+ {
+  "fileCount": 18,
+  "files": [
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Songs\\!Sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 01\\Radiohead - In Rainbows - 01 - 15 Step.flac",
+    "length": 238,
+    "sampleRate": 44100,
+    "size": 27046946,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Songs\\!Sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 01\\Radiohead - In Rainbows - 02 - Bodysnatchers.flac",
+    "length": 242,
+    "sampleRate": 44100,
+    "size": 29782231,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Songs\\!Sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 01\\Radiohead - In Rainbows - 03 - Nude.flac",
+    "length": 255,
+    "sampleRate": 44100,
+    "size": 27259365,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Songs\\!Sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 01\\Radiohead - In Rainbows - 04 - Weird Fishes+Arpeggi.flac",
+    "length": 318,
+    "sampleRate": 44100,
+    "size": 35636818,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Songs\\!Sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 01\\Radiohead - In Rainbows - 05 - All I Need.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 24351398,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Songs\\!Sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 01\\Radiohead - In Rainbows - 06 - Faust Arp.flac",
+    "length": 129,
+    "sampleRate": 44100,
+    "size": 13026831,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Songs\\!Sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 01\\Radiohead - In Rainbows - 07 - Reckoner.flac",
+    "length": 290,
+    "sampleRate": 44100,
+    "size": 35363906,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Songs\\!Sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 01\\Radiohead - In Rainbows - 08 - House of Cards.flac",
+    "length": 328,
+    "sampleRate": 44100,
+    "size": 32829883,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Songs\\!Sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 01\\Radiohead - In Rainbows - 09 - Jigsaw Falling Into Place.flac",
+    "length": 248,
+    "sampleRate": 44100,
+    "size": 31256128,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Songs\\!Sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 01\\Radiohead - In Rainbows - 10 - Videotape.flac",
+    "length": 281,
+    "sampleRate": 44100,
+    "size": 24448111,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Songs\\!Sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 02\\Radiohead - In Rainbows - 01 - MK 1.flac",
+    "length": 63,
+    "sampleRate": 44100,
+    "size": 4753523,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Songs\\!Sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 02\\Radiohead - In Rainbows - 02 - Down Is the New Up.flac",
+    "length": 299,
+    "sampleRate": 44100,
+    "size": 34610416,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Songs\\!Sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 02\\Radiohead - In Rainbows - 03 - Go Slowly.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 25664638,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Songs\\!Sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 02\\Radiohead - In Rainbows - 04 - MK 2.flac",
+    "length": 53,
+    "sampleRate": 44100,
+    "size": 3067517,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Songs\\!Sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 02\\Radiohead - In Rainbows - 05 - Last Flowers.flac",
+    "length": 266,
+    "sampleRate": 44100,
+    "size": 26305735,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Songs\\!Sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 02\\Radiohead - In Rainbows - 06 - Up on the Ladder.flac",
+    "length": 257,
+    "sampleRate": 44100,
+    "size": 26279181,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Songs\\!Sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 02\\Radiohead - In Rainbows - 07 - Bangers + Mash.flac",
+    "length": 199,
+    "sampleRate": 44100,
+    "size": 26855517,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Songs\\!Sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 02\\Radiohead - In Rainbows - 08 - 4 Minute Warning.flac",
+    "length": 246,
+    "sampleRate": 44100,
+    "size": 23783087,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": true,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 0,
+  "token": 86580,
+  "uploadSpeed": 1493746,
+  "username": "PEER03"
+ },
+ {
+  "fileCount": 10,
+  "files": [
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "SLSK\\Music\\Radiohead\\Radiohead - In Rainbows (2007) [24-44.1 WEB FLAC]\\01. 15 Step.flac",
+    "length": 237,
+    "sampleRate": 44100,
+    "size": 47576887,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "SLSK\\Music\\Radiohead\\Radiohead - In Rainbows (2007) [24-44.1 WEB FLAC]\\02. Bodysnatchers.flac",
+    "length": 242,
+    "sampleRate": 44100,
+    "size": 50894911,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "SLSK\\Music\\Radiohead\\Radiohead - In Rainbows (2007) [24-44.1 WEB FLAC]\\03. Nude.flac",
+    "length": 255,
+    "sampleRate": 44100,
+    "size": 49628970,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "SLSK\\Music\\Radiohead\\Radiohead - In Rainbows (2007) [24-44.1 WEB FLAC]\\04. Weird Fishes- Arpeggi.flac",
+    "length": 318,
+    "sampleRate": 44100,
+    "size": 63383690,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "SLSK\\Music\\Radiohead\\Radiohead - In Rainbows (2007) [24-44.1 WEB FLAC]\\05. All I Need.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 44298287,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "SLSK\\Music\\Radiohead\\Radiohead - In Rainbows (2007) [24-44.1 WEB FLAC]\\06. Faust Arp.flac",
+    "length": 129,
+    "sampleRate": 44100,
+    "size": 24121492,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "SLSK\\Music\\Radiohead\\Radiohead - In Rainbows (2007) [24-44.1 WEB FLAC]\\07. Reckoner.flac",
+    "length": 290,
+    "sampleRate": 44100,
+    "size": 60525451,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "SLSK\\Music\\Radiohead\\Radiohead - In Rainbows (2007) [24-44.1 WEB FLAC]\\08. House Of Cards.flac",
+    "length": 328,
+    "sampleRate": 44100,
+    "size": 61419152,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "SLSK\\Music\\Radiohead\\Radiohead - In Rainbows (2007) [24-44.1 WEB FLAC]\\09. Jigsaw Falling Into Place.flac",
+    "length": 248,
+    "sampleRate": 44100,
+    "size": 52947233,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "SLSK\\Music\\Radiohead\\Radiohead - In Rainbows (2007) [24-44.1 WEB FLAC]\\10. Videotape.flac",
+    "length": 279,
+    "sampleRate": 44100,
+    "size": 48761272,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": true,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 0,
+  "token": 86580,
+  "uploadSpeed": 2596901,
+  "username": "PEER04"
+ },
+ {
+  "fileCount": 18,
+  "files": [
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Disc 01\\01 - 15 Step.flac",
+    "length": 238,
+    "sampleRate": 44100,
+    "size": 26711658,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Disc 01\\02 - Bodysnatchers.flac",
+    "length": 242,
+    "sampleRate": 44100,
+    "size": 29637429,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Disc 01\\03 - Nude.flac",
+    "length": 255,
+    "sampleRate": 44100,
+    "size": 27044151,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Disc 01\\04 - Weird FishesArpeggi.flac",
+    "length": 318,
+    "sampleRate": 44100,
+    "size": 35273712,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Disc 01\\05 - All I Need.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 24210677,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Disc 01\\06 - Faust Arp.flac",
+    "length": 129,
+    "sampleRate": 44100,
+    "size": 12928133,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Disc 01\\07 - Reckoner.flac",
+    "length": 290,
+    "sampleRate": 44100,
+    "size": 35117239,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Disc 01\\08 - House Of Cards.flac",
+    "length": 328,
+    "sampleRate": 44100,
+    "size": 32536156,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Disc 01\\09 - Jigsaw Falling Into Place.flac",
+    "length": 248,
+    "sampleRate": 44100,
+    "size": 31083506,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Disc 01\\10 - Videotape.flac",
+    "length": 281,
+    "sampleRate": 44100,
+    "size": 24196084,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Disc 02\\01 - Mk1.flac",
+    "length": 63,
+    "sampleRate": 44100,
+    "size": 4707115,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Disc 02\\02 - Down is the New Up.flac",
+    "length": 299,
+    "sampleRate": 44100,
+    "size": 34458183,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Disc 02\\03 - Go Slowly.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 25462021,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Disc 02\\04 - Mk2.flac",
+    "length": 53,
+    "sampleRate": 44100,
+    "size": 3020756,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Disc 02\\05 - Last Flowers to the Hospital.flac",
+    "length": 266,
+    "sampleRate": 44100,
+    "size": 26091358,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Disc 02\\06 - Up on the Ladder.flac",
+    "length": 257,
+    "sampleRate": 44100,
+    "size": 26060420,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Disc 02\\07 - Bangers and Mash.flac",
+    "length": 199,
+    "sampleRate": 44100,
+    "size": 26739652,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Disc 02\\08 - 4 Minute Warning.flac",
+    "length": 246,
+    "sampleRate": 44100,
+    "size": 23564103,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": true,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 0,
+  "token": 86580,
+  "uploadSpeed": 23196755,
+  "username": "PEER05"
+ },
+ {
+  "fileCount": 8,
+  "files": [
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\Radiohead - In Rainbows Disk 2 - 01 - MK 1.flac",
+    "length": 63,
+    "sampleRate": 44100,
+    "size": 4599843,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\Radiohead - In Rainbows Disk 2 - 02 - Down Is the New Up.flac",
+    "length": 299,
+    "sampleRate": 44100,
+    "size": 34340232,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\Radiohead - In Rainbows Disk 2 - 03 - Go Slowly.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 25417237,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\Radiohead - In Rainbows Disk 2 - 04 - MK 2.flac",
+    "length": 53,
+    "sampleRate": 44100,
+    "size": 3016896,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\Radiohead - In Rainbows Disk 2 - 05 - Last Flowers.flac",
+    "length": 266,
+    "sampleRate": 44100,
+    "size": 25819823,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\Radiohead - In Rainbows Disk 2 - 06 - Up on the Ladder.flac",
+    "length": 257,
+    "sampleRate": 44100,
+    "size": 25804458,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\Radiohead - In Rainbows Disk 2 - 07 - Bangers + Mash.flac",
+    "length": 199,
+    "sampleRate": 44100,
+    "size": 26667899,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\Radiohead - In Rainbows Disk 2 - 08 - 4 Minute Warning.flac",
+    "length": 246,
+    "sampleRate": 44100,
+    "size": 23326021,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": true,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 0,
+  "token": 86580,
+  "uploadSpeed": 12437993,
+  "username": "PEER06"
+ },
+ {
+  "fileCount": 10,
+  "files": [
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\01 - 15 Step.flac",
+    "length": 236,
+    "sampleRate": 96000,
+    "size": 85140271,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\02 - Bodysnatchers.flac",
+    "length": 241,
+    "sampleRate": 96000,
+    "size": 87689057,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\03 - Nude.flac",
+    "length": 254,
+    "sampleRate": 96000,
+    "size": 83964552,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\04 - Weird Fishes+Arpeggi.flac",
+    "length": 316,
+    "sampleRate": 96000,
+    "size": 106758799,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\05 - All I Need.flac",
+    "length": 227,
+    "sampleRate": 96000,
+    "size": 75914339,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\06 - Faust Arp.flac",
+    "length": 129,
+    "sampleRate": 96000,
+    "size": 43929459,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\07 - Reckoner.flac",
+    "length": 288,
+    "sampleRate": 96000,
+    "size": 105608388,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\08 - House of Cards.flac",
+    "length": 327,
+    "sampleRate": 96000,
+    "size": 108788635,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\09 - Jigsaw Falling Into Place.flac",
+    "length": 247,
+    "sampleRate": 96000,
+    "size": 89806940,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\10 - Videotape.flac",
+    "length": 281,
+    "sampleRate": 96000,
+    "size": 88174721,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": true,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 0,
+  "token": 86580,
+  "uploadSpeed": 15071005,
+  "username": "PEER07"
+ },
+ {
+  "fileCount": 36,
+  "files": [
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\2007 - In Rainbows Disc 2 Flac\\01. Mk1.flac",
+    "length": 63,
+    "sampleRate": 44100,
+    "size": 4517794,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\2007 - In Rainbows Disc 2 Flac\\03. Down is the New Up.flac",
+    "length": 299,
+    "sampleRate": 44100,
+    "size": 34258169,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\2007 - In Rainbows Disc 2 Flac\\06. Go Slowly.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 25335183,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\2007 - In Rainbows Disc 2 Flac\\07. Mk2.flac",
+    "length": 53,
+    "sampleRate": 44100,
+    "size": 2934847,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\2007 - In Rainbows Disc 2 Flac\\10. Last Flowers to the Hospital.flac",
+    "length": 266,
+    "sampleRate": 44100,
+    "size": 25737766,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\2007 - In Rainbows Disc 2 Flac\\12. Up on the Ladder.flac",
+    "length": 257,
+    "sampleRate": 44100,
+    "size": 25722397,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\2007 - In Rainbows Disc 2 Flac\\14. Bangers and Mash.flac",
+    "length": 199,
+    "sampleRate": 44100,
+    "size": 26585840,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\2007 - In Rainbows Disc 2 Flac\\16. 4 Minute Warning.flac",
+    "length": 246,
+    "sampleRate": 44100,
+    "size": 23243960,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "nfo",
+    "filename": "Radiohead\\2007 - In Rainbows Disc 2 Flac\\album.nfo",
+    "size": 1717,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "jpg",
+    "filename": "Radiohead\\2007 - In Rainbows Disc 2 Flac\\folder.jpg",
+    "size": 149703,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\2007 - In Rainbows Flac\\02. 15 Step.flac",
+    "length": 238,
+    "sampleRate": 44100,
+    "size": 26407018,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\2007 - In Rainbows Flac\\04. Bodysnatchers.flac",
+    "length": 242,
+    "sampleRate": 44100,
+    "size": 29403573,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\2007 - In Rainbows Flac\\05. Nude.flac",
+    "length": 255,
+    "sampleRate": 44100,
+    "size": 26836414,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\2007 - In Rainbows Flac\\08. Weird Fishes_Arpeggi.flac",
+    "length": 318,
+    "sampleRate": 44100,
+    "size": 34887952,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\2007 - In Rainbows Flac\\09. All I Need.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 24033442,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\2007 - In Rainbows Flac\\11. Faust Arp.flac",
+    "length": 129,
+    "sampleRate": 44100,
+    "size": 12753531,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\2007 - In Rainbows Flac\\13. Reckoner.flac",
+    "length": 290,
+    "sampleRate": 44100,
+    "size": 34868147,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\2007 - In Rainbows Flac\\15. House Of Cards.flac",
+    "length": 328,
+    "sampleRate": 44100,
+    "size": 32190682,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\2007 - In Rainbows Flac\\17. Jigsaw Falling Into Place.flac",
+    "length": 248,
+    "sampleRate": 44100,
+    "size": 30862419,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\2007 - In Rainbows Flac\\18. Videotape.flac",
+    "length": 281,
+    "sampleRate": 44100,
+    "size": 23835258,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "nfo",
+    "filename": "Radiohead\\2007 - In Rainbows Flac\\album.nfo",
+    "size": 1945,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Live in the Basement\\Radiohead - Live From The Basement [FLAC]\\01 Weird Fishes-Arpeggi.flac",
+    "length": 340,
+    "sampleRate": 48000,
+    "size": 30956155,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Live in the Basement\\Radiohead - Live From The Basement [FLAC]\\02 15 Step.flac",
+    "length": 232,
+    "sampleRate": 48000,
+    "size": 21769251,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Live in the Basement\\Radiohead - Live From The Basement [FLAC]\\03 Bodysnatchers.flac",
+    "length": 262,
+    "sampleRate": 48000,
+    "size": 24642605,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Live in the Basement\\Radiohead - Live From The Basement [FLAC]\\04 Nude.flac",
+    "length": 269,
+    "sampleRate": 48000,
+    "size": 20928625,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Live in the Basement\\Radiohead - Live From The Basement [FLAC]\\05 The Gloaming.flac",
+    "length": 196,
+    "sampleRate": 48000,
+    "size": 18057139,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Live in the Basement\\Radiohead - Live From The Basement [FLAC]\\06 Myxomatosis.flac",
+    "length": 236,
+    "sampleRate": 48000,
+    "size": 24238948,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Live in the Basement\\Radiohead - Live From The Basement [FLAC]\\07 House of Cards.flac",
+    "length": 330,
+    "sampleRate": 48000,
+    "size": 26347985,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Live in the Basement\\Radiohead - Live From The Basement [FLAC]\\08 Bangers & Mash.flac",
+    "length": 225,
+    "sampleRate": 48000,
+    "size": 22404377,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Live in the Basement\\Radiohead - Live From The Basement [FLAC]\\09 Optimistic.flac",
+    "length": 281,
+    "sampleRate": 48000,
+    "size": 24601733,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Live in the Basement\\Radiohead - Live From The Basement [FLAC]\\10 Reckoner.flac",
+    "length": 312,
+    "sampleRate": 48000,
+    "size": 31063207,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Live in the Basement\\Radiohead - Live From The Basement [FLAC]\\11 Videotape.flac",
+    "length": 285,
+    "sampleRate": 48000,
+    "size": 22092699,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Live in the Basement\\Radiohead - Live From The Basement [FLAC]\\12 Where I End and You Begin.flac",
+    "length": 319,
+    "sampleRate": 48000,
+    "size": 25391058,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Live in the Basement\\Radiohead - Live From The Basement [FLAC]\\13 All I Need.flac",
+    "length": 258,
+    "sampleRate": 48000,
+    "size": 20680452,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Live in the Basement\\Radiohead - Live From The Basement [FLAC]\\14 Go Slowly.flac",
+    "length": 232,
+    "sampleRate": 48000,
+    "size": 19275796,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "m3u",
+    "filename": "Radiohead\\In Rainbows Live in the Basement\\Radiohead - Live From The Basement [FLAC]\\Radiohead - Live From The Basement.m3u",
+    "size": 666,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": true,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 0,
+  "token": 86580,
+  "uploadSpeed": 8929471,
+  "username": "PEER08"
+ },
+ {
+  "fileCount": 18,
+  "files": [
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\01 - 15 Step.flac",
+    "length": 238,
+    "sampleRate": 44100,
+    "size": 27579140,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\02 - Bodysnatchers.flac",
+    "length": 242,
+    "sampleRate": 44100,
+    "size": 30504911,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\03 - Nude.flac",
+    "length": 255,
+    "sampleRate": 44100,
+    "size": 27911633,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\04 - Weird Fishes+Arpeggi.flac",
+    "length": 318,
+    "sampleRate": 44100,
+    "size": 36141194,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\05 - All I Need.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 25078159,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\06 - Faust Arp.flac",
+    "length": 129,
+    "sampleRate": 44100,
+    "size": 13795615,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\07 - Reckoner.flac",
+    "length": 290,
+    "sampleRate": 44100,
+    "size": 35984721,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\08 - House of Cards.flac",
+    "length": 328,
+    "sampleRate": 44100,
+    "size": 33403638,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\09 - Jigsaw Falling Into Place.flac",
+    "length": 248,
+    "sampleRate": 44100,
+    "size": 31950988,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\10 - Videotape.flac",
+    "length": 281,
+    "sampleRate": 44100,
+    "size": 25063567,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\Radiohead - In Rainbows Disk 2 - 01 - MK 1.flac",
+    "length": 62,
+    "sampleRate": 44100,
+    "size": 10912454,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\Radiohead - In Rainbows Disk 2 - 02 - Down Is the New Up.flac",
+    "length": 299,
+    "sampleRate": 44100,
+    "size": 61737085,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\Radiohead - In Rainbows Disk 2 - 03 - Go Slowly.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 46394986,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\Radiohead - In Rainbows Disk 2 - 04 - MK 2.flac",
+    "length": 53,
+    "sampleRate": 44100,
+    "size": 8193201,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\Radiohead - In Rainbows Disk 2 - 05 - Last Flowers.flac",
+    "length": 266,
+    "sampleRate": 44100,
+    "size": 50366595,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\Radiohead - In Rainbows Disk 2 - 06 - Up on the Ladder.flac",
+    "length": 257,
+    "sampleRate": 44100,
+    "size": 49513958,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\Radiohead - In Rainbows Disk 2 - 07 - Bangers + Mash.flac",
+    "length": 199,
+    "sampleRate": 44100,
+    "size": 45197760,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\Radiohead - In Rainbows Disk 2 - 08 - 4 Minute Warning.flac",
+    "length": 244,
+    "sampleRate": 44100,
+    "size": 45811803,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": true,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 0,
+  "token": 86580,
+  "uploadSpeed": 15254896,
+  "username": "PEER09"
+ },
+ {
+  "fileCount": 18,
+  "files": [
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 01\\Radiohead - In Rainbows - 01 - 15 Step.flac",
+    "length": 238,
+    "sampleRate": 44100,
+    "size": 27282266,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 01\\Radiohead - In Rainbows - 02 - Bodysnatchers.flac",
+    "length": 242,
+    "sampleRate": 44100,
+    "size": 30207855,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 01\\Radiohead - In Rainbows - 03 - Nude.flac",
+    "length": 255,
+    "sampleRate": 44100,
+    "size": 27614679,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 01\\Radiohead - In Rainbows - 04 - Weird Fishes+Arpeggi.flac",
+    "length": 318,
+    "sampleRate": 44100,
+    "size": 35844118,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 01\\Radiohead - In Rainbows - 05 - All I Need.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 24781082,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 01\\Radiohead - In Rainbows - 06 - Faust Arp.flac",
+    "length": 129,
+    "sampleRate": 44100,
+    "size": 13498538,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 01\\Radiohead - In Rainbows - 07 - Reckoner.flac",
+    "length": 290,
+    "sampleRate": 44100,
+    "size": 35687644,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 01\\Radiohead - In Rainbows - 08 - House of Cards.flac",
+    "length": 328,
+    "sampleRate": 44100,
+    "size": 33106548,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 01\\Radiohead - In Rainbows - 09 - Jigsaw Falling Into Place.flac",
+    "length": 248,
+    "sampleRate": 44100,
+    "size": 31654286,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 01\\Radiohead - In Rainbows - 10 - Videotape.flac",
+    "length": 281,
+    "sampleRate": 44100,
+    "size": 24766680,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 02\\Radiohead - In Rainbows - 01 - MK 1.flac",
+    "length": 63,
+    "sampleRate": 44100,
+    "size": 5277520,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 02\\Radiohead - In Rainbows - 02 - Down Is the New Up.flac",
+    "length": 299,
+    "sampleRate": 44100,
+    "size": 35028587,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 02\\Radiohead - In Rainbows - 03 - Go Slowly.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 26032425,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 02\\Radiohead - In Rainbows - 04 - MK 2.flac",
+    "length": 53,
+    "sampleRate": 44100,
+    "size": 3591160,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 02\\Radiohead - In Rainbows - 05 - Last Flowers.flac",
+    "length": 266,
+    "sampleRate": 44100,
+    "size": 26661762,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 02\\Radiohead - In Rainbows - 06 - Up on the Ladder.flac",
+    "length": 257,
+    "sampleRate": 44100,
+    "size": 26630915,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 02\\Radiohead - In Rainbows - 07 - Bangers + Mash.flac",
+    "length": 199,
+    "sampleRate": 44100,
+    "size": 27310179,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "sorted\\Radiohead\\In Rainbows (2007)\\Digital Media 02\\Radiohead - In Rainbows - 08 - 4 Minute Warning.flac",
+    "length": 246,
+    "sampleRate": 44100,
+    "size": 24134507,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": true,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 0,
+  "token": 86580,
+  "uploadSpeed": 9777566,
+  "username": "PEER10"
+ },
+ {
+  "fileCount": 10,
+  "files": [
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\01 15 Step.flac",
+    "length": 238,
+    "sampleRate": 44100,
+    "size": 26729601,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\02 Bodysnatchers.flac",
+    "length": 242,
+    "sampleRate": 44100,
+    "size": 29594101,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\03 Nude.flac",
+    "length": 255,
+    "sampleRate": 44100,
+    "size": 27055461,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\04 Weird Fishes_Arpeggi.flac",
+    "length": 318,
+    "sampleRate": 44100,
+    "size": 35322065,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\05 All I Need.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 24194618,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\06 Faust Arp.flac",
+    "length": 129,
+    "sampleRate": 44100,
+    "size": 12891314,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\07 Reckoner.flac",
+    "length": 290,
+    "sampleRate": 44100,
+    "size": 35180138,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\08 House of Cards.flac",
+    "length": 328,
+    "sampleRate": 44100,
+    "size": 32633038,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\09 Jigsaw Falling Into Place.flac",
+    "length": 249,
+    "sampleRate": 44100,
+    "size": 31030789,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\10 Videotape.flac",
+    "length": 282,
+    "sampleRate": 44100,
+    "size": 24283197,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": true,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 0,
+  "token": 86580,
+  "uploadSpeed": 9539845,
+  "username": "PEER11"
+ },
+ {
+  "fileCount": 10,
+  "files": [
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\Radiohead (2007) In Rainbows\\01 - Radiohead - In Rainbows - 15 Step.flac",
+    "length": 237,
+    "sampleRate": 44100,
+    "size": 47826365,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\Radiohead (2007) In Rainbows\\02 - Radiohead - In Rainbows - Bodysnatchers.flac",
+    "length": 242,
+    "sampleRate": 44100,
+    "size": 51140961,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\Radiohead (2007) In Rainbows\\03 - Radiohead - In Rainbows - Nude.flac",
+    "length": 255,
+    "sampleRate": 44100,
+    "size": 49876454,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\Radiohead (2007) In Rainbows\\04 - Radiohead - In Rainbows - Weird Fishes+Arpeggi.flac",
+    "length": 318,
+    "sampleRate": 44100,
+    "size": 63617108,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\Radiohead (2007) In Rainbows\\05 - Radiohead - In Rainbows - All I Need.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 44550749,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\Radiohead (2007) In Rainbows\\06 - Radiohead - In Rainbows - Faust Arp.flac",
+    "length": 129,
+    "sampleRate": 44100,
+    "size": 24393986,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\Radiohead (2007) In Rainbows\\07 - Radiohead - In Rainbows - Reckoner.flac",
+    "length": 290,
+    "sampleRate": 44100,
+    "size": 60761833,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\Radiohead (2007) In Rainbows\\08 - Radiohead - In Rainbows - House of Cards.flac",
+    "length": 328,
+    "sampleRate": 44100,
+    "size": 61654978,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\Radiohead (2007) In Rainbows\\09 - Radiohead - In Rainbows - Jigsaw Falling Into Place.flac",
+    "length": 248,
+    "sampleRate": 44100,
+    "size": 53191185,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\Radiohead (2007) In Rainbows\\10 - Radiohead - In Rainbows - Videotape.flac",
+    "length": 279,
+    "sampleRate": 44100,
+    "size": 49009545,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": true,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 0,
+  "token": 86580,
+  "uploadSpeed": 12508235,
+  "username": "PEER12"
+ },
+ {
+  "fileCount": 10,
+  "files": [
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\01 - 15 Step.flac",
+    "length": 237,
+    "sampleRate": 44100,
+    "size": 47850339,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\02 - Bodysnatchers.flac",
+    "length": 242,
+    "sampleRate": 44100,
+    "size": 51139676,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\03 - Nude.flac",
+    "length": 255,
+    "sampleRate": 44100,
+    "size": 49934505,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\04 - Weird Fishes+Arpeggi.flac",
+    "length": 318,
+    "sampleRate": 44100,
+    "size": 63575268,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\05 - All I Need.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 44547153,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\06 - Faust Arp.flac",
+    "length": 129,
+    "sampleRate": 44100,
+    "size": 24332541,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\07 - Reckoner.flac",
+    "length": 290,
+    "sampleRate": 44100,
+    "size": 60820780,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\08 - House of Cards.flac",
+    "length": 328,
+    "sampleRate": 44100,
+    "size": 61594299,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\09 - Jigsaw Falling Into Place.flac",
+    "length": 248,
+    "sampleRate": 44100,
+    "size": 53214705,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\10 - Videotape.flac",
+    "length": 279,
+    "sampleRate": 44100,
+    "size": 48774745,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": true,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 0,
+  "token": 86580,
+  "uploadSpeed": 11512498,
+  "username": "PEER13"
+ },
+ {
+  "fileCount": 10,
+  "files": [
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows - 01 - 15 Step.flac",
+    "length": 238,
+    "sampleRate": 44100,
+    "size": 26250337,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows - 02 - Bodysnatchers.flac",
+    "length": 242,
+    "sampleRate": 44100,
+    "size": 29319761,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows - 03 - Nude.flac",
+    "length": 255,
+    "sampleRate": 44100,
+    "size": 26719187,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows - 04 - Weird Fishes+Arpeggi.flac",
+    "length": 318,
+    "sampleRate": 44100,
+    "size": 34735480,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows - 05 - All I Need.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 23979000,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows - 06 - Faust Arp.flac",
+    "length": 129,
+    "sampleRate": 44100,
+    "size": 12735510,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows - 07 - Reckoner.flac",
+    "length": 290,
+    "sampleRate": 44100,
+    "size": 34768007,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows - 08 - House of Cards.flac",
+    "length": 328,
+    "sampleRate": 44100,
+    "size": 32167944,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows - 09 - Jigsaw Falling Into Place.flac",
+    "length": 249,
+    "sampleRate": 44100,
+    "size": 30706448,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows - 10 - Videotape.flac",
+    "length": 282,
+    "sampleRate": 44100,
+    "size": 23845522,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": true,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 0,
+  "token": 86580,
+  "uploadSpeed": 7846200,
+  "username": "PEER14"
+ },
+ {
+  "fileCount": 10,
+  "files": [
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\01 - 15 Step.flac",
+    "length": 237,
+    "sampleRate": 44100,
+    "size": 27153125,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\02 - Bodysnatchers.flac",
+    "length": 242,
+    "sampleRate": 44100,
+    "size": 30098744,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\03 - Nude.flac",
+    "length": 255,
+    "sampleRate": 44100,
+    "size": 27360263,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\04 - Weird Fishes_Arpeggi.flac",
+    "length": 318,
+    "sampleRate": 44100,
+    "size": 35600182,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\05 - All I Need.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 24714216,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\06 - Faust Arp.flac",
+    "length": 129,
+    "sampleRate": 44100,
+    "size": 13170802,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\07 - Reckoner.flac",
+    "length": 290,
+    "sampleRate": 44100,
+    "size": 35545084,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\08 - House of Cards.flac",
+    "length": 328,
+    "sampleRate": 44100,
+    "size": 33468551,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\09 - Jigsaw Falling Into Place.flac",
+    "length": 248,
+    "sampleRate": 44100,
+    "size": 31277039,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\10 - Videotape.flac",
+    "length": 279,
+    "sampleRate": 44100,
+    "size": 25390127,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": true,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 0,
+  "token": 86580,
+  "uploadSpeed": 8532261,
+  "username": "PEER15"
+ },
+ {
+  "fileCount": 18,
+  "files": [
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "complete\\Radiohead\\In Rainbows (2007)\\Disc 1\\01 - 15 Step.flac",
+    "length": 238,
+    "sampleRate": 44100,
+    "size": 26711658,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "complete\\Radiohead\\In Rainbows (2007)\\Disc 1\\02 - Bodysnatchers.flac",
+    "length": 242,
+    "sampleRate": 44100,
+    "size": 29637429,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "complete\\Radiohead\\In Rainbows (2007)\\Disc 1\\03 - Nude.flac",
+    "length": 255,
+    "sampleRate": 44100,
+    "size": 27044151,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "complete\\Radiohead\\In Rainbows (2007)\\Disc 1\\04 - Weird FishesArpeggi.flac",
+    "length": 318,
+    "sampleRate": 44100,
+    "size": 35273712,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "complete\\Radiohead\\In Rainbows (2007)\\Disc 1\\05 - All I Need.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 24210677,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "complete\\Radiohead\\In Rainbows (2007)\\Disc 1\\06 - Faust Arp.flac",
+    "length": 129,
+    "sampleRate": 44100,
+    "size": 12928133,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "complete\\Radiohead\\In Rainbows (2007)\\Disc 1\\07 - Reckoner.flac",
+    "length": 290,
+    "sampleRate": 44100,
+    "size": 35117239,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "complete\\Radiohead\\In Rainbows (2007)\\Disc 1\\08 - House Of Cards.flac",
+    "length": 328,
+    "sampleRate": 44100,
+    "size": 32536156,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "complete\\Radiohead\\In Rainbows (2007)\\Disc 1\\09 - Jigsaw Falling Into Place.flac",
+    "length": 248,
+    "sampleRate": 44100,
+    "size": 31083506,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "complete\\Radiohead\\In Rainbows (2007)\\Disc 1\\10 - Videotape.flac",
+    "length": 281,
+    "sampleRate": 44100,
+    "size": 24196084,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "complete\\Radiohead\\In Rainbows (2007)\\Disc 2\\01 - Mk1.flac",
+    "length": 63,
+    "sampleRate": 44100,
+    "size": 4707115,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "complete\\Radiohead\\In Rainbows (2007)\\Disc 2\\02 - Down is the New Up.flac",
+    "length": 299,
+    "sampleRate": 44100,
+    "size": 34458183,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "complete\\Radiohead\\In Rainbows (2007)\\Disc 2\\03 - Go Slowly.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 25462021,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "complete\\Radiohead\\In Rainbows (2007)\\Disc 2\\04 - Mk2.flac",
+    "length": 53,
+    "sampleRate": 44100,
+    "size": 3020756,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "complete\\Radiohead\\In Rainbows (2007)\\Disc 2\\05 - Last Flowers to the Hospital.flac",
+    "length": 266,
+    "sampleRate": 44100,
+    "size": 26091358,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "complete\\Radiohead\\In Rainbows (2007)\\Disc 2\\06 - Up on the Ladder.flac",
+    "length": 257,
+    "sampleRate": 44100,
+    "size": 26060420,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "complete\\Radiohead\\In Rainbows (2007)\\Disc 2\\07 - Bangers and Mash.flac",
+    "length": 199,
+    "sampleRate": 44100,
+    "size": 26739652,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "complete\\Radiohead\\In Rainbows (2007)\\Disc 2\\08 - 4 Minute Warning.flac",
+    "length": 246,
+    "sampleRate": 44100,
+    "size": 23564103,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": false,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 10,
+  "token": 86580,
+  "uploadSpeed": 4752351,
+  "username": "PEER16"
+ },
+ {
+  "fileCount": 65,
+  "files": [
+   {
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\Artwork\\Back.jpg",
+    "size": 3080385,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\Artwork\\Booklet-2.jpg",
+    "size": 5205612,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\Artwork\\Booklet-3.jpg",
+    "size": 4410653,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\Artwork\\Booklet-4.jpg",
+    "size": 5170003,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\Artwork\\Booklet-5.jpg",
+    "size": 4204400,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\Artwork\\Booklet-6.jpg",
+    "size": 4048657,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\Artwork\\Booklet-7.jpg",
+    "size": 5267972,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\Artwork\\Booklet-8.jpg",
+    "size": 5453267,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\Artwork\\Booklet-9.jpg",
+    "size": 4533656,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\Artwork\\Booklet.jpg",
+    "size": 4439977,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\Artwork\\CD.jpg",
+    "size": 2285125,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\Artwork\\Front.jpg",
+    "size": 708879,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\Artwork\\Inside.jpg",
+    "size": 1312360,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\CD 1\\01. Radiohead - 15 Step.flac",
+    "length": 238,
+    "sampleRate": 44100,
+    "size": 26681738,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\CD 1\\02. Radiohead - Bodysnatchers.flac",
+    "length": 242,
+    "sampleRate": 44100,
+    "size": 29607503,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\CD 1\\03. Radiohead - Nude.flac",
+    "length": 255,
+    "sampleRate": 44100,
+    "size": 27014234,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\CD 1\\04. Radiohead - Weird Fishes_Arpeggi.flac",
+    "length": 318,
+    "sampleRate": 44100,
+    "size": 35243780,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\CD 1\\05. Radiohead - All I Need.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 24180754,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\CD 1\\06. Radiohead - Faust Arp.flac",
+    "length": 129,
+    "sampleRate": 44100,
+    "size": 12898211,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\CD 1\\07. Radiohead - Reckoner.flac",
+    "length": 290,
+    "sampleRate": 44100,
+    "size": 35087318,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\CD 1\\08. Radiohead - House Of Cards.flac",
+    "length": 328,
+    "sampleRate": 44100,
+    "size": 32506229,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\CD 1\\09. Radiohead - Jigsaw Falling Into Place.flac",
+    "length": 248,
+    "sampleRate": 44100,
+    "size": 31053568,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\CD 1\\10. Radiohead - Videotape.flac",
+    "length": 281,
+    "sampleRate": 44100,
+    "size": 24166163,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\CD 2\\01. Radiohead - Mk1.flac",
+    "length": 63,
+    "sampleRate": 44100,
+    "size": 4677199,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\CD 2\\02. Radiohead - Down is the New Up.flac",
+    "length": 299,
+    "sampleRate": 44100,
+    "size": 34428252,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\CD 2\\03. Radiohead - Go Slowly.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 25432098,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\CD 2\\04. Radiohead - Mk2.flac",
+    "length": 53,
+    "sampleRate": 44100,
+    "size": 2990840,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\CD 2\\05. Radiohead - Last Flowers to the Hospital.flac",
+    "length": 266,
+    "sampleRate": 44100,
+    "size": 26061417,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\CD 2\\06. Radiohead - Up on the Ladder.flac",
+    "length": 257,
+    "sampleRate": 44100,
+    "size": 26030474,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\CD 2\\07. Radiohead - Bangers and Mash.flac",
+    "length": 199,
+    "sampleRate": 44100,
+    "size": 26709723,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\CD 2\\08. Radiohead - 4 Minute Warning.flac",
+    "length": 246,
+    "sampleRate": 44100,
+    "size": 23534174,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\Folder.jpg",
+    "size": 708879,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\In Rainbows (Disk 2) (Explicit)\\01. Radiohead - MK 1 (Explicit).flac",
+    "length": 62,
+    "sampleRate": 44100,
+    "size": 5059559,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\In Rainbows (Disk 2) (Explicit)\\02. Radiohead - Down Is The New Up (Explicit).flac",
+    "length": 299,
+    "sampleRate": 44100,
+    "size": 34825755,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\In Rainbows (Disk 2) (Explicit)\\02. Radiohead - Down Is The New Up (Explicit).lrc",
+    "size": 1167,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\In Rainbows (Disk 2) (Explicit)\\03. Radiohead - Go Slowly (Explicit).flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 25853794,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\In Rainbows (Disk 2) (Explicit)\\03. Radiohead - Go Slowly (Explicit).lrc",
+    "size": 377,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\In Rainbows (Disk 2) (Explicit)\\04. Radiohead - MK 2 (Explicit).flac",
+    "length": 53,
+    "sampleRate": 44100,
+    "size": 3387084,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\In Rainbows (Disk 2) (Explicit)\\05. Radiohead - Last Flowers (Explicit).flac",
+    "length": 266,
+    "sampleRate": 44100,
+    "size": 26466767,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\In Rainbows (Disk 2) (Explicit)\\05. Radiohead - Last Flowers (Explicit).lrc",
+    "size": 1017,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\In Rainbows (Disk 2) (Explicit)\\06. Radiohead - Up On The Ladder (Explicit).flac",
+    "length": 257,
+    "sampleRate": 44100,
+    "size": 26441398,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\In Rainbows (Disk 2) (Explicit)\\06. Radiohead - Up On The Ladder (Explicit).lrc",
+    "size": 747,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\In Rainbows (Disk 2) (Explicit)\\07. Radiohead - Bangers + Mash (Explicit).flac",
+    "length": 199,
+    "sampleRate": 44100,
+    "size": 27089142,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\In Rainbows (Disk 2) (Explicit)\\07. Radiohead - Bangers + Mash (Explicit).lrc",
+    "size": 1418,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\In Rainbows (Disk 2) (Explicit)\\08. Radiohead - 4 Minute Warning (Explicit).flac",
+    "length": 244,
+    "sampleRate": 44100,
+    "size": 23905701,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\In Rainbows (Disk 2) (Explicit)\\08. Radiohead - 4 Minute Warning (Explicit).lrc",
+    "size": 730,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\In Rainbows (Disk 2) (Explicit)\\cover.jpg",
+    "size": 485381,
+    "isLocked": false
+   },
+   {
+    "bitRate": 320,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\in rainbows @320\\01. Radiohead - 15 Step.mp3",
+    "length": 238,
+    "size": 9620671,
+    "isLocked": false
+   },
+   {
+    "bitRate": 320,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\in rainbows @320\\02. Radiohead - Bodysnatchers.mp3",
+    "length": 242,
+    "size": 9787855,
+    "isLocked": false
+   },
+   {
+    "bitRate": 320,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\in rainbows @320\\03. Radiohead - Nude.mp3",
+    "length": 255,
+    "size": 10311349,
+    "isLocked": false
+   },
+   {
+    "bitRate": 320,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\in rainbows @320\\04. Radiohead - Weird Fishes_Arpeggi.mp3",
+    "length": 318,
+    "size": 12823283,
+    "isLocked": false
+   },
+   {
+    "bitRate": 320,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\in rainbows @320\\05. Radiohead - All I Need.mp3",
+    "length": 228,
+    "size": 9245553,
+    "isLocked": false
+   },
+   {
+    "bitRate": 320,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\in rainbows @320\\06. Radiohead - Faust Arp.mp3",
+    "length": 129,
+    "size": 5283300,
+    "isLocked": false
+   },
+   {
+    "bitRate": 320,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\in rainbows @320\\07. Radiohead - Reckoner.mp3",
+    "length": 290,
+    "size": 11704198,
+    "isLocked": false
+   },
+   {
+    "bitRate": 320,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\in rainbows @320\\08. Radiohead - House Of Cards.mp3",
+    "length": 328,
+    "size": 13227659,
+    "isLocked": false
+   },
+   {
+    "bitRate": 320,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\in rainbows @320\\09. Radiohead - Jigsaw Falling Into Place.mp3",
+    "length": 248,
+    "size": 10051169,
+    "isLocked": false
+   },
+   {
+    "bitRate": 320,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\in rainbows @320\\10. Radiohead - Videotape.mp3",
+    "length": 281,
+    "size": 11367740,
+    "isLocked": false
+   },
+   {
+    "bitRate": 320,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\in rainbows @320\\cd2\\01. Radiohead - Mk1.mp3",
+    "length": 64,
+    "size": 2654336,
+    "isLocked": false
+   },
+   {
+    "bitRate": 320,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\in rainbows @320\\cd2\\02. Radiohead - Down is the New Up.mp3",
+    "length": 299,
+    "size": 12060508,
+    "isLocked": false
+   },
+   {
+    "bitRate": 320,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\in rainbows @320\\cd2\\03. Radiohead - Go Slowly.mp3",
+    "length": 228,
+    "size": 9223610,
+    "isLocked": false
+   },
+   {
+    "bitRate": 320,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\in rainbows @320\\cd2\\04. Radiohead - Mk2.mp3",
+    "length": 53,
+    "size": 2216524,
+    "isLocked": false
+   },
+   {
+    "bitRate": 320,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\in rainbows @320\\cd2\\05. Radiohead - Last Flowers to the Hospital.mp3",
+    "length": 266,
+    "size": 10754385,
+    "isLocked": false
+   },
+   {
+    "bitRate": 320,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\in rainbows @320\\cd2\\06. Radiohead - Up on the Ladder.mp3",
+    "length": 257,
+    "size": 10381357,
+    "isLocked": false
+   },
+   {
+    "bitRate": 320,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\in rainbows @320\\cd2\\07. Radiohead - Bangers and Mash.mp3",
+    "length": 199,
+    "size": 8083626,
+    "isLocked": false
+   },
+   {
+    "bitRate": 320,
+    "code": 1,
+    "extension": "",
+    "filename": "Music\\Radiohead (WAV, FLAC, MP3)\\2007 - In Rainbows\\in rainbows @320\\cd2\\08. Radiohead - 4 Minute Warning.mp3",
+    "length": 246,
+    "size": 9946679,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": false,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 23,
+  "token": 86580,
+  "uploadSpeed": 1074158,
+  "username": "PEER17"
+ },
+ {
+  "fileCount": 18,
+  "files": [
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Perfect\\Radiohead\\2007 - In Rainbows\\CD1\\1-01 15 Step.flac",
+    "length": 238,
+    "sampleRate": 48000,
+    "size": 28334996,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Perfect\\Radiohead\\2007 - In Rainbows\\CD1\\1-02 Bodysnatchers.flac",
+    "length": 242,
+    "sampleRate": 48000,
+    "size": 31246036,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Perfect\\Radiohead\\2007 - In Rainbows\\CD1\\1-03 Nude.flac",
+    "length": 255,
+    "sampleRate": 48000,
+    "size": 28658508,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Perfect\\Radiohead\\2007 - In Rainbows\\CD1\\1-04 Weird Fishes_Arpeggi.flac",
+    "length": 318,
+    "sampleRate": 48000,
+    "size": 37302500,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Perfect\\Radiohead\\2007 - In Rainbows\\CD1\\1-05 All I Need.flac",
+    "length": 228,
+    "sampleRate": 48000,
+    "size": 25594462,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Perfect\\Radiohead\\2007 - In Rainbows\\CD1\\1-06 Faust Arp.flac",
+    "length": 129,
+    "sampleRate": 48000,
+    "size": 13551205,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Perfect\\Radiohead\\2007 - In Rainbows\\CD1\\1-07 Reckoner.flac",
+    "length": 290,
+    "sampleRate": 48000,
+    "size": 36956123,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Perfect\\Radiohead\\2007 - In Rainbows\\CD1\\1-08 House Of Cards.flac",
+    "length": 328,
+    "sampleRate": 48000,
+    "size": 34044848,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Perfect\\Radiohead\\2007 - In Rainbows\\CD1\\1-09 Jigsaw Falling Into Place.flac",
+    "length": 248,
+    "sampleRate": 48000,
+    "size": 32892162,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Perfect\\Radiohead\\2007 - In Rainbows\\CD1\\1-10 Videotape.flac",
+    "length": 281,
+    "sampleRate": 48000,
+    "size": 25249906,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Perfect\\Radiohead\\2007 - In Rainbows\\CD2\\2-01 Mk1.flac",
+    "length": 63,
+    "sampleRate": 48000,
+    "size": 4910440,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Perfect\\Radiohead\\2007 - In Rainbows\\CD2\\2-02 Down is the New Up.flac",
+    "length": 299,
+    "sampleRate": 48000,
+    "size": 36280865,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Perfect\\Radiohead\\2007 - In Rainbows\\CD2\\2-03 Go Slowly.flac",
+    "length": 228,
+    "sampleRate": 48000,
+    "size": 27189050,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Perfect\\Radiohead\\2007 - In Rainbows\\CD2\\2-04 Mk2.flac",
+    "length": 53,
+    "sampleRate": 48000,
+    "size": 3402884,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Perfect\\Radiohead\\2007 - In Rainbows\\CD2\\2-05 Last Flowers to the Hospital.flac",
+    "length": 266,
+    "sampleRate": 48000,
+    "size": 27279787,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Perfect\\Radiohead\\2007 - In Rainbows\\CD2\\2-06 Up on the Ladder.flac",
+    "length": 257,
+    "sampleRate": 48000,
+    "size": 27250592,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Perfect\\Radiohead\\2007 - In Rainbows\\CD2\\2-07 Bangers and Mash.flac",
+    "length": 199,
+    "sampleRate": 48000,
+    "size": 28457348,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Perfect\\Radiohead\\2007 - In Rainbows\\CD2\\2-08 4 Minute Warning.flac",
+    "length": 246,
+    "sampleRate": 48000,
+    "size": 24724610,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": true,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 0,
+  "token": 86580,
+  "uploadSpeed": 1829293,
+  "username": "PEER18"
+ },
+ {
+  "fileCount": 10,
+  "files": [
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\01 - 15 Step.flac",
+    "length": 236,
+    "sampleRate": 96000,
+    "size": 84232407,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\02 - Bodysnatchers.flac",
+    "length": 241,
+    "sampleRate": 96000,
+    "size": 86783742,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\03 - Nude.flac",
+    "length": 254,
+    "sampleRate": 96000,
+    "size": 83055513,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\04 - Weird Fishes+Arpeggi.flac",
+    "length": 316,
+    "sampleRate": 96000,
+    "size": 105872556,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\05 - All I Need.flac",
+    "length": 227,
+    "sampleRate": 96000,
+    "size": 74997250,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\06 - Faust Arp.flac",
+    "length": 129,
+    "sampleRate": 96000,
+    "size": 42980385,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\07 - Reckoner.flac",
+    "length": 288,
+    "sampleRate": 96000,
+    "size": 104720993,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\08 - House of Cards.flac",
+    "length": 327,
+    "sampleRate": 96000,
+    "size": 107904420,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\09 - Jigsaw Falling Into Place.flac",
+    "length": 247,
+    "sampleRate": 96000,
+    "size": 88903743,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\10 - Videotape.flac",
+    "length": 281,
+    "sampleRate": 96000,
+    "size": 87269892,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": true,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 0,
+  "token": 86580,
+  "uploadSpeed": 10233633,
+  "username": "PEER19"
+ },
+ {
+  "fileCount": 2,
+  "files": [
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Jess's Music\\Radiohead\\In Rainbows\\05. All I Need.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 25714405,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "",
+    "filename": "Jess's Music\\Radiohead\\In Rainbows\\09. Jigsaw Falling Into Place.flac",
+    "length": 248,
+    "sampleRate": 44100,
+    "size": 30958142,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": true,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 0,
+  "token": 86580,
+  "uploadSpeed": 1266289,
+  "username": "PEER20"
+ },
+ {
+  "fileCount": 10,
+  "files": [
+   {
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\01 - 15 Step.flac",
+    "size": 47852803,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\02 - Bodysnatchers.flac",
+    "size": 51141897,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\03 - Nude.flac",
+    "size": 49936909,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\04 - Weird Fishes-Arpeggi.flac",
+    "size": 63577491,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\05 - All I Need.flac",
+    "size": 44549367,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\06 - Faust Arp.flac",
+    "size": 24334714,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\07 - Reckoner.flac",
+    "size": 60822993,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\08 - House of Cards.flac",
+    "size": 61596516,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\09 - Jigsaw Falling Into Place.flac",
+    "size": 53216905,
+    "isLocked": false
+   },
+   {
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\10 - Videotape.flac",
+    "size": 48776958,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": true,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 0,
+  "token": 86580,
+  "uploadSpeed": 20971520,
+  "username": "PEER21"
+ },
+ {
+  "fileCount": 18,
+  "files": [
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Radiohead_In Rainbows_01-01_15 Step.flac",
+    "length": 238,
+    "sampleRate": 44100,
+    "size": 27003486,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Radiohead_In Rainbows_01-02_Bodysnatchers.flac",
+    "length": 242,
+    "sampleRate": 44100,
+    "size": 29929454,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Radiohead_In Rainbows_01-03_Nude.flac",
+    "length": 255,
+    "sampleRate": 44100,
+    "size": 27335652,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Radiohead_In Rainbows_01-04_Weird Fishes+Arpeggi.flac",
+    "length": 318,
+    "sampleRate": 44100,
+    "size": 35565456,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Radiohead_In Rainbows_01-05_All I Need.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 24502526,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Radiohead_In Rainbows_01-06_Faust Arp.flac",
+    "length": 129,
+    "sampleRate": 44100,
+    "size": 13220053,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Radiohead_In Rainbows_01-07_Reckoner.flac",
+    "length": 290,
+    "sampleRate": 44100,
+    "size": 35408874,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Radiohead_In Rainbows_01-08_House of Cards.flac",
+    "length": 328,
+    "sampleRate": 44100,
+    "size": 32828039,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Radiohead_In Rainbows_01-09_Jigsaw Falling Into Place.flac",
+    "length": 248,
+    "sampleRate": 44100,
+    "size": 31375639,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Radiohead_In Rainbows_01-10_Videotape.flac",
+    "length": 281,
+    "sampleRate": 44100,
+    "size": 24487906,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Radiohead_In Rainbows_02-01_Mk 1.flac",
+    "length": 63,
+    "sampleRate": 44100,
+    "size": 4998268,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Radiohead_In Rainbows_02-02_Down Is the New Up.flac",
+    "length": 299,
+    "sampleRate": 44100,
+    "size": 34749926,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Radiohead_In Rainbows_02-03_Go Slowly.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 25753384,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Radiohead_In Rainbows_02-04_Mk 2.flac",
+    "length": 53,
+    "sampleRate": 44100,
+    "size": 3311909,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Radiohead_In Rainbows_02-05_Last Flowers.flac",
+    "length": 266,
+    "sampleRate": 44100,
+    "size": 26383027,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Radiohead_In Rainbows_02-06_Up on the Ladder.flac",
+    "length": 257,
+    "sampleRate": 44100,
+    "size": 26352067,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Radiohead_In Rainbows_02-07_Bangers + Mash.flac",
+    "length": 199,
+    "sampleRate": 44100,
+    "size": 27031321,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows\\Radiohead_In Rainbows_02-08_4 Minute Warning.flac",
+    "length": 246,
+    "sampleRate": 44100,
+    "size": 23855763,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": true,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 0,
+  "token": 86580,
+  "uploadSpeed": 5629425,
+  "username": "PEER22"
+ },
+ {
+  "fileCount": 20,
+  "files": [
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "Radiohead\\2007 - In Rainbows [45rpm Vinyl 24-96]\\01 - 15 Step.flac",
+    "length": 239,
+    "sampleRate": 96000,
+    "size": 85360828,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "Radiohead\\2007 - In Rainbows [45rpm Vinyl 24-96]\\02 - Bodysnatchers.flac",
+    "length": 241,
+    "sampleRate": 96000,
+    "size": 88257857,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "Radiohead\\2007 - In Rainbows [45rpm Vinyl 24-96]\\03 - Nude.flac",
+    "length": 257,
+    "sampleRate": 96000,
+    "size": 87111637,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "Radiohead\\2007 - In Rainbows [45rpm Vinyl 24-96]\\04 - Weird Fishes-Arpeggi.flac",
+    "length": 319,
+    "sampleRate": 96000,
+    "size": 110912870,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "Radiohead\\2007 - In Rainbows [45rpm Vinyl 24-96]\\05 - All I Need.flac",
+    "length": 228,
+    "sampleRate": 96000,
+    "size": 78555691,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "Radiohead\\2007 - In Rainbows [45rpm Vinyl 24-96]\\06 - Faust Arp.flac",
+    "length": 128,
+    "sampleRate": 96000,
+    "size": 42723679,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "Radiohead\\2007 - In Rainbows [45rpm Vinyl 24-96]\\07 - Reckoner.flac",
+    "length": 291,
+    "sampleRate": 96000,
+    "size": 107336887,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "Radiohead\\2007 - In Rainbows [45rpm Vinyl 24-96]\\08 - House Of Cards.flac",
+    "length": 331,
+    "sampleRate": 96000,
+    "size": 111155999,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "Radiohead\\2007 - In Rainbows [45rpm Vinyl 24-96]\\09 - Jigsaw Falling Into Place.flac",
+    "length": 249,
+    "sampleRate": 96000,
+    "size": 91833872,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "Radiohead\\2007 - In Rainbows [45rpm Vinyl 24-96]\\10 - Videotape.flac",
+    "length": 283,
+    "sampleRate": 96000,
+    "size": 91670996,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "Radiohead\\Personal Vinyl Rips\\In Rainbows - 24bit, 48khz (Vinyl)\\01-01-15 Steps-cr1.flac",
+    "length": 239,
+    "sampleRate": 48000,
+    "size": 49413518,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "Radiohead\\Personal Vinyl Rips\\In Rainbows - 24bit, 48khz (Vinyl)\\02-02-Bodysnatchers-cr1.flac",
+    "length": 241,
+    "sampleRate": 48000,
+    "size": 51421592,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "Radiohead\\Personal Vinyl Rips\\In Rainbows - 24bit, 48khz (Vinyl)\\03-03-Nude-cr1.flac",
+    "length": 254,
+    "sampleRate": 48000,
+    "size": 48102497,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "Radiohead\\Personal Vinyl Rips\\In Rainbows - 24bit, 48khz (Vinyl)\\04-04-Weird Fishes_Arpeggi-cr1.flac",
+    "length": 318,
+    "sampleRate": 48000,
+    "size": 61857541,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "Radiohead\\Personal Vinyl Rips\\In Rainbows - 24bit, 48khz (Vinyl)\\05-05-All I Need-cr1.flac",
+    "length": 230,
+    "sampleRate": 48000,
+    "size": 43013523,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "Radiohead\\Personal Vinyl Rips\\In Rainbows - 24bit, 48khz (Vinyl)\\06-06-Faust Arp-cr1.flac",
+    "length": 128,
+    "sampleRate": 48000,
+    "size": 24772805,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "Radiohead\\Personal Vinyl Rips\\In Rainbows - 24bit, 48khz (Vinyl)\\07-07-Reckoner-cr1.flac",
+    "length": 290,
+    "sampleRate": 48000,
+    "size": 62144305,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "Radiohead\\Personal Vinyl Rips\\In Rainbows - 24bit, 48khz (Vinyl)\\08-08-House Of Cards-cr1.flac",
+    "length": 328,
+    "sampleRate": 48000,
+    "size": 62262221,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "Radiohead\\Personal Vinyl Rips\\In Rainbows - 24bit, 48khz (Vinyl)\\09-09-Jigsaw Falling Into Place-cr1.flac",
+    "length": 248,
+    "sampleRate": 48000,
+    "size": 51572831,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "",
+    "filename": "Radiohead\\Personal Vinyl Rips\\In Rainbows - 24bit, 48khz (Vinyl)\\10-10-Videotape-cr1.flac",
+    "length": 280,
+    "sampleRate": 48000,
+    "size": 48908710,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": true,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 0,
+  "token": 86580,
+  "uploadSpeed": 7308570,
+  "username": "PEER23"
+ },
+ {
+  "fileCount": 10,
+  "files": [
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows - 01 - 15 Step.flac",
+    "length": 236,
+    "sampleRate": 96000,
+    "size": 84147208,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows - 02 - Bodysnatchers.flac",
+    "length": 241,
+    "sampleRate": 96000,
+    "size": 86695994,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows - 03 - Nude.flac",
+    "length": 254,
+    "sampleRate": 96000,
+    "size": 82971489,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows - 04 - Weird Fishes+Arpeggi.flac",
+    "length": 316,
+    "sampleRate": 96000,
+    "size": 105765738,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows - 05 - All I Need.flac",
+    "length": 227,
+    "sampleRate": 96000,
+    "size": 74921276,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows - 06 - Faust Arp.flac",
+    "length": 129,
+    "sampleRate": 96000,
+    "size": 42936396,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows - 07 - Reckoner.flac",
+    "length": 288,
+    "sampleRate": 96000,
+    "size": 104615325,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows - 08 - House of Cards.flac",
+    "length": 327,
+    "sampleRate": 96000,
+    "size": 107795572,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows - 09 - Jigsaw Falling Into Place.flac",
+    "length": 247,
+    "sampleRate": 96000,
+    "size": 88813877,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\Radiohead - In Rainbows - 10 - Videotape.flac",
+    "length": 281,
+    "sampleRate": 96000,
+    "size": 87181658,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": true,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 0,
+  "token": 86580,
+  "uploadSpeed": 9106572,
+  "username": "PEER24"
+ },
+ {
+  "fileCount": 32,
+  "files": [
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\01 - 15 Step.flac",
+    "length": 236,
+    "sampleRate": 96000,
+    "size": 85146351,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\02 - Bodysnatchers.flac",
+    "length": 241,
+    "sampleRate": 96000,
+    "size": 87694956,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\03 - Nude.flac",
+    "length": 254,
+    "sampleRate": 96000,
+    "size": 83970242,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\04 - Weird Fishes+Arpeggi.flac",
+    "length": 316,
+    "sampleRate": 96000,
+    "size": 106764172,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\05 - All I Need.flac",
+    "length": 227,
+    "sampleRate": 96000,
+    "size": 75920005,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\06 - Faust Arp.flac",
+    "length": 129,
+    "sampleRate": 96000,
+    "size": 43935133,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\07 - Reckoner.flac",
+    "length": 288,
+    "sampleRate": 96000,
+    "size": 105614142,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\08 - House of Cards.flac",
+    "length": 327,
+    "sampleRate": 96000,
+    "size": 108794648,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\09 - Jigsaw Falling Into Place.flac",
+    "length": 247,
+    "sampleRate": 96000,
+    "size": 89812785,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows (2007)\\10 - Videotape.flac",
+    "length": 281,
+    "sampleRate": 96000,
+    "size": 88180236,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows - From the Basement (2008)\\01 - Weird Fishes+Arpeggi.flac",
+    "length": 340,
+    "sampleRate": 48000,
+    "size": 31215959,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows - From the Basement (2008)\\02 - 15 Step.flac",
+    "length": 232,
+    "sampleRate": 48000,
+    "size": 22121524,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows - From the Basement (2008)\\03 - Bodysnatchers.flac",
+    "length": 262,
+    "sampleRate": 48000,
+    "size": 24961300,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows - From the Basement (2008)\\04 - Nude.flac",
+    "length": 269,
+    "sampleRate": 48000,
+    "size": 21224822,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows - From the Basement (2008)\\05 - The Gloaming.flac",
+    "length": 196,
+    "sampleRate": 48000,
+    "size": 18407741,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows - From the Basement (2008)\\06 - Myxomatosis.flac",
+    "length": 236,
+    "sampleRate": 48000,
+    "size": 24607468,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows - From the Basement (2008)\\07 - House of Cards.flac",
+    "length": 330,
+    "sampleRate": 48000,
+    "size": 26586912,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows - From the Basement (2008)\\08 - Bangers + Mash.flac",
+    "length": 225,
+    "sampleRate": 48000,
+    "size": 22786990,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows - From the Basement (2008)\\09 - Optimistic.flac",
+    "length": 281,
+    "sampleRate": 48000,
+    "size": 24897552,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows - From the Basement (2008)\\10 - Reckoner.flac",
+    "length": 312,
+    "sampleRate": 48000,
+    "size": 31375320,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows - From the Basement (2008)\\11 - Videotape.flac",
+    "length": 285,
+    "sampleRate": 48000,
+    "size": 22433636,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows - From the Basement (2008)\\12 - Where I End and You Begin.flac",
+    "length": 319,
+    "sampleRate": 48000,
+    "size": 25686028,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows - From the Basement (2008)\\13 - All I Need.flac",
+    "length": 258,
+    "sampleRate": 48000,
+    "size": 21077118,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 16,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows - From the Basement (2008)\\14 - Go Slowly.flac",
+    "length": 232,
+    "sampleRate": 48000,
+    "size": 19688495,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\01 - MK 1.flac",
+    "length": 62,
+    "sampleRate": 44100,
+    "size": 11145589,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\02 - Down Is the New Up.flac",
+    "length": 299,
+    "sampleRate": 44100,
+    "size": 62273852,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\03 - Go Slowly.flac",
+    "length": 228,
+    "sampleRate": 44100,
+    "size": 46628132,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\04 - MK 2.flac",
+    "length": 53,
+    "sampleRate": 44100,
+    "size": 8426338,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\05 - Last Flowers.flac",
+    "length": 266,
+    "sampleRate": 44100,
+    "size": 50903309,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\06 - Up on the Ladder.flac",
+    "length": 257,
+    "sampleRate": 44100,
+    "size": 49747168,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\07 - Bangers + Mash.flac",
+    "length": 199,
+    "sampleRate": 44100,
+    "size": 45430947,
+    "isLocked": false
+   },
+   {
+    "bitDepth": 24,
+    "code": 1,
+    "extension": "flac",
+    "filename": "Radiohead\\In Rainbows Disk 2 (2009)\\08 - 4 Minute Warning.flac",
+    "length": 244,
+    "sampleRate": 44100,
+    "size": 46044962,
+    "isLocked": false
+   }
+  ],
+  "hasFreeUploadSlot": true,
+  "lockedFileCount": 0,
+  "lockedFiles": [],
+  "queueLength": 0,
+  "token": 86580,
+  "uploadSpeed": 12071742,
+  "username": "PEER25"
+ }
+]

@@ -17,11 +17,11 @@
     <application
         android:name="App"
         android:allowBackup="false"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@mipmap/slsk_launcher"
+        android:label="@string/slsk_app_name"
         android:localeConfig="@xml/locale_config"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:roundIcon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/slsk_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.SplashScreen"
         android:usesCleartextTraffic="true">

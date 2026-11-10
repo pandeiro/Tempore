@@ -374,4 +374,5 @@
         android:name="com.eddyizm.tempus.ui.fragment.bottomsheetdialog.ShareBottomSheetDialog"
         android:label="ShareBottomSheetDialog"
         tools:layout="@layout/bottom_sheet_share_dialog" />
+    <include app:graph="@navigation/slsk_nav_graph" />
 </navigation>

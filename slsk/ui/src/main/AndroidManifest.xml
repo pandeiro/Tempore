@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:node="merge">
+
+    <application>
+        <activity
+            android:name="com.github.pandeiro.tempore.slsk.ui.SlskSettingsActivity"
+            android:label="@string/slsk_app_name"
+            android:theme="@style/AppTheme"
+            android:parentActivityName="com.eddyizm.tempus.ui.activity.MainActivity"
+            tools:targetApi="honeycomb" />
+    </application>
+</manifest>

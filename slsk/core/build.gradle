@@ -1,0 +1,45 @@
+plugins {
+    alias(slsk.plugins.kotlin.serialization)
+    alias(slsk.plugins.android.library)
+}
+
+android {
+    namespace 'com.github.pandeiro.tempore.slsk.core'
+    compileSdk 37
+
+    defaultConfig {
+        minSdkVersion 24
+    }
+
+    buildTypes {
+        release {
+            consumerProguardFiles 'consumer-rules.pro'
+        }
+    }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+dependencies {
+    api slsk.okhttp
+    api slsk.retrofit
+    api slsk.kotlinx.serialization.json
+    api slsk.coroutines.core
+
+    implementation slsk.retrofit.kotlinx.serialization
+    implementation slsk.okhttp.logging
+    implementation slsk.coroutines.android
+    implementation slsk.androidx.datastore.preferences
+    implementation slsk.androidx.annotation
+
+    testImplementation slsk.junit
+    testImplementation slsk.mockk
+    testImplementation slsk.turbine
+    testImplementation slsk.coroutines.test
+    testImplementation slsk.okhttp.mockwebserver
+    testImplementation slsk.okhttp.tls
+}

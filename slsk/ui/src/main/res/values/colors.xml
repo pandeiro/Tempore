@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="slsk_result_tint">#14007E8B</color>
+    <color name="slsk_soulseek_accent">#00535F</color>
+    <color name="slsk_badge_pill">#20000000</color>
+    <color name="slsk_status_good">#2E7D32</color>
+    <color name="slsk_status_bad">#C62828</color>
+    <color name="slsk_status_warn">#EF6C00</color>
+</resources>

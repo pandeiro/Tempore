@@ -1,0 +1,16 @@
+// Applied from settings.gradle (seam S1). Everything new for the Tempore fork lives
+// behind this hook; upstream file changes stay at one line.
+def slskRoot = new File(settingsDir, 'slsk')
+
+include ':slsk:core'
+project(':slsk:core').projectDir = new File(slskRoot, 'core')
+include ':slsk:ui'
+project(':slsk:ui').projectDir = new File(slskRoot, 'ui')
+
+dependencyResolutionManagement {
+    versionCatalogs {
+        create('slsk') {
+            from(files(new File(settingsDir, 'slsk/gradle/slsk.versions.toml')))
+        }
+    }
+}
