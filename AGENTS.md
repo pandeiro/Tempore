@@ -7,6 +7,8 @@ search-and-download feature backed by slskd (see `slsk/README.md`).
 - **Canonical spec**: [`PLAN.md`](PLAN.md) — features, decisions, verification gates and the
   living development log. Read it before feature work; **every feature/behavior change must
   be documented there** (dated entry in the log + updated section) alongside the code.
+- **Mergeability explainer**: [`ARCHITECTURE.md`](ARCHITECTURE.md) — plain-language strategy
+  (no Android background needed) with diagrams of the seam model and sync procedure.
 - **Fork docs**: `slsk/README.md` (feature overview + server contract),
   `slsk/SEAMS.md` (every upstream file touched + anchors), `slsk/SPIKE.md` (live slskd API
   facts), `slsk/tools/check-seams.sh` (diff-budget + anchor guard).

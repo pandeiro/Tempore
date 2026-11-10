@@ -249,6 +249,12 @@ scratch branch (green/red/conflict report only) — TODO optional for this fork.
   intentionally untouched; launcher pair superseded by `@mipmap/slsk_launcher`; `logo.xml`
   unreferenced, left as-is.
 
+### 2026-11-09 — ARCHITECTURE.md mergeability explainer
+- New plain-language overview (`ARCHITECTURE.md`) of the upstream-merge strategy for readers
+  without Android background: three rules, seam model, layering diagram, boundary table,
+  sync flowchart, alternatives table. Declared part of the fork documentation layer
+  (seam-budget exclusion), referenced from `AGENTS.md` + `README.md`.
+
 ## 7. Backlog (post-MVP candidates)
 
 - Revisit `POST /transfers/downloads/batches` when the server upgrades past slskd 0.26.x

@@ -15,8 +15,8 @@ one flagship addition: **search-and-download from the Soulseek network through a
 | --- | --- |
 | applicationId | `com.github.pandeiro.tempore` (+ `.degoogled`, `.play`); install beside stock Tempus |
 | Launcher label / icon | "Tempore", same icon recolored to sandstone orange |
-| Upstream delta | ≤12 files / 150 lines outside `slsk/`, enforced by `slsk/tools/check-seams.sh` |
-| Living spec | [`PLAN.md`](PLAN.md) (canonical) · [`slsk/SEAMS.md`](slsk/SEAMS.md) · [`slsk/SPIKE.md`](slsk/SPIKE.md) · [`slsk/README.md`](slsk/README.md) |
+| Upstream delta | ≤13 files / 150 added lines outside `slsk/` + fork docs, enforced by `slsk/tools/check-seams.sh` |
+| Living spec | [`PLAN.md`](PLAN.md) (canonical) · [`ARCHITECTURE.md`](ARCHITECTURE.md) · [`slsk/SEAMS.md`](slsk/SEAMS.md) · [`slsk/SPIKE.md`](slsk/SPIKE.md) · [`slsk/README.md`](slsk/README.md) |
 
 Download flow: configure slskd (URL + API key) in Settings → search with the Soulseek scope →
 folder sheet → batch download → watch transfers (server-side, survives app close) → completed
