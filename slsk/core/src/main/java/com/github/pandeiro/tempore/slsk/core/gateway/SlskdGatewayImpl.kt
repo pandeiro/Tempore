@@ -49,7 +49,7 @@ import retrofit2.converter.kotlinx.serialization.asConverterFactory
 
 /**
  * Real slskd-backed gateway behind [SoulseekGateway]. Owns its OkHttp/Retrofit client
- * (hand-written per docs/spec §6.3).
+ * (hand-written facade; rules in PLAN.md §5.3).
  *
  * Transport rules:
  *  - normal calls: 10 s connect / 20 s read; the blocking search POST gets its own

@@ -1,6 +1,7 @@
 # Phase 0 spike notes (Nov 8 2026, slskd 0.26.1.0 live instance)
 
-Corrects `docs/spec/product.claude.md` where observed reality differs.
+Corrects/records observable slskd + Tempus behavior; canonical spec now lives in `PLAN.md` §5
+(merged reference).
 
 ## Toolchain (upstream actual)
 - Gradle wrapper **9.8.0**, AGP 9.2.1, Kotlin **2.2.20**, compileSdk/targetSdk **37**, minSdk 24.

@@ -4,7 +4,7 @@ Tempus (Subsonic/Navidrome Android client), rebranded and extended with a Soulse
 search & download capability backed by a self-hosted [slskd](https://github.com/slskd/slskd)
 instance. Navidrome stays the library of record.
 
-- Architecture and phases: `docs/spec/product.claude.md` (authoritative), `docs/spec/product.qwen.md` (early draft).
+- Living spec (features, decisions, verification, log): `PLAN.md` — canonical.
 - Live-verified slskd 0.26.1 facts: `slsk/SPIKE.md`; golden fixtures: `slsk/contract/fixtures/`.
 - Every upstream file touched, with anchors and re-apply notes: `slsk/SEAMS.md`.
 - Seam guard (budget + anchors): `slsk/tools/check-seams.sh`.

@@ -10,7 +10,6 @@ search-and-download feature backed by slskd (see `slsk/README.md`).
 - **Fork docs**: `slsk/README.md` (feature overview + server contract),
   `slsk/SEAMS.md` (every upstream file touched + anchors), `slsk/SPIKE.md` (live slskd API
   facts), `slsk/tools/check-seams.sh` (diff-budget + anchor guard).
-- `docs/spec/product.*.md` are historical drafts superseded by `PLAN.md`.
 - Upstream flavors still exist; the tempus flavor is rebranded `com.github.pandeiro.tempore`
   (degoogled/play get matching ids). Releases signed with the fork keystore when
   `slsk/keystore/local.properties` is present.

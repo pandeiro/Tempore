@@ -1,9 +1,10 @@
 # PLAN.md — Tempore living spec & development log
 
-**This is the canonical feature/behavior spec for the Tempore fork.** It supersedes the
-drafts in `docs/spec/product.claude.md` and `docs/spec/product.qwen.md`, which remain only as
-historical context (claude's architecture won; qwen's Compose/Room/Hilt choices were rejected
-to keep the upstream merge delta tiny).
+**This is the canonical feature/behavior spec for the Tempore fork.** It merges the
+work-in-progress drafts (claude architecture draft + qwen draft, both from 2026-11-07, kept
+in git history only). Claude's architecture and scope won; qwen's Compose/Room/Hilt choices
+were rejected to keep the upstream merge delta tiny. The merged background reference lives in
+§5 below. Rule 1 applies from here on: changes go to the log with the code.
 
 Rules for this file:
 
@@ -115,7 +116,100 @@ is exercised at feature milestones against the real servers.
 | D6 | Epoch millis (no java.time) | upstream ships no core-library desugaring; minSdk 24 |
 | D7 | Fork keeps upstream Kotlin package | only appId/label/icon change; seams stay tiny for frictionless upstream merges |
 
-## 5. Development log
+## 5. Merged spec reference (from the 2026-11-07 drafts; now the only copy)
+
+### 5.1 Topology
+```
+ Android device                              Home server or VPS
++--------------------------------+          +-------------------------------------+
+| Tempore (upstream :app + seams)| Subsonic |  Navidrome                          |
+|   + 7 small seams              |--------->|     reads /music                    |
+| :slsk:ui    screens, VMs       |          |                                     |
+| :slsk:core  gateway, DTOs,     | REST     |  slskd (:5030 / :5031)              |
+|             auth, ranking      |--------->|     writes downloads/ --> /music    |
++--------------------------------+ /api/v0  |     <--> Soulseek network (:50300)  |
+                                            +-------------------------------------+
+```
+
+### 5.2 slskd transport & server hardening
+| Transport | When | Notes |
+| --- | --- | --- |
+| Reverse proxy with real certificate | remote use | URL base supported; enforce IP rules at the proxy |
+| VPN/mesh (WireGuard, Tailscale) | remote use | plain HTTP inside the tunnel is fine; slskd never public |
+| slskd built-in HTTPS (5031) | LAN | self-signed by default; TOFU fingerprint pin supported by the app |
+| Plain HTTP on LAN | convenience | warn + suggest CIDR restriction on the API key |
+
+Server checklist: change default `slskd`/`slskd` credentials; keep `remote_configuration`
+and `remote_file_management` off; Swagger/metrics off in production; never expose 5030/5031
+to the internet without proxy/VPN; create a dedicated low-privilege API key for the phone
+(avoid Administrator role outside LAN); disable completed-download retention so slskd can
+never delete files that Navidrome scans.
+
+### 5.3 Client-side rules
+- Hand-written Retrofit/OkHttp client, tolerant JSON (`ignoreUnknownKeys`-style)) —
+  slskd's generated OpenAPI is unreliable (search endpoints have no response schemas).
+- Timeouts: 10 s connect / 20 s read normal; search call `searchTimeout` + 15 s.
+- Capability probe on connect (version + fallback endpoint shapes, remembered per session);
+  notice (not error) outside the tested version window.
+- Idempotency: client-generated GUID search ids; enqueue dedupe by (username, filename)
+  against current transfers so a retry cannot double-queue.
+- slskd is single-tenant: the app tags its searches with an id prefix and filters on it.
+- Polling is foreground-only via `repeatOnLifecycle`; slskd keeps transfers server-side, so
+  closing the app never kills a download.
+- Never put result sets into Bundles/SavedState — pass ids only (upstream has a
+  TransactionTooLargeException history).
+
+### 5.4 State ownership
+| State | Owner | Lifetime |
+| --- | --- | --- |
+| Connection profile (URL, auth, pin) | App (Keystore + encrypted blob) | persistent |
+| Search session (id, responses) | slskd | until deleted/retention; app keeps last 3 in memory |
+| Grouping, sort, filters | ViewModel / DataStore | per screen; filter defaults persist |
+| Transfers | slskd | polled, never mirrored |
+| Recent completions log | App (DataStore JSON) | 30 days, cap 200 |
+| Search history | App (DataStore) | persistent, cap 50 |
+
+### 5.5 Error & empty states (contract for every surface)
+- Not configured → setup card (no crash freight).
+- slskd unreachable/timeout → banner + Retry; Library search unaffected.
+- Key rejected (401/403) → banner linking to Settings.
+- slskd up but disconnected from Soulseek → banner, submit disabled.
+- Zero-responder search → suggest shorter query / drop format filter.
+- Enqueue partially failed → per-file failures with Retry failed (read the failures list;
+  never trust a 2xx alone).
+- Transfer errored/rejected/timed out → row-level reason + Retry.
+- Navidrome unreachable at handoff → skip scan, mark Downloaded, offer manual rescan.
+
+### 5.6 Sync procedure (upstream releases)
+```bash
+git config rerere.enabled true
+git fetch upstream --tags
+git checkout -b sync/$(date +%F) main
+git merge --no-ff vX.Y.Z              # resolve conflicts using slsk/SEAMS.md
+slsk/tools/check-seams.sh
+./gradlew assembleTempusDebug assembleDegoogledDebug testTempusDebugUnitTest :slsk:core:testDebugUnitTest lintDegoogledDebug
+```
+Expected conflicts only in seam files. Nightly dry-run merges upstream `development` into a
+scratch branch (green/red/conflict report only) — TODO optional for this fork.
+
+### 5.7 Test strategy
+- Unit: gateway ↔ MockWebServer with golden fixtures (in `slsk/core/src/test`), mappers,
+  grouping/ranking, ViewModels (Turbine); the fake gateway doubles as demo mode.
+- Contract: re-record fixtures when upgrading slskd; diff the endpoints/params/status codes
+  we use against the recorded snapshot when bumping.
+- Instrumented smoke (milestones): settings entry exists, scope toggle appears, fake-server
+  flow completes.
+- Manual device checklist per release: LAN HTTP; pinned HTTPS; rejected key; slskd stopped
+  mid-search; disconnected-from-Soulseek; partial batch failure; long remote queue; app
+  killed mid-download; handoff with watcher off; minified release build; both flavors.
+
+### 5.8 Licensing & legal
+- GPL-3.0 inheritance stays intact: fork of GPL-3.0 Tempus → keeps GPL-3.0 with notices;
+  Navidrome/slskd are separate network processes, not linked. Soulseek queries broadcast
+  under the slskd account's name; downloaded material may be copyrighted — personal builds
+  only, never Play/F-Droid distribution, alias account and VPN recommended. Not legal advice.
+
+## 6. Development log
 
 ### 2026-11-08 — Tempore MVP shipped (release `4.31.0-tempore.1`, versionCode 5201)
 - Scaffolding: `:slsk:core` / `:slsk:ui` + hooks (S1/S2), spike notes + redacted fixtures
@@ -138,14 +232,16 @@ is exercised at feature milestones against the real servers.
 - Fixes from the device run: duplicate results-toolbar menu (removed code inflate), scope
   reset per spec D5, in-app "Tempore" title (R2), crash tee gated to debug builds.
 
-### 2026-11-09 — Docs made canonical
-- `PLAN.md` created as the living spec (sections 1–6 above); `docs/spec/product.*.md`
-  marked historical. Development-log discipline added to `AGENTS.md` (Guidelines #5).
-- Fork banner prepended to `README.md`; `PLAN.md`/`README.md`/`AGENTS.md`/`CHANGELOG.md`
-  declared the fork documentation layer in the seam budget (`slsk/tools/check-seams.sh`
-  + `slsk/SEAMS.md` rules), so the code budget keeps meaning "code only".
+### 2026-11-09 — Docs made canonical; drafts merged & removed
+- `PLAN.md` created as the living spec; `docs/spec/product.claude.md` /
+  `docs/spec/product.qwen.md` merged into `PLAN.md` §1–§7 and deleted from the tree
+  (recoverable from git history).
+- Development-log discipline added to `AGENTS.md` (Guidelines #5); fork banner added to
+  `README.md`; `PLAN.md`/`README.md`/`AGENTS.md`/`CHANGELOG.md` declared the fork
+  documentation layer in the seam budget (`slsk/tools/check-seams.sh` +
+  `slsk/SEAMS.md` rules).
 
-## 6. Backlog (post-MVP candidates)
+## 7. Backlog (post-MVP candidates)
 
 - Revisit `POST /transfers/downloads/batches` when the server upgrades past slskd 0.26.x
   (per-user path already tolerates both).

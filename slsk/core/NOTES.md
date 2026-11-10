@@ -1,6 +1,6 @@
 # slsk/core implementation notes (deviations + open questions)
 
-Contract source: docs/spec/product.claude.md §6 + slsk/SPIKE.md (live-probed slskd 0.26.1.0 — authoritative), fixtures in slsk/contract/fixtures (also vendored into `src/test/resources/fixtures/` for the JVM tests).
+Contract source: PLAN.md §2/§5 + slsk/SPIKE.md (live-probed slskd 0.26.1.0 — authoritative), fixtures in slsk/contract/fixtures (also vendored into `src/test/resources/fixtures/` for the JVM tests).
 
 ## Deviations / judgement calls
 
