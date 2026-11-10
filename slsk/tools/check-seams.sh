@@ -7,13 +7,14 @@ cd "$(dirname "$0")/../.."
 
 BASE=$(git merge-base HEAD upstream/main 2>/dev/null || echo HEAD)
 
-# 1) diff budget. Spec docs (docs/) predate this guard and the slsk directory is Layer 2.
-read -r FILES ADDED <<<"$(git diff --numstat "$BASE" HEAD -- . ':!slsk' ':!docs' ':!.github/workflows/slsk_*.yml' \
+# 1) diff budget. Spec docs (docs/) are historical drafts; README/AGENTS/PLAN/CHANGELOG
+# are the fork documentation layer (declared fork-owned, see slsk/SEAMS.md rules).
+read -r FILES ADDED <<<"$(git diff --numstat "$BASE" HEAD -- . ':!slsk' ':!docs' ':!PLAN.md' ':!README.md' ':!AGENTS.md' ':!CHANGELOG.md' ':!.github/workflows/slsk_*.yml' \
   | awk '{f++; a+=$1} END {print (f+0)" "(a+0)}')"
 echo "seam diff outside slsk/, docs/: $FILES files, $ADDED added lines"
 if [ "$FILES" -gt 12 ] || [ "$ADDED" -gt 150 ]; then
   echo "FAIL: seam budget exceeded (max 12 files / 150 added lines)" >&2
-  git diff --numstat "$BASE" HEAD -- . ':!slsk' ':!docs' ':!.github/workflows/slsk_*.yml'
+  git diff --numstat "$BASE" HEAD -- . ':!slsk' ':!docs' ':!PLAN.md' ':!README.md' ':!AGENTS.md' ':!CHANGELOG.md' ':!.github/workflows/slsk_*.yml'
   exit 1
 fi
 

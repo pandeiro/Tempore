@@ -138,6 +138,13 @@ is exercised at feature milestones against the real servers.
 - Fixes from the device run: duplicate results-toolbar menu (removed code inflate), scope
   reset per spec D5, in-app "Tempore" title (R2), crash tee gated to debug builds.
 
+### 2026-11-09 — Docs made canonical
+- `PLAN.md` created as the living spec (sections 1–6 above); `docs/spec/product.*.md`
+  marked historical. Development-log discipline added to `AGENTS.md` (Guidelines #5).
+- Fork banner prepended to `README.md`; `PLAN.md`/`README.md`/`AGENTS.md`/`CHANGELOG.md`
+  declared the fork documentation layer in the seam budget (`slsk/tools/check-seams.sh`
+  + `slsk/SEAMS.md` rules), so the code budget keeps meaning "code only".
+
 ## 6. Backlog (post-MVP candidates)
 
 - Revisit `POST /transfers/downloads/batches` when the server upgrades past slskd 0.26.x

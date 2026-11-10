@@ -16,5 +16,5 @@
 
 Rules (claude spec §11.2, as amended by the Tempore rename):
 - New code lives under `slsk/` (modules `:slsk:core`, `:slsk:ui`, glue sources `slsk/app-glue`, hooks `slsk/gradle/*`, own catalog `slsk/gradle/slsk.versions.toml`, this file, `slsk/tools/`).
-- No other upstream file may be edited. Rebrand seams are R1; the launcher label/icon point at NEW prefixed resources (`slsk_app_name`, `slsk_launcher`) so per-locale `app_name` copies stay untouched.
-- Budget: outside `slsk/`, `docs/`, and `.github/workflows/slsk_*.yml`: ≤12 files, ≤150 added lines. Guard script enforces.
+- No other upstream file may be edited. Rebrand seams are R1/R2; the launcher label/icon point at NEW prefixed resources (`slsk_app_name`, `slsk_launcher`) so per-locale `app_name` copies stay untouched.
+- Budget: outside `slsk/`, `docs/`, the fork documentation layer (`PLAN.md`, `README.md` (fork banner), `AGENTS.md`, `CHANGELOG.md`), and `.github/workflows/slsk_*.yml`: ≤12 files, ≤150 added lines. Guard script enforces. The doc layer is declared fork-owned precisely because upstream edits README/AGENTS on every release — accept small conflicts there during sync rather than inflating the code-seam budget.
