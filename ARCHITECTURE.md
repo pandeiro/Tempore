@@ -52,7 +52,78 @@ public void search(String query) {
 
 Inert if the feature were deleted: every seam is removable without incident.
 
-## 4. How the code is layered
+## 4. Tour of the app (the whole picture)
+
+Two stories run side by side in Tempore, using different halves of the code.
+
+### 4.1 The music library path (upstream, unchanged)
+
+```mermaid
+flowchart LR
+    U["user"] --> LOGIN["one-time setup: Navidrome address + credentials"]
+    LOGIN --> HOME["Home: discovery, resume points,<br/>mixes for you"]
+    HOME -->|"tabs: Library / Download"| LIB["Library: artists → albums → songs<br/>(search Dock: 'search3')"]
+    LIB --> PLAY["Queue + play"]
+    PLAY -- "streams audio" --> ND["Navidrome (Subsonic API)"]
+    PLAY --> SVC["background player (Media3)<br/>notification · lockscreen · widget"]
+    ND --> CACHE["on-device cache/database<br/>(artwork, offline copies)"]
+```
+
+In words: you sign into a Navidrome server once. The app then lists artists, albums and
+songs it exposes over the Subsonic protocol (a plain HTTP/JSON API with token auth) and
+plays whatever you pick. Audio playback runs in a background process ("service") so it keeps
+going when you leave the app; it drives the notification, lockscreen controls, phones'
+Android Auto/Chromecast (tempus flavor) and a home-screen widget.
+
+### 4.2 The Soulseek loop (our feature, see §5–§7)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor U as user
+    participant APP as Tempore (phone)
+    participant SK as slskd (your server)
+    participant PEER as Soulseek peers
+    participant ND as Navidrome
+
+    U->>APP: Settings: slskd URL + API key → "Test connection"
+    APP->>SK: GET /api/v0/application (health)
+    SK-->>APP: reachable · authenticated · connected to network
+    U->>APP: Soulseek scope search: "coltrane love supreme flac"
+    APP->>SK: POST /searches (client-generated GUID)
+    loop poll every 1.5 s while results stream in
+        APP->>SK: GET /searches/{id} + /responses
+        SK-->>APP: peers, files, quality, speed, queue
+    end
+    U->>APP: open folder card → "Download 10 files"
+    APP->>SK: POST /transfers/downloads/{user} (batch)
+    APP-->>U: activity screen: folders, progress, remote queue position
+    SK->>PEER: download files (this runs for hours/days, server-side)
+    PEER-->>SK: files land in slskd's downloads folder (inside Navidrome's music dir)
+    APP->>ND: startScan → poll scan status
+    ND-->>APP: scan done
+    APP->>ND: search3("artist album")
+    APP-->>U: "In library" chip → tap = deep-link to the album page (play it now)
+```
+
+The key architectural idea repeats: the phone is a controller. Downloads happen **on the
+server** (slskd pulls files from peers; the phone stays out of it), so closing the app, or
+a parking-garage of a mobile OS killing it, never interrupts a transfer. The phone polls
+for state only while open, then re-attaches on next launch.
+
+### 4.3 Where each capability lives
+
+| Capability | Implementation home |
+| --- | --- |
+| Navidrome browsing / playback | upstream `app` module (untouched) |
+| slskd search + results | `:slsk:ui` + `:slsk:core` |
+| slskd transfers / activity screen | `:slsk:ui` + `:slsk:core` |
+| Soulseek settings + Test connection | `:slsk:ui` (activity built by the S5 seam entry) |
+| Navidrome scan / album deep-link | `:slsk:core` client + `slsk/app-glue` navigation |
+| Offline / downloads of server tracks | upstream `app` module (untouched) |
+| Cast / Android Auto / widget | upstream, flavor-dependent (untouched) |
+
+## 5. How the code is layered
 
 ```mermaid
 flowchart TD
@@ -85,7 +156,7 @@ tiny "glue" translator that is allowed (uniquely) to read upstream state like th
 server address. Nothing in `slsk/core` or `slsk/ui` may import an upstream class — enforced
 by the guard script, so drift can't sneak in.
 
-## 5. Who may reach across the boundary
+## 6. Who may reach across the boundary
 
 | From | To | Allowed? |
 | --- | --- | --- |
@@ -98,7 +169,7 @@ Whenever an upstream file is modified (seams or rebrand), `slsk/SEAMS.md` record
 location, a text anchor that identifies the joining point, and how to re-apply it after
 upstream churn.
 
-## 6. A typical upstream sync
+## 7. A typical upstream sync
 
 ```mermaid
 flowchart TD
@@ -116,7 +187,7 @@ Why this is usually painless: all upstream code sits untouched; our delta outsid
 ≤150 added lines across ≤13 files (tracked by the guard script), so merges and conflicts are
 rare and small.
 
-## 7. Where new features go
+## 8. Where new features go
 
 - Pure Soulseek logic (network, ranking, caching) → `slsk/core`, with unit tests.
 - Screens and UI surfaces → `slsk/ui` (resources prefixed `slsk_`).
@@ -124,7 +195,7 @@ rare and small.
 - General bug fixes that would help upstream too → open a PR against upstream instead of
   patching here; the fix then arrives by sync, shrinking our delta instead of growing it.
 
-## 8. Why this over the alternatives
+## 9. Why this over the alternatives
 
 | Approach | Behavior on upstream updates | Verdict |
 | --- | --- | --- |
@@ -133,7 +204,7 @@ rare and small.
 | A separate app reusing upstream as a library | upstream isn't structured as a library; still a full copy | rejected |
 | **Seam-isolated feature modules (ours)** | sync is routine; total forced attention ≈13 files + guard script | chose this |
 
-## 9. Pointers
+## 10. Pointers
 
 - `PLAN.md` — canonical spec: features, decisions, verification gates, development log.
 - `slsk/SEAMS.md` — every upstream touch with anchors + re-apply notes; rebrand seams R1–R3.
