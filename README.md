@@ -4,6 +4,39 @@
 
 ---
 
+## Tempore (this fork)
+
+**Tempore** is a personal fork of [Tempus](https://github.com/eddyizm/tempus) — a Subsonic/
+Navidrome Android client — with the Kotlin package, toolchain and Gradle setup untouched, plus
+one flagship addition: **search-and-download from the Soulseek network through a self-hosted
+[slskd](https://github.com/slskd/slskd) instance, with Navidrome as the library of record.**
+
+| | |
+| --- | --- |
+| applicationId | `com.github.pandeiro.tempore` (+ `.degoogled`, `.play`); install beside stock Tempus |
+| Launcher label / icon | "Tempore", same icon recolored to sandstone orange |
+| Upstream delta | ≤12 files / 150 lines outside `slsk/`, enforced by `slsk/tools/check-seams.sh` |
+| Living spec | [`PLAN.md`](PLAN.md) (canonical) · [`slsk/SEAMS.md`](slsk/SEAMS.md) · [`slsk/SPIKE.md`](slsk/SPIKE.md) · [`slsk/README.md`](slsk/README.md) |
+
+Download flow: configure slskd (URL + API key) in Settings → search with the Soulseek scope →
+folder sheet → batch download → watch transfers (server-side, survives app close) → completed
+folders are scanned into Navidrome and deep-link back to the app's library.
+
+```bash
+./gradlew assembleTempusDebug assembleDegoogledDebug   # debug builds
+./gradlew assembleTempusRelease                        # signed when slsk/keystore/local.properties exists
+./gradlew :slsk:core:testDebugUnitTest                 # slsk gateway/ranking/store tests
+slsk/tools/check-seams.sh                              # seam budget + anchors guard
+```
+
+Back up `slsk/keystore/tempore-release.jks` (+ `local.properties`) — losing the key forces an
+uninstall/reinstall on every device. slskd needs its downloads directory to land inside
+Navidrome's music folder for the handoff to mark albums *In library*; details in
+[`slsk/README.md`](slsk/README.md). Upstream Tempus docs below remain valid for everything
+outside the Soulseek feature.
+
+---
+
 <p align="center">
   <b>Access your music library on all your android devices</b>
 </p>

@@ -1,7 +1,21 @@
-# AGENTS.md - Tempus (Android Subsonic Client)
+# AGENTS.md - Tempore (Android Subsonic Client, Tempus fork)
 
 ## Project Overview
-**Tempus** is an open-source Android music client for Subsonic servers. Two product flavors:
+**Tempore** is a personal fork of **Tempus**, an open-source Android music client for
+Subsonic servers. It keeps upstream's architecture and flavors and adds a Soulseek
+search-and-download feature backed by slskd (see `slsk/README.md`).
+- **Canonical spec**: [`PLAN.md`](PLAN.md) — features, decisions, verification gates and the
+  living development log. Read it before feature work; **every feature/behavior change must
+  be documented there** (dated entry in the log + updated section) alongside the code.
+- **Fork docs**: `slsk/README.md` (feature overview + server contract),
+  `slsk/SEAMS.md` (every upstream file touched + anchors), `slsk/SPIKE.md` (live slskd API
+  facts), `slsk/tools/check-seams.sh` (diff-budget + anchor guard).
+- `docs/spec/product.*.md` are historical drafts superseded by `PLAN.md`.
+- Upstream flavors still exist; the tempus flavor is rebranded `com.github.pandeiro.tempore`
+  (degoogled/play get matching ids). Releases signed with the fork keystore when
+  `slsk/keystore/local.properties` is present.
+
+**Tempus (upstream)** is an open-source Android music client for Subsonic servers. Two product flavors:
 - **tempus** (`com.eddyizm.tempus`) - GitHub release with Android Auto & Chromecast
 - **degoogled** (`com.eddyizm.degoogled.tempus`) - IzzyOnDroid/F-Droid release, no Google services
 
@@ -122,6 +136,7 @@ $ANDROID_HOME/cmdline-tools/tools/bin/retrace app/build/outputs/mapping/tempusRe
 2. **Database Integrity**: `isDownloaded()` must stay authoritative (Media3 index + Room DB row); external deletes must purge the Media3 index via `DownloaderManager.remove(...)`.
 3. **Notification UX**: Single notification with correct actions, tap opens app to queue fragment
 4. **Cross-Flavour**: Test on both `tempus` and `degoogled` flavors as they have different capabilities
+5. **Spec discipline**: features and behavior changes are spelled out in `PLAN.md` first (dated development-log entry + the affected spec section updated in the same change). Superseding upstream behavior or touching a seam must also update `slsk/SEAMS.md` (anchor note) and, when relevant, `slsk/SPIKE.md` (live API facts).
 
 Skills provide specialized instructions and workflows for specific tasks.
 Use the skill tool to load a skill when a task matches its description.
