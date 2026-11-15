@@ -11,6 +11,10 @@ import com.github.pandeiro.tempore.slsk.core.secure.CredentialStore
 import com.github.pandeiro.tempore.slsk.core.secure.KeystoreCredentialStore
 import com.github.pandeiro.tempore.slsk.core.secure.SlskdConfig
 import com.github.pandeiro.tempore.slsk.core.secure.StoreError
+import com.github.pandeiro.tempore.slsk.core.store.SlskdStores
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 
 /**
  * The single slsk process-scoped session object (matches upstream's no-DI style).
@@ -41,6 +45,9 @@ object SlskSession {
     @Volatile
     private var storeErrorDescription: String? = null
 
+    @Volatile
+    private var storesValue: SlskdStores? = null
+
     /**
      * Call from `App.onCreate()` after the existing server config is loaded. Re-entrant:
      * installing again simply re-reads stored credentials and rebuilds the gateway.
@@ -51,6 +58,14 @@ object SlskSession {
         this.hostBridge = hostBridge
         libraryGatewayValue = hostBridge.navidrome()?.let { config ->
             NavidromeClient(baseUrl = config.serverUrl, config = config)
+        }
+        // Independent of the keystore outcome: filters/flags persist even when secure storage
+        // is broken. Built once — DataStore forbids two active instances per file.
+        if (storesValue == null) {
+            storesValue = SlskdStores(
+                context.applicationContext.filesDir,
+                CoroutineScope(SupervisorJob() + Dispatchers.IO),
+            )
         }
         val store: CredentialStore
         try {
@@ -90,6 +105,13 @@ object SlskSession {
         get() {
             check(installed) { "SlskSession.install(context, hostBridge) was not called" }
             return gatewayInstance
+        }
+
+    /** Persistent preferences/history (DataStore); available right after install(). */
+    val stores: SlskdStores
+        get() {
+            check(installed) { "SlskSession.install(context, hostBridge) was not called" }
+            return checkNotNull(storesValue)
         }
 
     @Volatile

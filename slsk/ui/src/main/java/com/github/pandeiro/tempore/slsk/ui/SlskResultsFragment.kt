@@ -44,13 +44,17 @@ class SlskResultsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // The search field we came from may still own the IME; results have no text input.
+        requireActivity().currentFocus?.clearFocus()
+        androidx.core.content.ContextCompat.getSystemService(requireContext(), android.view.inputmethod.InputMethodManager::class.java)
+            ?.hideSoftInputFromWindow(view.windowToken ?: requireActivity().window.decorView.windowToken, 0)
         // app:menu in slsk_fragment_results.xml provides the actions; inflating again here duplicates them.
         bind.slskResultsToolbar.setNavigationOnClickListener {
             Navigation.findNavController(bind.root).popBackStack()
         }
         bind.slskResultsToolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
-                R.id.slsk_action_filter -> { showFilterMenu(); true }
+                R.id.slsk_action_filter -> { showFilterSheet(); true }
                 R.id.slsk_action_activity -> { openActivity(); true }
                 else -> false
             }
@@ -141,25 +145,9 @@ class SlskResultsFragment : Fragment() {
         }
     }
 
-    private fun showFilterMenu() {
-        val popup = androidx.appcompat.widget.PopupMenu(requireContext(), bind.slskResultsToolbar)
-        popup.menuInflater.inflate(R.menu.slsk_menu_filters, popup.menu)
-        val f = viewModel.ui.value.filters
-        popup.menu.findItem(R.id.slsk_filter_lossless).isChecked = f.losslessOnly
-        popup.menu.findItem(R.id.slsk_filter_320).isChecked = f.min320Kbps
-        popup.menu.findItem(R.id.slsk_filter_free).isChecked = f.freeSlotOnly
-        popup.menu.getItem(0).isChecked = true
-        popup.setOnMenuItemClickListener { item ->
-            val current = viewModel.ui.value.filters
-            when (item.itemId) {
-                R.id.slsk_filter_lossless -> viewModel.setFilters(current.copy(losslessOnly = !current.losslessOnly))
-                R.id.slsk_filter_320 -> viewModel.setFilters(current.copy(min320Kbps = !current.min320Kbps))
-                R.id.slsk_filter_free -> viewModel.setFilters(current.copy(freeSlotOnly = !current.freeSlotOnly))
-                R.id.slsk_filter_format_order -> { /* default sort already applied */ }
-            }
-            true
-        }
-        popup.show()
+    private fun showFilterSheet() {
+        if (parentFragmentManager.findFragmentByTag("slsk_filter") != null) return
+        SlskFilterSheetFragment().show(parentFragmentManager, "slsk_filter")
     }
 
     private fun openFolder(group: ResultGroup) {

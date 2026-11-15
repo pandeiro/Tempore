@@ -1,6 +1,7 @@
 package com.github.pandeiro.tempore.slsk.core.store
 
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
+import com.github.pandeiro.tempore.slsk.core.domain.SlskResultFilters
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
@@ -17,8 +18,9 @@ import kotlinx.serialization.json.Json
  * Core-scoped persistent state in TWO DataStore<Preferences> files:
  *
  *  - `slsk_preferences` — sort/filter defaults and setup flags: sortMode, lossless-only /
- *    hide-locked / hide-no-slot filter flags, first-use notice shown, autoScan-after-handoff,
- *    and the client id prefix used to attribute our own slskd searches;
+ *    hide-locked / hide-no-slot filter flags, the results-screen [SlskResultFilters] (JSON),
+ *    first-use notice shown, autoScan-after-handoff, and the client id prefix used to
+ *    attribute our own slskd searches;
  *  - `slsk_history` — the last [SlskdStoreLimits.SEARCH_HISTORY_LIMIT] searches and a
  *    completions log capped at [SlskdStoreLimits.COMPLETION_LIMIT_COUNT] entries /
  *    [SlskdStoreLimits.COMPLETION_LIMIT_DAYS] days (JSON via kotlinx-serialization).
@@ -52,10 +54,14 @@ class SlskdStores(
     private val clock: () -> Long = { System.currentTimeMillis() },
 ) {
 
-    /** Production constructor; give it a long-lived scope (application scope). */
+    /**
+     * Production constructor; give it a long-lived scope (application scope). Files follow the
+     * androidx convention `filesDir/datastore/<name>.preferences_pb` — PreferenceDataStoreFactory
+     * rejects any other extension on first access.
+     */
     constructor(filesDir: File, scope: CoroutineScope) : this(
-        preferences = PreferenceDataStoreFactory.create(scope = scope, produceFile = { File(filesDir, PREFS_FILE) }),
-        history = PreferenceDataStoreFactory.create(scope = scope, produceFile = { File(filesDir, HISTORY_FILE) }),
+        preferences = PreferenceDataStoreFactory.create(scope = scope, produceFile = { dataStoreFile(filesDir, PREFS_FILE) }),
+        history = PreferenceDataStoreFactory.create(scope = scope, produceFile = { dataStoreFile(filesDir, HISTORY_FILE) }),
     )
 
     // ------------------------------------------------------------ preferences
@@ -93,6 +99,17 @@ class SlskdStores(
     fun slskIdPrefix(): Flow<String> = stringFlow(Keys.SLSK_ID_PREFIX, DEFAULT_ID_PREFIX)
 
     suspend fun setSlskIdPrefix(value: String) = preferences.edit { it[Keys.SLSK_ID_PREFIX] = value }
+
+    /** Results-screen filters (types + lossy bitrate range + free slot); defaults on absence/corruption. */
+    fun resultFilters(): Flow<SlskResultFilters> = preferences.data.mapAndRecover { entry ->
+        entry[Keys.RESULT_FILTERS]?.let { raw ->
+            runCatching { JSON.decodeFromString(SlskResultFilters.serializer(), raw) }.getOrNull()
+        } ?: SlskResultFilters()
+    }
+
+    suspend fun setResultFilters(value: SlskResultFilters) = preferences.edit {
+        it[Keys.RESULT_FILTERS] = JSON.encodeToString(SlskResultFilters.serializer(), value.normalized())
+    }
 
     // ------------------------------------------------------------ history
 
@@ -149,6 +166,7 @@ class SlskdStores(
         val FIRST_USE_SHOWN = booleanPreferencesKey("first_use_notice_shown")
         val AUTO_SCAN = booleanPreferencesKey("auto_scan_after_enqueue")
         val SLSK_ID_PREFIX = stringPreferencesKey("slsk_id_prefix")
+        val RESULT_FILTERS = stringPreferencesKey("result_filters")
         val SEARCH_HISTORY = stringPreferencesKey("search_history_json")
         val COMPLETIONS = stringPreferencesKey("completions_json")
     }
@@ -179,6 +197,10 @@ class SlskdStores(
             }
     }
 }
+
+/** JVM-testable equivalent of androidx `Context.preferencesDataStoreFile(name)`. */
+internal fun dataStoreFile(filesDir: File, name: String): File =
+    File(File(filesDir, "datastore"), "$name.preferences_pb")
 
 /** Same error policy as the catalogue's other flows: partial corruption never crashes the screen. */
 private fun <T> Flow<androidx.datastore.preferences.core.Preferences>.mapAndRecover(

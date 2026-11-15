@@ -89,11 +89,25 @@ object SlskSeams {
         val trimmed = query.trim()
         if (trimmed.isEmpty()) return true
         val view = fragment.view ?: return false
+        // Deep link into the nested <include> graph (decision D4: NavController resolves ids
+        // only among the current graph's direct children + parents, never inside child graphs).
+        // popUpTo the calling search destination: exactly one results screen in the stack,
+        // back from results always lands on Search (recorded in slsk/SEAMS.md, seam S6).
+        val controller = Navigation.findNavController(view)
+        val searchDestination = controller.currentDestination?.id ?: return false
+        // Upstream's editor-action listener fires for both ENTER down and up (hardware/adb
+        // keys): a second submit lands while results are already current. Consuming it here
+        // keeps exactly one results screen (and one run) per search.
+        if (searchDestination == R.id.slskResultsFragment) return true
         val run = SlskSearchCoordinator.start(trimmed)
-        // The slsk graph is a nested <include>; deeplink navigation is the supported
-        // way to reach destinations inside it (recorded in slsk/SEAMS.md, seam S6).
-        val uri = android.net.Uri.parse("tempore://slsk/results/" + java.net.URLEncoder.encode(run.searchId, "UTF-8"))
-        Navigation.findNavController(view).navigate(uri)
+        val uri = android.net.Uri.parse("tempore://slsk/results").buildUpon()
+            .appendPath(run.searchId)
+            .appendQueryParameter("q", trimmed) // process-death restart re-runs this query
+            .build()
+        val options = androidx.navigation.NavOptions.Builder()
+            .setPopUpTo(searchDestination, false)
+            .build()
+        controller.navigate(uri, options)
         return true
     }
 

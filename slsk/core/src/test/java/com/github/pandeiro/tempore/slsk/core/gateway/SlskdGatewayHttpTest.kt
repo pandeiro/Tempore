@@ -346,6 +346,55 @@ class SlskdGatewayHttpTest {
         assertEquals("/api/v0/transfers/downloads/all/completed", deletes[2].path)
     }
 
+    // ------------------------------------------------------------------ folder contents
+
+    @Test
+    fun folderContents_parses_directory_object_and_prefixes_bare_filenames() = runBlocking {
+        handler.route = { req ->
+            assertEquals("/api/v0/users/PEER01/directory", req.path)
+            ok(
+                """{"name":"D\\Album","fileCount":3,"files":[
+                  {"filename":"01 Song.flac","size":27046286,"extension":"flac","length":237},
+                  {"filename":"02 Song.mp3","size":9620671,"length":238},
+                  {"filename":"setup.exe","size":10}]}""",
+            )
+        }
+        val files = gateway.folderContents("PEER01", "D\\Album")
+        assertTrue(handler.bodies.single().contains("\"Directory\":\"D\\\\Album\""))
+        assertEquals(listOf("D\\Album\\01 Song.flac", "D\\Album\\02 Song.mp3"), files.map { it.filename })
+    }
+
+    @Test
+    fun folderContents_flattens_array_of_directories() = runBlocking {
+        handler.route = {
+            ok("""[{"name":"D\\Album","files":[{"filename":"01.flac","size":1}]},
+                   {"name":"D\\Album\\CD2","files":[{"filename":"D\\Album\\CD2\\01.flac","size":1}]}]""")
+        }
+        val files = gateway.folderContents("PEER01", "D\\Album")
+        assertEquals(listOf("D\\Album\\01.flac", "D\\Album\\CD2\\01.flac"), files.map { it.filename })
+    }
+
+    @Test
+    fun folderContents_empty_live_listing_falls_back_to_search_hits() = runBlocking {
+        val searchId = "1c8eb99f-ed6e-4a74-898f-4432cb177cb8"
+        val complete = """{"id":"$searchId","isComplete":true,"state":"Completed, Succeeded",
+            "responseCount":1,"fileCount":1,
+            "responses":[{"username":"PEER01","hasFreeUploadSlot":true,"queueLength":0,"uploadSpeed":1,
+              "files":[{"filename":"D\\Album\\01 Song.flac","size":5,"extension":"flac"}]}]}"""
+        handler.route = { req ->
+            when {
+                req.path!!.startsWith("/api/v0/searches") -> ok(complete)
+                req.path == "/api/v0/users/PEER01/directory" -> ok("""{"name":"D\\Album","files":[]}""")
+                else -> MockResponse().setResponseCode(404).setBody("{}")
+            }
+        }
+        withTimeout(15_000) {
+            gateway.search("song", SearchOptions(searchText = "song", searchId = searchId)).collect { }
+        }
+        val files = gateway.folderContents("PEER01", "D\\Album")
+        assertEquals(listOf("D\\Album\\01 Song.flac"), files.map { it.filename })
+    }
+
     // ------------------------------------------------------------------ helpers
 
     private fun fixtureTransfersJson(): String =

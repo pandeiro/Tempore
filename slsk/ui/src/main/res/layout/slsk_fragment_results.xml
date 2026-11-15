@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:elevation="4dp"
+        app:navigationIcon="?attr/homeAsUpIndicator"
         app:menu="@menu/slsk_menu_results"
         app:title="@string/slsk_scope_soulseek" />
 
@@ -18,7 +19,8 @@
         android:layout_height="match_parent"
         android:layout_marginTop="?attr/actionBarSize"
         android:background="@color/slsk_result_tint"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/slsk_host_bottom_inset">
 
         <!-- Persistent differentiator banner -->
         <TextView

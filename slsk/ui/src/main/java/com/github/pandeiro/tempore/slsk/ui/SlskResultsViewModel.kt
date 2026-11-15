@@ -5,14 +5,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.github.pandeiro.tempore.slsk.core.domain.ResultGroup
 import com.github.pandeiro.tempore.slsk.core.domain.SearchProgress
+import com.github.pandeiro.tempore.slsk.core.domain.SlskResultFilters
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 /**
- * Renders one search run. Owns filters (persisted only in memory for MVP — filters are
- * per-run adjustable, spec §5.4 "all adjustable"), the streaming progress state and the
- * honest banner state.
+ * Renders one search run: the streaming progress state, the honest banner state and the
+ * persisted result filters (spec §5.4 "filter defaults persist"). The DataStore is the
+ * single source of truth for filters — the filter sheet writes it, this collects it.
  */
 class SlskResultsViewModel(
     val searchId: String,
@@ -29,7 +30,6 @@ class SlskResultsViewModel(
         val isComplete: Boolean = false,
         val banner: Banner = Banner.NONE,
         val bannerDetail: String? = null,
-        val filters: SlskResultFilters = SlskResultFilters(),
     )
 
     private val _ui = MutableStateFlow(UiModel())
@@ -41,8 +41,19 @@ class SlskResultsViewModel(
     private val visibleLimit = MutableStateFlow(100)
     val visibleLimitState: StateFlow<Int> = visibleLimit
 
+    /** Mirror of the persisted filters; written only by the store collector below. */
+    private var filters = SlskResultFilters()
+
     init {
         setup()
+        viewModelScope.launch {
+            runCatching {
+                SlskSessionAccess.stores.resultFilters().collect { persisted ->
+                    filters = persisted
+                    _ui.value = _ui.value.copy(groups = applyFilters())
+                }
+            }
+        }
     }
 
     private fun setup() {
@@ -70,13 +81,8 @@ class SlskResultsViewModel(
     }
 
     private fun applyFilters(): List<ResultGroup> {
-        val f = _ui.value.filters
-        return allGroups.filter { f.matches(it) }.take(visibleLimit.value)
-    }
-
-    fun setFilters(filters: SlskResultFilters) {
-        _ui.value = _ui.value.copy(filters = filters)
-        _ui.value = _ui.value.copy(groups = applyFilters())
+        val f = filters
+        return allGroups.filter { f.matchesGroup(it) }.take(visibleLimit.value)
     }
 
     fun loadMore() {
@@ -93,8 +99,8 @@ class SlskResultsViewModel(
     }
 
     fun canLoadMore(): Boolean {
-        val f = _ui.value.filters
-        return allGroups.count { f.matches(it) } > visibleLimit.value
+        val f = filters
+        return allGroups.count { f.matchesGroup(it) } > visibleLimit.value
     }
 
     /** Re-runs the same query when the slskd search failed to produce anything. */
@@ -106,6 +112,9 @@ class SlskResultsViewModel(
     }
 
     private fun bindRun(run: SlskSearchCoordinator.SearchRun) {
+        // Never flash the previous run's rows on retry()/process-death restart.
+        allGroups = emptyList()
+        visibleLimit.value = 100
         _ui.value = _ui.value.copy(run = run, groups = emptyList(), responders = 0, fileCount = 0, isComplete = false)
         viewModelScope.launch {
             run.failure.collect { cause ->

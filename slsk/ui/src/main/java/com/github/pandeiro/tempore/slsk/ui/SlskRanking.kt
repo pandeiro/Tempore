@@ -1,7 +1,6 @@
 package com.github.pandeiro.tempore.slsk.ui
 
 import com.github.pandeiro.tempore.slsk.core.domain.QualityClass
-import com.github.pandeiro.tempore.slsk.core.domain.RemoteFile
 import com.github.pandeiro.tempore.slsk.core.domain.ResultGroup
 
 /**
@@ -43,30 +42,6 @@ object SlskRanking {
         val segments = dir.split('\\').filter { it.isNotBlank() }
         val tail = segments.takeLast(2).joinToString(" \\ ")
         return tail.ifBlank { dir }
-    }
-}
-
-/**
- * Filter set controlled from the results toolbar menu.
- */
-data class SlskResultFilters(
-    val losslessOnly: Boolean = false,
-    val min320Kbps: Boolean = false,
-    val freeSlotOnly: Boolean = false,
-) {
-    fun matches(group: ResultGroup): Boolean {
-        if (freeSlotOnly && !group.hasFreeUploadSlot) return false
-        if (losslessOnly && group.allowedFiles.none { it.isLossless }) return false
-        if (min320Kbps && group.allowedFiles.none { (it.bitrateKbps ?: 0) >= 320 }) return false
-        return true
-    }
-
-    val activeCount: Int get() = listOf(losslessOnly, min320Kbps, freeSlotOnly).count { it }
-
-    fun toTitleSuffix(): String = when (activeCount) {
-        0 -> ""
-        1, 2, 3 -> " (\u2713 $activeCount)"
-        else -> ""
     }
 }
 

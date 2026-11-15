@@ -32,8 +32,10 @@ class SlskFolderFileAdapter(
         val file = files[position]
         val bind = holder.bind
         bind.slskFileName.text = file.filename.substringAfterLast('\\')
-        bind.slskFileCheck.isChecked = isSelected(file)
+        // Detach the recycled row's listener BEFORE restoring state: otherwise setChecked fires
+        // the previous file's toggle during layout (wrong selection + RecyclerView crash).
         bind.slskFileCheck.setOnCheckedChangeListener(null)
+        bind.slskFileCheck.isChecked = isSelected(file)
         bind.slskFileCheck.setOnCheckedChangeListener { _, checked ->
             // PR review #5: unchecked must also toggle off; locked stays pinned to its state.
             if (file.isLocked) {

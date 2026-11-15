@@ -1,6 +1,7 @@
 package com.github.pandeiro.tempore.slsk.core.store
 
 import androidx.datastore.core.DataStore
+import com.github.pandeiro.tempore.slsk.core.domain.SlskResultFilters
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import kotlinx.coroutines.CoroutineScope
@@ -26,10 +27,9 @@ class SlskdStoresTest {
     fun setUp() {
         scope = CoroutineScope(Dispatchers.IO)
         tmpDir = Files.createTempDirectory("slsk-stores").toFile()
-        stores = SlskdStores(
-            dataStore(tmpDir, name = "slsk_preferences"),
-            dataStore(tmpDir, name = "slsk_history"),
-        )
+        // Production constructor: exercises the real on-disk layout (file names must end in
+        // `.preferences_pb` or DataStore throws on first access).
+        stores = SlskdStores(tmpDir, scope)
     }
 
     @After
@@ -59,6 +59,18 @@ class SlskdStoresTest {
         assertTrue(stores.firstUseNoticeShown().first())
         assertEquals(false, stores.autoScanAfterEnqueue().first())
         assertEquals("custom-", stores.slskIdPrefix().first())
+    }
+
+    @Test
+    fun result_filters_default_and_persist_normalized() = runBlocking {
+        assertEquals(SlskResultFilters(), stores.resultFilters().first())
+        stores.setResultFilters(
+            SlskResultFilters(extensions = setOf("FLAC", "mp3"), bitrateMinKbps = 320, bitrateMaxKbps = 192, freeSlotOnly = true),
+        )
+        assertEquals(
+            SlskResultFilters(extensions = setOf("flac", "mp3"), bitrateMinKbps = 192, bitrateMaxKbps = 320, freeSlotOnly = true),
+            stores.resultFilters().first(),
+        )
     }
 
     @Test

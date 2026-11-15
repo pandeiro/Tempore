@@ -19,6 +19,7 @@
         android:allowBackup="false"
         android:icon="@mipmap/slsk_launcher"
         android:label="@string/slsk_app_name"
+        android:enableOnBackInvokedCallback="false"
         android:localeConfig="@xml/locale_config"
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/slsk_launcher"

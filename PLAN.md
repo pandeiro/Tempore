@@ -31,13 +31,17 @@ interface; Library search and Soulseek search are never blended.
 - applicationId `com.github.pandeiro.tempore` (flavors `.degoogled`, `.play` debug builds
   add `.debug`); Kotlin package stays `com.eddyizm.tempus`.
 - Launcher label "Tempore", same icon recolored sandstone orange (`#FFC98352`); in-app
-  toolbar title "Tempore" (default `app_name` only; per-locale copies untouched).
+  toolbar title "Tempore" (default `app_name` only; per-locale copies untouched). Every
+  remaining tempus-red launcher asset (`ic_launcher_background/foreground`) and the
+  home-screen long-press "Log in" shortcut icon (`@mipmap/slsk_launcher`) are sandstone too.
 - Release signing when `slsk/keystore/local.properties` exists (gitignored).
 
 ### 2.2 slskd settings & connection
 - Settings → **Soulseek (slskd)** category (accordion row, wired like upstream's LAN entry).
 - Fields: base URL (scheme auto-prepended for bare `host:port`), API key (masked, blank =
-  keep saved), optional cert SHA-256 pin (TOFU, scope-limited to the slskd client).
+  keep saved), optional cert SHA-256 pin (TOFU, scope-limited to the slskd client). Each
+  field has one floating label; example/explanation text is a Material placeholder shown
+  only while the field is empty.
 - **Test connection** shows reachable · authenticated · slskd version · Soulseek state.
 - Auto-scan toggle (on by default) after the download handoff.
 - Credentials: Keystore AES-GCM over one JSON blob in `slsk_secure` prefs; API key never in
@@ -53,18 +57,40 @@ interface; Library search and Soulseek search are never blended.
 - Soulseek results stream live (slskd poll 1.5 s, foreground only), grouped by
   (username, directory) with quality pill (lossless 16/44.1 / hi-res / MP3 320+ / lossy),
   free-slot, speed, queue; default ranking quality → free slot → speed → short queue →
-  more files; toolbar filters (lossless only / 320+ / free slot); top-100 render + load more.
+  more files; top-100 render + load more.
+- **Filters** (toolbar → bottom sheet): audio types (lossless flac/wav/aiff/wv/ape, lossy
+  mp3/m4a/ogg/opus; none ticked = all types), a lossy bitrate range in kbps (min/max, either
+  optional; applies to every lossy type, lossless never bitrate-constrained, a lossy file
+  with unknown derived bitrate is excluded once a bound is set) and "free upload slot only".
+  A group is shown when at least one of its files passes every enabled constraint. Filtering
+  is client-side (slskd has no bitrate field; bitrate is derived from size/length). The
+  filter set persists across searches and app restarts (`SlskdStores.resultFilters`,
+  DataStore JSON) and is the single source of truth the results ViewModel collects.
+- **One results screen per search**: submitting a Soulseek search pops back to the Search
+  destination before opening the new results (deep link + `popUpTo`), so back from results
+  always lands on Search and earlier result sets are never reachable. The query travels in
+  the deep link (`?q=`) so a process-death restart can re-run it; a retry/restart never
+  flashes the previous run's rows.
 - Allowlist extensions only (audio + cover images); executables/archives hidden, locked
   files visible but not selectable. Banner "Results from other Soulseek users"; first-use
   privacy sheet shown once.
 - Batch endpoints of slskd ≥0.27 are probed first with fallback to the 0.26 per-user
   enqueue; failures (incl. offline peer 500s) surface via snackbar; (username, filename)
   dedupe prevents double-queueing.
+- **Load full folder** browses the peer (`POST /users/{u}/directory`, parsed shape-tolerantly:
+  `Directory` object, array of directories or bare file array; bare browse filenames get the
+  directory prefix). A failed, unparseable or empty live listing falls back to the
+  remembered search hits; when that fallback equals what is already shown the sheet says
+  "Full folder listing unavailable from this peer" instead of pretending.
 
 ### 2.4 Transfers & handoff
 - Activity screen: per-folder groups, per-file state rows parsed from slskd's composite
   state tokens (`Completed, Succeeded` / `Aborted` / `Queued, Remotely` …), retry-failed,
-  cancel (with remove flag), clear completed; polling 3 s while resumed with backoff.
+  cancel (with remove flag); polling 3 s while resumed with backoff.
+- **Clear completed** (visible when any row succeeded or failed; slskd
+  `DELETE /transfers/downloads/all/completed`) and **Clear all** (visible whenever rows
+  exist; confirmation dialog; slskd has no clear-all endpoint, so every row of a fresh
+  snapshot is cancelled + removed via `DELETE /transfers/downloads/{u}/{id}?remove=true`).
 - Handoff: on all-files-succeeded → 5 s wait → `startScan` → poll `getScanStatus` ≤2 min →
   `search3` for parsed artist/album → *In library* chip with deep-link open, or honest
   *Downloaded, not visible in library yet* + manual rescan. Auto-scan honors the toggle.
@@ -75,13 +101,13 @@ interface; Library search and Soulseek search are never blended.
 - New code: `:slsk:core` (no upstream imports), `:slsk:ui` (`slsk_` resource prefix), glue
   sources compiled into `:app` via the S2 hook; hook scripts `slsk/gradle/*.gradle`;
   own catalog `slsk/gradle/slsk.versions.toml`; guard script `slsk/tools/check-seams.sh`
-  budget ≤13 files / ≤150 added lines vs upstream merge-base (excl. `slsk/`, fork-doc layer,
+  budget ≤16 files / ≤150 added lines vs upstream merge-base (excl. `slsk/`, fork-doc layer,
   `slsk_*.yml`).
 - Upstream edits allowed only at registered seams: S1 `settings.gradle`, S2 `app/build.gradle`,
   S3 `SearchFragment.java`, S4 `fragment_search.xml`, S5 `global_preferences.xml` +
   `SettingsContainerFragment.java`, S6 `nav_graph.xml`, S7 `App.java`, R1 manifest,
-  R2 default `app_name`, R3 rebrand icon recolors — all recorded with anchors in
-  `slsk/SEAMS.md`.
+  R2 default `app_name`, R3 rebrand icon recolors, R4 launcher-adjacent recolors + login
+  shortcut icon (`MainActivity.java`) — all recorded with anchors in `slsk/SEAMS.md`.
 - Sync: upstream remotes are not auto-synced by CI; on each upstream release create a
   `sync/YYYY-MM-DD` branch off main, merge the upstream tag, re-apply seams per SEAMS.md,
   re-run `slsk/tools/check-seams.sh` + the build gate below.
@@ -165,7 +191,8 @@ never delete files that Navidrome scans.
 | --- | --- | --- |
 | Connection profile (URL, auth, pin) | App (Keystore + encrypted blob) | persistent |
 | Search session (id, responses) | slskd | until deleted/retention; app keeps last 3 in memory |
-| Grouping, sort, filters | ViewModel / DataStore | per screen; filter defaults persist |
+| Grouping, sort | ViewModel | per screen |
+| Result filters (types, lossy bitrate range, free slot) | App (DataStore JSON, `result_filters`) | persistent; results ViewModel collects |
 | Transfers | slskd | polled, never mirrored |
 | Recent completions log | App (DataStore JSON) | 30 days, cap 200 |
 | Search history | App (DataStore) | persistent, cap 50 |
@@ -175,7 +202,7 @@ never delete files that Navidrome scans.
 - slskd unreachable/timeout → banner + Retry; Library search unaffected.
 - Key rejected (401/403) → banner linking to Settings.
 - slskd up but disconnected from Soulseek → banner, submit disabled.
-- Zero-responder search → suggest shorter query / drop format filter.
+- Zero-responder search → suggest shorter query / loosen filters.
 - Enqueue partially failed → per-file failures with Retry failed (read the failures list;
   never trust a 2xx alone).
 - Transfer errored/rejected/timed out → row-level reason + Retry.
@@ -273,6 +300,55 @@ scratch branch (green/red/conflict report only) — TODO optional for this fork.
   display); unit-covered (`SlskdMapperTimeSpanTest`).
 - Nits: `SlskdConfig.toString()` redacts the API key; transfers fixture per-file usernames
   fully aliased.
+
+### 2026-11-15 — Feedback round 1 (8 issues)
+- **Icons (seam R4)**: `ic_launcher_background/foreground` recolored to `#FFC98352`; login
+  dynamic shortcut uses `R.mipmap.slsk_launcher`. Budget raised 13 → 16 files (3 upstream
+  files). If a launcher still shows red after reinstall, that is the launcher's icon cache.
+- **Filters redesigned** (§2.3): bottom sheet with format chips + lossy bitrate range +
+  free slot, persisted in DataStore (`SlskResultFilters` in `:slsk:core`, unit-covered by
+  `ResultFiltersTest` + `SlskdStoresTest`); old lossless/320 popup menu removed.
+- **Results navigation** (§2.3): deep link now carries `popUpTo(<search destination>)` and
+  the query (`?q=`). Id navigation was rejected: `NavController` resolves ids only among the
+  current graph's direct children and parents, so the nested `<include>` destination is not
+  reachable by id from Search (decision D4 stands). `bindRun` also resets the group cache.
+  Device run found the real cause of "results not reset / back stops working": upstream's
+  editor-action listener fires on ENTER down AND up, so a second submit pushed a second
+  results screen on top of the first (whose run was cancelled → stuck at "0 responders").
+  `SlskSeams.onSearchSubmitted` now consumes submits while results are already current.
+  Results also hide the leftover search keyboard and got a toolbar up-arrow.
+- **Back gesture (seam R1)**: `android:enableOnBackInvokedCallback="false"`. At targetSdk 37
+  predictive back is on by default and Material 1.10 `SearchView` leaks its
+  `OnBackInvokedCallback` when navigation detaches it mid-hide (unregister uses
+  `view.findOnBackInvokedDispatcher()` → null): every later back/swipe was swallowed —
+  reproduced on device with the results fragment still RESUMED after a swipe. Same leak
+  explains the intermittent album-detail swipe-back failure (album reached from search).
+  Verified after the change: swipe-back results → Search (twice, 2nd results never
+  reachable), album page → search, settings/library unaffected.
+- **Settings**: double hints removed — floating label on the layout, example text as
+  `app:placeholderText` (API-key placeholder set only when a key is saved).
+- **Load full folder** (§2.3): `userDirectory` returns the raw body, parsed by
+  `SlskdMapper.directoryFiles` (the old `List<SearchFileDto>` type could never parse slskd's
+  `Directory` object, so live browse never worked); empty live listings no longer mask the
+  search-hit fallback; honest "listing unavailable" snackbar. MockWebServer-covered.
+  **Live-verified on slskd 0.26.1**: a 1-file search hit (BoinkBonk, Lighthouse) expanded to
+  the full 38-file folder (`slsk/SPIKE.md`; raw JSON shape not captured from the release build).
+- **Activity** (§2.4): "Clear all" FAB (confirm dialog, per-row cancel+remove); "Clear
+  completed" now shows whenever any row finished (succeeded or failed), not only when a whole
+  folder succeeded. Both FABs (and the results "Load more" button) were rendered BEHIND the
+  host's mini player + bottom nav — the old "Clear completed" was never visible on device.
+  Now inset by `@dimen/slsk_host_bottom_inset` (164dp, mirrors upstream
+  `global_padding_bottom`). Dialog verified; server-side clear not exercised against the
+  user's real queue.
+- **Other device-found fixes**: `SlskdStores` production constructor used file names without
+  `.preferences_pb` → DataStore threw on first access and filters never persisted (tests now
+  go through the production constructor); folder-sheet rows set `isChecked` before detaching
+  the recycled listener → wrong file toggled + RecyclerView "computing a layout" crash;
+  search-hit memory could list a file twice; filter sheet opens expanded and rides above the
+  IME (min → max via IME "next").
+- Verified on device: filter (mp3 192–320) applied, survived force-stop + new search, Reset
+  clears; settings placeholders vanish on typing; login shortcut icon sandstone (launcher
+  uses themed monochrome icons, so the home icon follows the system theme).
 
 ## 7. Backlog (post-MVP candidates)
 

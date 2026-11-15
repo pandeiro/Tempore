@@ -13,16 +13,23 @@
     <string name="slsk_results_searching_counts">%1$d responders \u00b7 %2$d files</string>
     <string name="slsk_results_cancel_search">Stop search</string>
     <string name="slsk_results_empty">No results yet</string>
-    <string name="slsk_results_empty_hint">Try shorter search terms, or drop the format filter so more peers can answer.</string>
+    <string name="slsk_results_empty_hint">Try shorter search terms, or loosen the filters so more results match.</string>
     <string name="slsk_results_retry">Retry</string>
-    <string name="slsk_results_filter">Filter &amp; sort</string>
-    <string name="slsk_results_filter_lossless">Lossless only</string>
-    <string name="slsk_results_filter_320">320 kbps and up</string>
-    <string name="slsk_results_filter_free_slot">Free upload slot only</string>
-    <string name="slsk_results_sort_format">Sort: preferred format</string>
-    <string name="slsk_results_filter_cleared">Filters reset</string>
+    <string name="slsk_results_filter">Filter</string>
     <string name="slsk_results_count">%1$d results</string>
     <string name="slsk_results_load_more">Load more results</string>
+
+    <!-- Filter sheet -->
+    <string name="slsk_filter_sheet_title">Filter results</string>
+    <string name="slsk_filter_sheet_caption">Show groups with at least one file matching all selections. Leave all formats unchecked to show every format.</string>
+    <string name="slsk_filter_sheet_lossless">Lossless</string>
+    <string name="slsk_filter_sheet_lossy">Lossy</string>
+    <string name="slsk_filter_sheet_bitrate">Bitrate range (lossy, kbps)</string>
+    <string name="slsk_filter_sheet_bitrate_min">min</string>
+    <string name="slsk_filter_sheet_bitrate_max">max</string>
+    <string name="slsk_filter_sheet_free_slot">Free upload slot only</string>
+    <string name="slsk_filter_sheet_reset">Reset</string>
+    <string name="slsk_filter_sheet_apply">Apply</string>
 
     <!-- Result group card -->
     <string name="slsk_group_queue_ahead">Queue: %1$d</string>
@@ -42,6 +49,7 @@
     <string name="slsk_sheet_loading">Loading folder\u2026</string>
     <string name="slsk_sheet_load_failed">Could not load the folder listing. Pull down to retry.</string>
     <string name="slsk_sheet_empty">No files in this folder.</string>
+    <string name="slsk_sheet_full_folder_unavailable">Full folder listing unavailable from this peer; showing the search matches.</string>
     <string name="slsk_sheet_view_activity">View activity</string>
     <string name="slsk_sheet_enqueue_done">%1$d file(s) queued</string>
     <string name="slsk_sheet_enqueue_partial">%1$d queued, %2$d rejected (%3$s)</string>
@@ -69,6 +77,9 @@
     <string name="slsk_activity_title">Soulseek activity</string>
     <string name="slsk_activity_empty">No active transfers. When you queue something from Soulseek it shows up here \u2014 remote queues can take hours, that\u2019s normal.</string>
     <string name="slsk_activity_clear_completed">Clear completed</string>
+    <string name="slsk_activity_clear_all">Clear all</string>
+    <string name="slsk_activity_clear_all_title">Clear all transfers?</string>
+    <string name="slsk_activity_clear_all_message">Cancels every queued and running download in slskd and removes all rows. Remote queue positions are lost.</string>
     <string name="slsk_activity_retry_failed">Retry failed</string>
     <string name="slsk_activity_cancel_group">Cancel</string>
     <string name="slsk_activity_open_album">Open in library</string>
