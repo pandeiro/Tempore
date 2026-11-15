@@ -890,7 +890,7 @@ public class MainActivity extends BaseActivity {
                 ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "login_activity_shortcut")
                         .setShortLabel(getString(R.string.la_shortcut_label))
                         .setLongLabel(getString(R.string.la_shortcut_label))
-                        .setIcon(Icon.createWithResource(this, R.mipmap.ic_launcher))
+                        .setIcon(Icon.createWithResource(this, R.mipmap.slsk_launcher))
                         .setIntents(new Intent[]{intent})
                         .build();
 
