@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The host's nav container runs under the mini player + bottom navigation; upstream screens
+         reserve the same space via @dimen/global_padding_bottom (164dp, not visible to this module). -->
+    <dimen name="slsk_host_bottom_inset">164dp</dimen>
+</resources>

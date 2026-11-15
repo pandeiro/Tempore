@@ -77,6 +77,9 @@
     <string name="slsk_activity_title">Soulseek activity</string>
     <string name="slsk_activity_empty">No active transfers. When you queue something from Soulseek it shows up here \u2014 remote queues can take hours, that\u2019s normal.</string>
     <string name="slsk_activity_clear_completed">Clear completed</string>
+    <string name="slsk_activity_clear_all">Clear all</string>
+    <string name="slsk_activity_clear_all_title">Clear all transfers?</string>
+    <string name="slsk_activity_clear_all_message">Cancels every queued and running download in slskd and removes all rows. Remote queue positions are lost.</string>
     <string name="slsk_activity_retry_failed">Retry failed</string>
     <string name="slsk_activity_cancel_group">Cancel</string>
     <string name="slsk_activity_open_album">Open in library</string>

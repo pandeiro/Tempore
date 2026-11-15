@@ -29,8 +29,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 /**
- * Soulseek activity (spec §5.3 step 6, §5.5): per-folder transfer cards, retry failed,
- * cancel, clear completed, queue-position style row states, handoff chips.
+ * Soulseek activity (spec §5.3 step 6, §5.5, §2.4): per-folder transfer cards, retry failed,
+ * cancel, clear completed / clear all, queue-position style row states, handoff chips.
  */
 class SlskActivityFragment : Fragment() {
 
@@ -67,7 +67,7 @@ class SlskActivityFragment : Fragment() {
         }
         bind.slskActivityErrorAction.setOnClickListener { viewModel.startManualRescan() }
         bind.slskActivityClear.setOnClickListener { clearCompleted() }
-        bind.slskActivityClear.visibility = View.VISIBLE
+        bind.slskActivityClearAll.setOnClickListener { confirmClearAll() }
 
         lifecycleScope.launch {
             viewModel.setAutoscan(SlskPrefs.autoscanEnabled(requireContext()))
@@ -82,7 +82,9 @@ class SlskActivityFragment : Fragment() {
                     bind.slskActivityEmpty.visibility =
                         if (groups.isEmpty() && ok) View.VISIBLE else View.GONE
                     bind.slskActivityClear.visibility =
-                        if (groups.any { it.allSucceeded }) View.VISIBLE else View.GONE
+                        if (groups.any { g -> g.transfers.any { it.isFinished } }) View.VISIBLE else View.GONE
+                    bind.slskActivityClearAll.visibility =
+                        if (groups.isNotEmpty()) View.VISIBLE else View.GONE
                     if (ok) bind.slskActivityErrorBanner.visibility = View.GONE
                     if (!ok) bind.slskActivityErrorBanner.visibility = View.VISIBLE
                     if (!ok && ++misses == 1) bind.slskActivityErrorText.setText(R.string.slsk_error_unreachable)
@@ -160,6 +162,42 @@ class SlskActivityFragment : Fragment() {
                 } catch (_: Throwable) {
                 }
             }
+            adapter.submit(viewModel.refresh(), viewModel)
+        }
+    }
+
+    private val Transfer.isFinished: Boolean
+        get() = lifecycle == TransferLifecycle.SUCCEEDED || lifecycle == TransferLifecycle.FAILED
+
+    /** Cancels remote queue positions too, which can take hours to regain: confirm first. */
+    private fun confirmClearAll() {
+        com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.slsk_activity_clear_all_title)
+            .setMessage(R.string.slsk_activity_clear_all_message)
+            .setNegativeButton(R.string.slsk_cancel, null)
+            .setPositiveButton(R.string.slsk_activity_clear_all) { _, _ -> clearAll() }
+            .show()
+    }
+
+    /**
+     * slskd has no clear-all endpoint: cancel + remove every row of a fresh snapshot via the
+     * per-transfer `DELETE …/{username}/{id}?remove=true` (aborts active rows, drops finished).
+     */
+    private fun clearAll() {
+        lifecycleScope.launch {
+            val gateway = SlskSessionAccess.gatewayOrNull() ?: return@launch
+            bind.slskActivityClearAll.isEnabled = false
+            val transfers = viewModel.refresh().flatMap { it.transfers }
+            withContext(Dispatchers.IO) {
+                for (transfer in transfers) {
+                    try {
+                        gateway.cancel(transfer.username, transfer.id, true)
+                    } catch (_: Throwable) {
+                    }
+                }
+            }
+            _bind ?: return@launch
+            bind.slskActivityClearAll.isEnabled = true
             adapter.submit(viewModel.refresh(), viewModel)
         }
     }

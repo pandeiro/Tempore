@@ -18,7 +18,8 @@
         android:layout_height="match_parent"
         android:layout_marginTop="?attr/actionBarSize"
         android:background="@color/slsk_result_tint"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/slsk_host_bottom_inset">
 
         <TextView
             android:id="@+id/slsk_activity_scan_banner"
@@ -83,13 +84,32 @@
             android:textAppearance="?attr/textAppearanceBodyMedium" />
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/slsk_activity_clear"
+    <!-- Stacked FABs: gone ones collapse, so the visible one always sits at the corner. -->
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:text="@string/slsk_activity_clear_completed"
-        android:visibility="gone"
-        app:icon="@drawable/slsk_ic_delete" />
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="@dimen/slsk_host_bottom_inset"
+        android:gravity="end"
+        android:orientation="vertical">
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/slsk_activity_clear_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/slsk_activity_clear_all"
+            android:visibility="gone"
+            app:icon="@drawable/slsk_ic_delete" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/slsk_activity_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/slsk_activity_clear_completed"
+            android:visibility="gone"
+            app:icon="@drawable/slsk_ic_delete" />
+    </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
