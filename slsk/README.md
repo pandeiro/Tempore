@@ -24,7 +24,7 @@ instance. Navidrome stays the library of record.
 ./gradlew assembleTempusDebug assembleDegoogledDebug          # both debug flavors
 ./gradlew assembleTempusRelease                              # signed when slsk/keystore/local.properties exists
 ./gradlew :slsk:core:testDebugUnitTest                      # gateway/ranking/store tests (MockWebServer + fixtures)
-slsk/tools/check-seams.sh                                    # seam guard: <=12 files / <=150 added lines vs upstream
+slsk/tools/check-seams.sh                                    # seam guard: <=16 files / <=150 added lines vs upstream
 ```
 
 Signing: `slsk/keystore/local.properties` (gitignored) holds the release key material.
@@ -49,3 +49,9 @@ When a folder completes and lands outside the library, the activity screen says
 - `GET /searches/{id}` returns `responseCount` but keeps `responses: []`; response payloads live
   only on `GET /searches/{id}/responses`.
 - `id` fields must be raw GUIDs.
+- No clear-all transfers endpoint exists; the activity screen's "Clear all" cancels + removes
+  each row via `DELETE /transfers/downloads/{username}/{id}?remove=true`.
+- `POST /users/{username}/directory` (folder browse) is parsed shape-tolerantly (single
+  `Directory` object, array of directories, or bare file array; bare filenames are prefixed
+  with the directory). Offline/unknown peers or empty listings fall back to the search hits.
+  Live-verified on 0.26.1 (full folder returned); raw shape not yet captured (see `slsk/SPIKE.md`).

@@ -41,6 +41,7 @@ anchor_check app/src/main/java/com/eddyizm/tempus/ui/fragment/SettingsContainerF
 anchor_check app/src/main/res/navigation/nav_graph.xml '<include app:graph="@navigation/slsk_nav_graph" />'
 anchor_check app/src/main/java/com/eddyizm/tempus/App.java 'com.github.pandeiro.tempore.glue.SlskGlueInstaller.install(context);'
 anchor_check app/src/main/AndroidManifest.xml 'android:icon="@mipmap/slsk_launcher"'
+anchor_check app/src/main/AndroidManifest.xml 'android:enableOnBackInvokedCallback="false"'
 anchor_check app/src/main/AndroidManifest.xml 'android:label="@string/slsk_app_name"'
 anchor_check app/src/main/res/drawable/ic_toolbar_tempo.xml '#FFC98352'
 anchor_check app/src/main/res/drawable/ic_splash_logo.xml '#FFC98352'

@@ -26,6 +26,12 @@ Corrects/records observable slskd + Tempus behavior; canonical spec now lives in
   file = `{attempts,averageSpeed,bytesRemaining,bytesTransferred,direction,elapsedTime,endedAt,enqueuedAt,filename,id,percentComplete,remainingTime,removed,requestedAt,size,startedAt,state,username}`;
   state tokens observed: `Completed, Succeeded`, `Completed, Aborted` (composite strings; parse as token sets).
 - `POST /api/v0/transfers/downloads/batches` → requires **top-level `Username`** and non-empty `Files` (400 otherwise; note slskd version 0.26.1: `Username` capitalized in validation error). Response code semantics (201 / 207) to be confirmed during acceptance enqueue.
+- `POST /api/v0/users/{username}/directory` with body `{"Directory":"<full backslash path>"}` WORKS on 0.26.1
+  (device run 2026-11-15: a 1-file search hit expanded to the peer's full 38-file folder). The raw JSON shape
+  was not captured (app is release-built, no HTTP log); the client parses it shape-tolerantly
+  (`SlskdMapper.directoryFiles`: `Directory` object / array of directories / bare file array, bare names
+  prefixed with the directory). Capture a raw body next time a debug build is configured.
+- No clear-all transfers endpoint; per-row `DELETE /transfers/downloads/{u}/{id}?remove=true` is the primitive.
 - No `SignalR`; polling sufficient.
 
 ## Android integration facts
