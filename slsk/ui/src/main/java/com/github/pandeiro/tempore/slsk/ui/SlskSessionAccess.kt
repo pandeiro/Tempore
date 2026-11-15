@@ -5,6 +5,7 @@ import com.github.pandeiro.tempore.slsk.core.gateway.HostBridge
 import com.github.pandeiro.tempore.slsk.core.gateway.LibraryGateway
 import com.github.pandeiro.tempore.slsk.core.secure.SlskdConfig
 import com.github.pandeiro.tempore.slsk.core.session.SlskSession
+import com.github.pandeiro.tempore.slsk.core.store.SlskdStores
 
 /**
  * The only place in :slsk:ui that touches the core session facade. Every screen and
@@ -19,6 +20,8 @@ object SlskSessionAccess {
     val host: HostBridge? get() = SlskSession.host
 
     val isConfigured: Boolean get() = SlskSession.isConfigured
+
+    val stores: SlskdStores get() = SlskSession.stores
 
     /**
      * Gateway or null: null means "install not called yet" or "not configured".
