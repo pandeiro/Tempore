@@ -85,12 +85,16 @@ interface SlskdApi {
     @DELETE("api/v0/transfers/downloads/all/completed")
     suspend fun removeCompletedTransfers(): Response<Unit>
 
-    /** Full folder listing from a peer; slskd answers 404 for unknown users (`Directory` body). */
+    /**
+     * Full folder listing from a peer (404 unknown user, 409/5xx offline peer). slskd answers a
+     * `Directory` object (or an array of them, depending on the Soulseek.NET version), so the
+     * raw body is parsed shape-tolerantly by [SlskdMapper.directoryFiles].
+     */
     @POST("api/v0/users/{username}/directory")
     suspend fun userDirectory(
         @Path("username") username: String,
         @Body body: UserDirectoryRequestDto,
-    ): Response<List<SearchFileDto>>
+    ): Response<okhttp3.ResponseBody>
 
     companion object {
         /** ignoreUnknownKeys: slskd adds fields freely between versions; coerceInputValues: null-soaked booleans. */

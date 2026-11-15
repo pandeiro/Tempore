@@ -49,6 +49,7 @@
     <string name="slsk_sheet_loading">Loading folder\u2026</string>
     <string name="slsk_sheet_load_failed">Could not load the folder listing. Pull down to retry.</string>
     <string name="slsk_sheet_empty">No files in this folder.</string>
+    <string name="slsk_sheet_full_folder_unavailable">Full folder listing unavailable from this peer; showing the search matches.</string>
     <string name="slsk_sheet_view_activity">View activity</string>
     <string name="slsk_sheet_enqueue_done">%1$d file(s) queued</string>
     <string name="slsk_sheet_enqueue_partial">%1$d queued, %2$d rejected (%3$s)</string>

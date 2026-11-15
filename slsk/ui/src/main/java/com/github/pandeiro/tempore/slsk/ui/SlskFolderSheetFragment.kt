@@ -82,13 +82,16 @@ class SlskFolderSheetFragment : BottomSheetDialogFragment() {
                     null
                 }
             }
+            val allowed = loaded?.filter { FileAllowlist.isAllowed(it.extension) }
             when {
-                loaded == null -> Snackbar.make(bind.root, R.string.slsk_sheet_load_failed, Snackbar.LENGTH_LONG).show()
-                loaded.isEmpty() -> Snackbar.make(bind.root, R.string.slsk_sheet_empty, Snackbar.LENGTH_SHORT).show()
-                else -> setFiles(
-                    loaded.filter { FileAllowlist.isAllowed(it.extension) },
-                    allFiles = true,
-                )
+                allowed == null -> Snackbar.make(bind.root, R.string.slsk_sheet_load_failed, Snackbar.LENGTH_LONG).show()
+                allowed.isEmpty() -> Snackbar.make(bind.root, R.string.slsk_sheet_empty, Snackbar.LENGTH_SHORT).show()
+                files.isNotEmpty() && allowed.map { it.filename }.toSet() == files.map { it.filename }.toSet() -> {
+                    // The gateway fell back to the remembered search hits: say so, don't pretend.
+                    bind.slskSheetLoadFullFolder.visibility = View.GONE
+                    Snackbar.make(bind.root, R.string.slsk_sheet_full_folder_unavailable, Snackbar.LENGTH_LONG).show()
+                }
+                else -> setFiles(allowed, allFiles = true)
             }
         }
     }

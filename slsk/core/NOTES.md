@@ -25,8 +25,10 @@ Contract source: PLAN.md §2/§5 + slsk/SPIKE.md (live-probed slskd 0.26.1.0 —
    plaintext `p` params (hex-style is a later hardening); Subsonic version pinned to 1.15.0.
    `startScan`/`getScanStatus`/`search3` errors map to null / false / `ScanStatus.Unknown`, never crashes.
 8. **`folderContents` fallback:** remembers the last search hits per (username, directory) in
-   memory; the `POST /users/{username}/directory` endpoint is tried first and its failure (404
-   unknown user) falls through to those remembered files (locked ones excluded).
+   memory; the `POST /users/{username}/directory` endpoint is tried first (raw body, parsed by
+   `SlskdMapper.directoryFiles`), and its failure (404 unknown user, offline peer), an
+   unparseable body OR an empty listing falls through to those remembered files (locked ones
+   excluded).
 9. **`KeystoreCredentialStore.open` throws a sealed `StoreError` on Keystore failures**; decryption
    failures surface as `StoreError.Decrypt` (from `load()`), the blob is removed only when
    malformed. Session falls back to the demo gateway and surfaces `lastStoreError()`.

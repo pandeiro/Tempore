@@ -7,6 +7,11 @@ import com.github.pandeiro.tempore.slsk.core.domain.Transfer
 import com.github.pandeiro.tempore.slsk.core.domain.TransferGroup
 import com.github.pandeiro.tempore.slsk.core.domain.TransferLifecycle
 import kotlin.math.roundToInt
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.jsonPrimitive
 
 /**
  * Pure DTO -> domain mapping for slskd payloads. Lives here (not in the gateway) so it can
@@ -54,6 +59,40 @@ internal object SlskdMapper {
         val regular = response.files.orEmpty().mapNotNull { toRemoteFile(it) }
         val locked = response.lockedFiles.orEmpty().mapNotNull { toRemoteFile(it, forceLocked = true) }
         return regular + locked
+    }
+
+    /**
+     * `POST /users/{username}/directory` body -> files with FULL Soulseek paths. Shape-tolerant:
+     * a single `Directory` object (`{name|directory, files:[…]}`), an array of such directories
+     * (flattened), or a bare array of files. Browse responses carry bare filenames, so each is
+     * prefixed with its directory name (falling back to [requestedDirectory]) — enqueue needs
+     * the full path. Unparseable/blank bodies yield an empty list.
+     */
+    fun directoryFiles(body: String?, requestedDirectory: String): List<RemoteFile> {
+        if (body.isNullOrBlank()) return emptyList()
+        val root = runCatching { SlskdApi.json.parseToJsonElement(body) }.getOrNull() ?: return emptyList()
+        val out = ArrayList<RemoteFile>()
+        fun file(element: JsonElement, directory: String) {
+            val dto = runCatching { SlskdApi.json.decodeFromJsonElement(SearchFileDto.serializer(), element) }
+                .getOrNull() ?: return
+            val name = dto.filename ?: return
+            val full = if ('\\' in name || directory.isEmpty()) name else "$directory\\$name"
+            toRemoteFile(dto.copy(filename = full))?.let(out::add)
+        }
+        fun directory(obj: JsonObject) {
+            val name = (obj["name"] ?: obj["directory"])?.jsonPrimitive?.contentOrNull
+                ?.trimEnd('\\')?.ifEmpty { null } ?: requestedDirectory
+            (obj["files"] as? JsonArray)?.forEach { file(it, name) }
+        }
+        when (root) {
+            is JsonObject -> directory(root)
+            is JsonArray -> root.forEach { element ->
+                val obj = element as? JsonObject ?: return@forEach
+                if ("files" in obj) directory(obj) else file(obj, requestedDirectory)
+            }
+            else -> Unit
+        }
+        return out
     }
 
     /**

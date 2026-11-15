@@ -182,7 +182,8 @@ open class SlskdGatewayImpl private constructor(
             val name = response.username ?: continue
             val byDirectory = lastSearchFiles.getOrPut(name) { HashMap() }
             for (file in SlskdMapper.filesOf(response)) {
-                byDirectory.getOrPut(file.directory) { mutableListOf() }.add(file)
+                val existing = byDirectory.getOrPut(file.directory) { mutableListOf() }
+                if (existing.none { it.filename == file.filename }) existing.add(file)
             }
         }
     }
@@ -191,14 +192,23 @@ open class SlskdGatewayImpl private constructor(
 
     override suspend fun folderContents(username: String, directory: String): List<RemoteFile> =
         withContext(io) {
-            // Tolerant: any non-2xx (unknown user 404, user offline 409, unsupported) falls
-            // through to the recomputed last-search-hit files instead of crashing.
+            // Tolerant: any non-2xx (unknown user 404, user offline 409, unsupported), parse
+            // failure OR an empty listing falls through to the remembered last-search-hit files —
+            // an empty live answer must never mask the fallback.
             val live = runCatching {
-                api.userDirectory(username, UserDirectoryRequestDto(Directory = directory))
-            }.getOrNull()?.takeIf { it.isSuccessful }?.body()
-                ?.mapNotNull { SlskdMapper.toRemoteFile(it) }
-                ?.filter { FileAllowlist.isAllowed(it.extension) }
-            live ?: lastSearchFiles[username]?.get(directory)?.filter { !it.isLocked }.orEmpty()
+                val response = api.userDirectory(username, UserDirectoryRequestDto(Directory = directory))
+                val body = response.body()
+                try {
+                    if (!response.isSuccessful) null
+                    else SlskdMapper.directoryFiles(body?.string(), directory)
+                        .filter { FileAllowlist.isAllowed(it.extension) }
+                } finally {
+                    body?.close()
+                    response.errorBody()?.close()
+                }
+            }.getOrNull()
+            val cached = lastSearchFiles[username]?.get(directory)?.filter { !it.isLocked }.orEmpty()
+            live?.takeIf { it.isNotEmpty() } ?: cached
         }
 
     // ---------------------------------------------------------------- enqueue
