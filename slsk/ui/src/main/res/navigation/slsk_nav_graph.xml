@@ -21,7 +21,7 @@
             app:argType="string"
             android:defaultValue="@null"
             app:nullable="true" />
-        <deepLink android:id="@+id/slsk_deeplink_results" app:uri="tempore://slsk/results/{slsk_search_id}" />
+        <deepLink android:id="@+id/slsk_deeplink_results" app:uri="tempore://slsk/results/{slsk_search_id}?q={slsk_fallback_query}" />
         <action
             android:id="@+id/slsk_action_results_to_activity"
             app:destination="@+id/slskActivityFragment" />
