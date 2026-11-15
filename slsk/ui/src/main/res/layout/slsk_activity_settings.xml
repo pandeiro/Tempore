@@ -22,13 +22,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="@string/slsk_settings_base_url">
+            android:hint="@string/slsk_settings_base_url"
+            app:placeholderText="@string/slsk_settings_base_url_hint">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/slsk_settings_base_url"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/slsk_settings_base_url_hint"
                 android:inputType="textUri"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -55,13 +55,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:hint="@string/slsk_settings_api_key"
-            app:endIconMode="password_toggle">
+            app:endIconMode="password_toggle"
+            app:placeholderText="@string/slsk_settings_api_key_hint">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/slsk_settings_api_key"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/slsk_settings_api_key_hint"
                 android:inputType="textPassword"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -70,13 +70,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:hint="@string/slsk_settings_pinned_cert">
+            android:hint="@string/slsk_settings_pinned_cert"
+            app:placeholderText="@string/slsk_settings_pinned_cert_hint">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/slsk_settings_pinned_cert"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/slsk_settings_pinned_cert_hint"
                 android:inputType="text"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>

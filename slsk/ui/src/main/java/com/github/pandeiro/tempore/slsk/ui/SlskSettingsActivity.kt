@@ -39,11 +39,12 @@ class SlskSettingsActivity : androidx.appcompat.app.AppCompatActivity() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun afterTextChanged(s: android.text.Editable?) {}
         })
-        // API key stays blank: hint explains "leave unchanged keeps the saved key" (masked, §6.1 no-logging rule)
-        bind.slskSettingsApiKey.hint = if (SlskSessionAccess.currentConfig()?.apiKey != null) {
+        // API key stays blank (masked, §6.1 no-logging rule). The layout's floating label names
+        // the field; the placeholder (shown only while empty) explains "leave unchanged".
+        bind.slskSettingsKeyLayout.placeholderText = if (SlskSessionAccess.currentConfig()?.apiKey != null) {
             getString(R.string.slsk_settings_api_key_hint)
         } else {
-            getString(R.string.slsk_settings_api_key)
+            null
         }
         bind.slskSettingsApiKey.setText("")
 
