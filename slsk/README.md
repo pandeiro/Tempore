@@ -14,7 +14,7 @@ instance. Navidrome stays the library of record.
 | Path | Contents |
 | --- | --- |
 | `slsk/core` | `SoulseekGateway` (OkHttp/Retrofit, dedupe, TOFU pinning), Subsonic handoff client, grouping/ranking, Keystore credential store, DataStore prefs/history, fake gateway, JVM unit tests. Zero upstream imports. |
-| `slsk/ui` | Search scope toggle + submit interception facade (`SlskSeams`), results screen, folder sheet, activity screen, settings activity, nav graph. `slsk_`-prefixed resources. |
+| `slsk/ui` | Search screen controller (`SlskSearchScreen`: scope toggle + Downloads in the SearchView header, scoped recents, sanitized Library candidates, last-results card) + submit interception facade (`SlskSeams`), results screen, folder sheet, activity screen, settings activity, nav graph. `slsk_`-prefixed resources. |
 | `slsk/app-glue` | `HostBridge` implementation + installer compiled INTO the app (only code allowed to import `com.eddyizm.tempus.*`), plus the recolored launcher icon + `slsk_app_name`. |
 | `slsk/gradle` | `settings-hook.gradle` (S1) and `app-hook.gradle` (S2): module wiring, rebrand ids, version wrap, optional release signing. |
 
@@ -49,6 +49,10 @@ When a folder completes and lands outside the library, the activity screen says
 - `GET /searches/{id}` returns `responseCount` but keeps `responses: []`; response payloads live
   only on `GET /searches/{id}/responses`.
 - `id` fields must be raw GUIDs.
+- Searches are reopened by id from history (`GET /searches/{id}` + `/responses`); a 404 means
+  slskd no longer has it and the app offers "Run again". The app never DELETEs searches
+  (stopped ones stay until slskd retention). Reopen-by-id is fixture-tested; not yet
+  live-verified on 0.26.1.
 - No clear-all transfers endpoint exists; the activity screen's "Clear all" cancels + removes
   each row via `DELETE /transfers/downloads/{username}/{id}?remove=true`.
 - `POST /users/{username}/directory` (folder browse) is parsed shape-tolerantly (single

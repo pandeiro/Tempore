@@ -34,7 +34,9 @@ anchor_check() {
 }
 anchor_check settings.gradle "apply from: 'slsk/gradle/settings-hook.gradle'"
 anchor_check app/build.gradle "apply from: '../slsk/gradle/app-hook.gradle'"
-anchor_check app/src/main/java/com/eddyizm/tempus/ui/fragment/SearchFragment.java "SlskSeams.attachScopeToggle(this, bind.emptyResponseContainer);"
+anchor_check app/src/main/java/com/eddyizm/tempus/ui/fragment/SearchFragment.java "SlskSeams.attachSearchScreen(this, bind.searchBar, bind.searchView, bind.searchViewSuggestionContainer, bind.emptyResponseContainer, this::search);"
+anchor_check app/src/main/java/com/eddyizm/tempus/ui/fragment/SearchFragment.java "if (SlskSeams.shouldAutoShow(this)) inputFocus();"
+anchor_check app/src/main/java/com/eddyizm/tempus/ui/fragment/SearchFragment.java "if (SlskSeams.ownsSuggestions(this)) return;"
 anchor_check app/src/main/java/com/eddyizm/tempus/ui/fragment/SearchFragment.java "SlskSeams.onSearchSubmitted(this, query)"
 anchor_check app/src/main/res/layout/fragment_search.xml '<include layout="@layout/slsk_view_search_cta" />'
 anchor_check app/src/main/res/xml/global_preferences.xml 'android:key="slsk_settings_entry"'

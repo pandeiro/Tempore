@@ -1,6 +1,7 @@
 package com.github.pandeiro.tempore.slsk.core.domain
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 data class SearchOptions(
     val searchText: String,
@@ -9,6 +10,9 @@ data class SearchOptions(
     val fileLimit: Int = 20_000,
     val searchId: String? = null, // client-generated GUID; GroupingEngine caller supplies
 )
+
+/** slskd no longer holds this search (404): the caller offers an explicit re-run. */
+class SearchExpiredException(val searchId: String) : java.io.IOException("slskd no longer holds search $searchId")
 
 data class EnqueueFailure(
     val username: String,
@@ -61,6 +65,13 @@ interface SoulseekGateway {
      * collector cancels). Results stream in; the caller owns cancel semantics.
      */
     fun search(query: String, options: SearchOptions): Flow<SearchProgress>
+
+    /**
+     * Re-reads a search slskd still holds (by client-generated id) without starting a new one:
+     * a completed search emits once, an in-progress one keeps polling until complete. Fails with
+     * [SearchExpiredException] when slskd no longer knows the id (deleted / retention).
+     */
+    fun reopen(searchId: String): Flow<SearchProgress> = flow { throw SearchExpiredException(searchId) }
 
     suspend fun folderContents(username: String, directory: String): List<RemoteFile>
 

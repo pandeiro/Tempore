@@ -75,13 +75,54 @@ class SlskdStoresTest {
 
     @Test
     fun search_history_roundtrip() = runBlocking {
-        stores.addSearch("Abba")
-        stores.addSearch("AC/DC")
-        stores.addSearch("Abba")
-        val entries = stores.searchHistory().first()
-        // "Abba" moved to the top, no case-insensitive duplicates
-        assertEquals(listOf("Abba", "AC/DC"), entries.map { it.query })
+        stores.addSearch("Abba", SlskSearchScope.SOULSEEK)
+        stores.addSearch("AC/DC", SlskSearchScope.SOULSEEK)
+        stores.addSearch("abba", SlskSearchScope.SOULSEEK)
+        val entries = stores.searchHistory(SlskSearchScope.SOULSEEK).first()
+        // re-submitted "abba" moved to the top, no case-insensitive duplicates
+        assertEquals(listOf("abba", "AC/DC"), entries.map { it.query })
         assertTrue(entries.all { it.atEpochMillis > 0 })
+    }
+
+    @Test
+    fun search_history_scopes_never_mix() = runBlocking {
+        stores.addSearch("geogaddi flac", SlskSearchScope.SOULSEEK, searchId = "s-1")
+        stores.addSearch("Boards of Canada", SlskSearchScope.LIBRARY)
+        stores.addSearch("geogaddi flac", SlskSearchScope.LIBRARY)
+        assertEquals(
+            listOf("geogaddi flac", "Boards of Canada"),
+            stores.searchHistory(SlskSearchScope.LIBRARY).first().map { it.query },
+        )
+        val soulseek = stores.searchHistory(SlskSearchScope.SOULSEEK).first()
+        // the same text in the other scope did not replace the Soulseek entry
+        assertEquals(listOf("geogaddi flac"), soulseek.map { it.query })
+        assertEquals("s-1", soulseek.single().searchId)
+    }
+
+    @Test
+    fun search_history_summary_rerun_and_remove() = runBlocking {
+        stores.addSearch("aphex saw 2", SlskSearchScope.SOULSEEK, searchId = "s-1")
+        stores.setSearchSummary("s-1", folderCount = 41)
+        assertEquals(41, stores.searchHistory(SlskSearchScope.SOULSEEK).first().single().folderCount)
+
+        // re-running takes the new id and forgets the old summary
+        stores.addSearch("Aphex SAW 2", SlskSearchScope.SOULSEEK, searchId = "s-2")
+        val rerun = stores.searchHistory(SlskSearchScope.SOULSEEK).first().single()
+        assertEquals("s-2", rerun.searchId)
+        assertEquals(null, rerun.folderCount)
+
+        stores.removeSearch("aphex saw 2", SlskSearchScope.SOULSEEK)
+        assertTrue(stores.searchHistory(SlskSearchScope.SOULSEEK).first().isEmpty())
+    }
+
+    @Test
+    fun search_history_caps_each_scope_independently() = runBlocking {
+        repeat(SlskdStoreLimits.SEARCH_HISTORY_LIMIT + 5) { stores.addSearch("lib $it", SlskSearchScope.LIBRARY) }
+        stores.addSearch("only slsk", SlskSearchScope.SOULSEEK)
+        val library = stores.searchHistory(SlskSearchScope.LIBRARY).first()
+        assertEquals(SlskdStoreLimits.SEARCH_HISTORY_LIMIT, library.size)
+        assertEquals("lib ${SlskdStoreLimits.SEARCH_HISTORY_LIMIT + 4}", library.first().query)
+        assertEquals(listOf("only slsk"), stores.searchHistory(SlskSearchScope.SOULSEEK).first().map { it.query })
     }
 
     @Test

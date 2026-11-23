@@ -50,10 +50,35 @@ interface; Library search and Soulseek search are never blended.
   extras to seed config (used by adb-driven acceptance runs).
 
 ### 2.3 Search scope & results
-- Search screen gains a Library/Soulseek toggle (injected, zero-upstream-Java besides the
-  seam). Submit-only: IME action or suggestion tap. **Scope resets to Library on every
-  search-screen entry** (spec §5.2 "never auto-selected" — a persisted Soulseek scope must
-  not hijack the library search). The empty-library state shows the "Search Soulseek" CTA.
+- **Search screen** (fork controller `SlskSearchScreen`, seam S3; details and rationale in
+  §8) owns the inside of upstream's expanded SearchView. It installs even without slskd;
+  the Soulseek pieces appear only once slskd is configured.
+  - The **Library/Soulseek toggle and a Downloads button** (active-transfer count) sit in
+    the SearchView header (`addHeaderView`), so they stay usable while typing. The
+    collapsed SearchBar also gets a Downloads menu icon with a badge.
+  - Switching scope keeps each scope's own draft, swaps the hint ("Search Soulseek (any
+    words)"), and turns IME suggestions off for Soulseek. It never submits.
+  - **Scope policy (D5 as amended)**: a fresh entry into Search starts on Library. A
+    back-stack return keeps the scope in use. The scope is never persisted.
+  - **Library**: with empty input, show the 6 most recent Library searches, newest first,
+    with "Show all" and per-row remove. From 2 characters, show live candidates (upstream's
+    search3 request via the host bridge), sanitized: trimmed, ≤ 60 chars, deduped
+    case-insensitively, at most 10.
+  - **Soulseek**: ad hoc, with no autocomplete. With empty input, a "Last results" card
+    reopens the latest search, followed by recent Soulseek searches showing status
+    (*Searching · N folders* / *N folders · age*).
+  - Recents are a fork DataStore history per scope (`SlskdStores.searchHistory(scope)`,
+    50 per scope). Upstream's `recent_search` table and its "sort chronologically" setting
+    no longer drive this screen.
+  - **Input text** is restored from the user's own draft on every expand, never from the
+    SearchBar text (the old query ghost). The bar text means "query of the Library
+    results below" and is blank in Soulseek scope.
+  - **Entry policy**: a fresh entry auto-expands with the keyboard (upstream). A
+    back-stack return never re-expands over results. Library results are re-run (the
+    recreated view has empty adapters); otherwise the SearchView opens on recents without
+    the keyboard.
+  - Submit stays IME action or row tap. The empty-Library CTA reads "Search Soulseek for
+    «q»" and submits that query immediately.
 - Soulseek results stream live (slskd poll 1.5 s, foreground only), grouped by
   (username, directory) with quality pill (lossless 16/44.1 / hi-res / MP3 320+ / lossy),
   free-slot, speed, queue; default ranking quality → free slot → speed → short queue →
@@ -68,9 +93,21 @@ interface; Library search and Soulseek search are never blended.
   DataStore JSON) and is the single source of truth the results ViewModel collects.
 - **One results screen per search**: submitting a Soulseek search pops back to the Search
   destination before opening the new results (deep link + `popUpTo`), so back from results
-  always lands on Search and earlier result sets are never reachable. The query travels in
-  the deep link (`?q=`) so a process-death restart can re-run it; a retry/restart never
-  flashes the previous run's rows.
+  always lands on Search. Earlier result sets are reachable again only through the
+  history (below), never by stacking screens. The query travels in the deep link (`?q=`).
+  The results toolbar title is the query; tapping it or **Edit search** goes back to Search
+  in Soulseek scope with the query ready to refine.
+- **Reopen, don't re-run**: the coordinator keeps the last 3 runs in memory, finished ones
+  included. Opening a results screen for an id (history row, Last-results card,
+  process-death restart) reattaches the in-memory run, or re-reads the search from slskd
+  (`GET /searches/{id}` + `/responses`, gateway `reopen`). Only a 404 (*slskd no longer
+  has this search*) offers an explicit **Run again**.
+  - A superseded or stopped search is told to stop seeking and kept on slskd, never
+    DELETEd (D8).
+  - Each search has its own fallback result set and remembered hits, so a new search can
+    never show the previous query's folders while slskd's `/responses` is catching up.
+  - A retry, run-again or restart never flashes the previous run's rows, and the previous
+    run's collectors are cancelled.
 - Allowlist extensions only (audio + cover images); executables/archives hidden, locked
   files visible but not selectable. Banner "Results from other Soulseek users"; first-use
   privacy sheet shown once.
@@ -162,10 +199,11 @@ is exercised at feature milestones against the real servers.
 | D2 | No Room/Hilt/security-crypto in slsk feature | keeps annotation-processor config + schemas + merge surface upstream-pure |
 | D3 | Per-user enqueue with batches probe | slskd 0.26.1 lacks `/transfers/downloads/batches` (404) — fallback is the live contract |
 | D4 | Deep-link nav into included graph | `<include>` destinations are nested, not id-flattened; deeplinks are the supported route |
-| D5 | Scope resets Library per entry | spec §5.2 "never auto-selected"; persisted scope must not hijack Library search |
+| D5 | Scope starts on Library on every fresh Search entry; kept across back-stack returns; never persisted (amended 2026-11-23) | spec §5.2 "never auto-selected"; persisted scope must not hijack Library search, but coming back from Soulseek results must not flip you to Library |
+| D8 | Superseded/stopped Soulseek searches are stopped (PUT), not DELETEd | keeps them reopenable from history; slskd's own retention (or its UI) clears them |
 | D6 | Epoch millis (no java.time) | upstream ships no core-library desugaring; minSdk 24 |
 | D7 | Fork keeps upstream Kotlin package | only appId/label/icon change; seams stay tiny for frictionless upstream merges |
-| D8 | Update check is opt-in and polls the fork repo (`pandeiro/Tempore`), never upstream | the fork can never match upstream's version curve, so the default-on check nagged every start with APKs the fork cannot install (different appId/signature); silent network call at every cold start also conflicts with minimal-footprint rebrand |
+| D9 | Update check is opt-in and polls the fork repo (`pandeiro/Tempore`), never upstream | the fork can never match upstream's version curve, so the default-on check nagged every start with APKs the fork cannot install (different appId/signature); silent network call at every cold start also conflicts with minimal-footprint rebrand |
 
 ## 5. Merged spec reference (from the 2026-11-07 drafts; now the only copy)
 
@@ -214,12 +252,13 @@ never delete files that Navidrome scans.
 | State | Owner | Lifetime |
 | --- | --- | --- |
 | Connection profile (URL, auth, pin) | App (Keystore + encrypted blob) | persistent |
-| Search session (id, responses) | slskd | until deleted/retention; app keeps last 3 in memory |
+| Search session (id, responses) | slskd | until slskd retention (app never DELETEs, D8); app keeps last 3 runs in memory, finished included |
+| Search scope, drafts, last Library query | `SlskSearchScreenState` (SearchFragment-scoped ViewModel) | survives back-stack returns, dies with the fragment; never persisted |
 | Grouping, sort | ViewModel | per screen |
 | Result filters (types, lossy bitrate range, free slot) | App (DataStore JSON, `result_filters`) | persistent; results ViewModel collects |
 | Transfers | slskd | polled, never mirrored |
 | Recent completions log | App (DataStore JSON) | 30 days, cap 200 |
-| Search history | App (DataStore) | persistent, cap 50 |
+| Search history (scoped Library / Soulseek; Soulseek entries keep slskd id + folder count) | App (DataStore `slsk_history`) | persistent, cap 50 per scope |
 
 ### 5.5 Error & empty states (contract for every surface)
 - Not configured → setup card (no crash freight).
@@ -374,17 +413,72 @@ scratch branch (green/red/conflict report only) — TODO optional for this fork.
   clears; settings placeholders vanish on typing; login shortcut icon sandstone (launcher
   uses themed monochrome icons, so the home icon follows the system theme).
 
+### 2026-11-23 — Upstream sync v4.32.0 (Android Auto voice search)
+- Issue: "Hey Google, play Thelonious Monk on Tempore" in Android Auto — Gemini announced
+  playback, then spoke an error. Cause (v4.31.0 code): Media3 turns the legacy
+  `playFromSearch` into `onSetMediaItems`/`onAddMediaItems` with a blank `mediaId` and
+  `requestMetadata.searchQuery`; `MediaLibraryServiceCallback` ignored the query and queued
+  the blank item (no URI), so playback failed.
+- Fix: no fork code — merged upstream **v4.32.0** (branch `sync/2026-11-23`, clean merge, no
+  seam conflicts). It brings upstream #1214: voice query → `search3` → `VoiceQueryRouter`
+  (exact artist → instant mix; exact album → album; else matching songs with the exact title
+  first; near miss → closest artist/album; blank query → random songs). A query with nothing
+  playable fails the request so current playback continues. Also brings ~20 upstream fixes
+  (large-queue OOM, offline launch with queued downloads, widget oversized art, rating the
+  previous song, stream reconnect, scan-status polling #1215 — closes our backlog item).
+- Version: hook derives `4.32.0-tempore.N` / versionCode `53xx` automatically.
+- Gates: `check-seams.sh` OK (16 files / 47 added lines); `assembleTempusDebug
+  assembleDegoogledDebug testTempusDebugUnitTest :slsk:core:testDebugUnitTest
+  lintDegoogledDebug` green (363 tests, 0 failures, incl. upstream `VoiceQueryRouterTest` +
+  `MediaLibrarySessionCallbackVoiceTest`).
+- Pending: device verification in the car (artist, album, song, misheard name, "play some
+  music", cold start with Tempore not running, server unreachable). Follow-up only if the car
+  test shows it: route on Gemini's structured extras (`EXTRA_MEDIA_FOCUS`, `_ARTIST`,
+  `_ALBUM`, `_TITLE`) when the free-text query misses, e.g. "play Round Midnight by Monk".
+  Degoogled flavor has no Android Auto (out of scope).
+
+### 2026-11-23 — Search UX epic (branch `feat/search-ux`, one PR)
+- Seven field issues traced to code-level root causes (§8.1) and fixed in one change:
+  stale previous-query results, no way back to results/downloads, query ghost, Soulseek
+  autocomplete, overlong Library candidates, recents ordering/mixing, scope ergonomics.
+- Core:
+  - Gateway state is per search (fixes I2; MockWebServer regression test fails on the old
+    gateway).
+  - New `reopen(searchId)` with a `SearchExpiredException` on 404.
+  - Superseded searches are stopped, not DELETEd (D8).
+  - History is scoped Library/Soulseek with slskd id + folder count.
+  - New `SuggestionSanitizer` and `HostBridge.librarySuggestions`.
+- UI:
+  - New `SlskSearchScreen` controller (§2.3): header toggle + Downloads, per-scope drafts,
+    hints and IME flags, recents, candidates, Last-results card, entry policy.
+  - The coordinator keeps finished runs and gains `reattach`.
+  - Results: title = query, Edit search, expired banner with Run again.
+  - Activity gets a deep link.
+- Seam S3 reworked: 4 lines changed or added in `SearchFragment.java`. No new upstream
+  files; still 16 files. D5 amended, D8 added.
+- Fixed in passing: `search_polls_state_groups_results_and_does_not_delete_completed_searches`
+  was flaky (the search could complete before the worker's POST landed), so the test now
+  waits for the POST.
+- Finding while building: coming back to Search through the back stack recreates its view
+  with **empty** Library adapters. Upstream's auto-expand-on-every-entry was hiding that
+  blank page, so "no auto-expand on return" comes with a re-run of the last Library query
+  (§8.2).
+- Verification: §3 gate + `assembleTempusRelease` (results in the PR). Device acceptance
+  (§8.5) is pending.
+
 ### 2026-11-23 — Update check: opt-in + fork release channel (seams S8/S9)
 - **Problem**: the GitHub update check (tempus flavor, `MainActivity.checkTempusUpdate()`,
   fires at every app start, throttled to once per 24 h) polled **upstream**
-  (`eddyizm/Tempus`, hardcoded in `Github.java`). The fork's `versionName` (`4.31.0`
-  base, `4.31.0-tempore.N` after the app-hook) sits below upstream's latest tag
-  indefinitely, so the dialog nagged on every cold start — offering upstream APKs the
-  fork cannot install (different appId `com.github.pandeiro.tempore.*`, fork keystore).
-  Default was on (`github_update_check` default `true`), buried in Settings → Updates.
-- **Decision (D8, spec §2.7)**: opt-in by default + poll the fork's own releases.
+  (`eddyizm/Tempus`, hardcoded in `Github.java`), so the fork compared its `versionName`
+  against upstream's release curve (`4.31.0-tempore.N` < upstream `v4.32.0` while the
+  fork lagged the sync; upstream's next release would re-trigger it even at parity). The
+  dialog nagged on every cold start — offering upstream APKs the fork cannot install
+  (different appId `com.github.pandeiro.tempore.*`, fork keystore). Default was on
+  (`github_update_check` default `true`), buried in Settings → Updates.
+- **Decision (D9, spec §2.7)**: opt-in by default + poll the fork's own releases.
+  (Decision renumbered D8 → D9 during the merge: search-UX already took D8.)
 - **Implemented (2026-11-23, branch `fix/update-check-opt-in`, worktree
-  `Tempore-update-check`)**; diff:
+  `Tempore-update-check`, remerged on top of the v4.32.0 sync + search-UX epic)**; diff:
   1. `Github.java` (seam S8): `OWNER` `"eddyizm"` → `"pandeiro"`, `REPO` `"Tempus"` →
      `"Tempore"` — `/releases/latest` ignores prerelease `-dev` tags, so the fork's
      stable channel is the comparison target.
@@ -394,9 +488,9 @@ scratch branch (green/red/conflict report only) — TODO optional for this fork.
   4. `values/strings.xml` (R2 amendment): reworded default-locale
      `settings_github_update_summary` to reflect opt-in + fork channel (per-locale
      copies untouched, R2 convention).
-  Gates: `assembleTempusDebug assembleDegoogledDebug testTempusDebugUnitTest
-  lintDegoogledDebug :slsk:core:testDebugUnitTest` pass; `slsk/tools/check-seams.sh`
-  passes (16 files / 47 added lines, budget 18). Device checks pending: fresh install
+  Gates (post-remerge): `assembleTempusDebug assembleDegoogledDebug
+  testTempusDebugUnitTest lintDegoogledDebug :slsk:core:testDebugUnitTest`;
+  `slsk/tools/check-seams.sh` (budget 18). Device checks pending: fresh install
   (clear data) → no dialog and no GitHub traffic on start; Settings → Updates → enable
   → silent skip while the fork has no published release, then once-per-24-h dialog when
   a stable fork tag > versionName; negative button snoozes.
@@ -407,18 +501,152 @@ scratch branch (green/red/conflict report only) — TODO optional for this fork.
   false — no false positive), flavor gate (`degoogled` never checks), dialog UX
   (release page / snooze / support link). `support_url` still points at upstream
   ko-fi — left as-is (see backlog).
-- **Verification plan**: `assembleTempusDebug` both flavors +
-  `slsk/tools/check-seams.sh` (budget 16 → 18 files, +4 changed lines); on device:
-  fresh install (clear data) → no dialog and no GitHub traffic on start; Settings →
-  Updates → enable → dialog appears when a fork stable tag > versionName, once per
-  24 h, negative button snoozes.
 
-## 7. Backlog (post-MVP candidates)- Revisit `POST /transfers/downloads/batches` when the server upgrades past slskd 0.26.x
+## 7. Backlog (post-MVP candidates)
+
+- Revisit `POST /transfers/downloads/batches` when the server upgrades past slskd 0.26.x
   (per-user path already tolerates both).
 - Queue-position row (`/transfers/downloads/{u}/{id}/position`) surfaced per transfer row.
 - Completion notifications (slskd webhook → ntfy or WorkManager), wishlist/standing
   searches, peer-folder browsing, JWT auth strategy, staging importer (beets) deployment
   recipe.
 - Translation of `slsk_` strings (lint already tolerates MissingTranslation).
-- Upstream generic contribution candidates: pluggable search scopes, `ScanRepository
-  .getScanStatus()` bug fix (currently calls `startScan()` upstream).
+- Upstream generic contribution candidates: pluggable search scopes. (`ScanRepository
+  .getScanStatus()` bug was fixed upstream in v4.32.0, #1215.)
+- Android Auto voice: structured-extras fallback (see 2026-11-23 entry) if device tests
+  show free-text routing misses.
+
+## 8. Search UX epic (2026-11-23 · branch `feat/search-ux`)
+
+Status: **implemented, device acceptance pending** (§8.5). Search is both "play my stuff"
+(Library) and the only door to Soulseek downloads; the screen was built for one mode. §2.3
+and §4 describe the resulting behavior; this section keeps the root causes, the design
+rationale and the acceptance list.
+
+### 8.1 Issues → verified root causes
+
+| # | Field issue | Root cause (in code, 2026-11-23 `main`) |
+| --- | --- | --- |
+| I1 | No way back to downloads or to the last results without re-running | The Activity screen is reachable only from the results toolbar (`slsk_menu_results.xml`). Search is entered from the Home/Library/Downloads toolbar actions, so leaving it destroys `SearchFragment` and the fragment-scoped `SlskResultsViewModel`. `SlskSearchCoordinator` drops a run from its LRU as soon as the job completes (`invokeOnCompletion → recent.remove`), so a finished search can't be reattached even within the same process. `SlskSeams.observeTransferCount` exists but nothing on the host side calls it. |
+| I2 | A new Soulseek search briefly shows the previous query's results | `SlskdGatewayImpl.lastKnownGroups` belongs to the whole gateway, not to one search. During a new search's first polls slskd already reports `responseCount > 0` while `/responses` is still empty or fails, so `groupAndRemember` returns the **previous search's** groups. `lastSearchFiles` also keeps growing across searches with no bound. |
+| I3 | The input gets pre-filled with an old term after it was cleared | Material 1.10 `SearchViewAnimationHelper` copies `SearchBar.getText()` into the input on every `show()`. Upstream `search()` pins each Library query and suggestion tap onto the bar (`bind.searchBar.setText(query)`). Clearing the input never clears the bar, and the Soulseek path never updates it, so the old Library term keeps coming back. |
+| I4 | Soulseek search runs Library autocomplete | The upstream text watcher calls `setSearchSuggestions` (Navidrome `search3`) no matter which scope is active. IME autocorrect also mangles the partial terms people type for Soulseek. |
+| I5 | Very long "artist" candidates | `SearchingRepository.getSuggestions` adds the raw `ArtistID3.getName()`. When the server joins multi-artist tags into one name, the result is a huge string. Nothing limits the length. |
+| I6 | Recents on open aren't the most recent, and Library/Soulseek queries are mixed | `sort_search_chronologically` defaults to `false`, which gives `RecentSearchDao.getAlpha()` = `ORDER BY search DESC` (reverse alphabetical) with no limit. Everything goes into one table, so a query first sent to Library (e.g. no results → "Search Soulseek" CTA) also lands there. `SlskdStores.addSearch` exists but is never called. |
+| I7 | You can't switch scope from the expanded search screen | The toggle is injected into `search_result_layout`, **behind** the full-screen `SearchView`. `inputFocus()` re-expands the SearchView on every `onCreateView`, including returns via the back stack. `attachScopeToggle` resets the scope to Library on every view creation, including back from Soulseek results. |
+
+### 8.2 Target UX
+
+```
+ ┌───────────────────────────────────────────┐   expanded SearchView
+ │ ←  Search Soulseek (any words)         ✕  │   hint follows scope
+ │ [ Library | Soulseek ]           ⇅ 2      │   header: scope + transfers (active count)
+ ├───────────────────────────────────────────┤
+ │ ▶ Last results: "geogaddi flac"           │   resume card (Soulseek, empty input)
+ │   Searching · 132 folders                 │   live while the run polls
+ │ Recent Soulseek searches                  │
+ │ ⟲ aphex saw 2                          ✕  │   tap = reopen, not re-run
+ │   41 folders · 2 hours ago                │   gone from slskd → "Run again" on results
+ └───────────────────────────────────────────┘
+```
+
+- **Scope lives inside the expanded SearchView** (`SearchView.addHeaderView`) and stays
+  visible while typing. Switching scope keeps the typed text, swaps the hint, the suggestion
+  mode and the IME flags, and never submits. When collapsed, the SearchBar hint shows the
+  scope.
+- **Library mode**: with empty input, show the 6 most recent Library searches, newest first
+  (+ "Show all"). From 2 typed characters, show live candidates: artist/album/song,
+  ≤ 60 chars each, deduped case-insensitively, at most 10.
+- **Soulseek mode**: no autocomplete. The IME uses `TYPE_TEXT_FLAG_NO_SUGGESTIONS`. With empty
+  input, show a resume card for the latest search and the next 6 recent Soulseek searches,
+  each with its state (*Searching · N folders* / *N folders · age*). Whether slskd still has
+  a search is only known when it's opened; expired ones show "Run again". Typing shows
+  nothing, and only IME submit runs the search.
+- **Transfers are always one tap away** from Search: an icon in the header plus a SearchBar
+  menu item, both showing the active-transfer badge.
+- **Scope policy (amends D5)**: a fresh entry into Search starts on Library. Coming back
+  through the back stack (from results, album, activity) keeps the scope that was in use.
+  The scope is never persisted across processes, so it still can't hijack Library search.
+- **Auto-expand only on a fresh entry.** Coming back through the back stack never
+  re-expands over results. Found while building: the recreated view has **empty** Library
+  adapters (upstream's re-expand-on-every-entry was hiding a blank page). So when the last
+  submit was a Library search it is re-run (collapsed, results visible again); otherwise the
+  SearchView opens on recents / last results without the keyboard. Results → Edit search
+  opens Soulseek with the keyboard and the query.
+- **Input text** is restored from the user's own draft for that scope (empty if they cleared
+  it), never from the SearchBar text. The bar text only means "query of the Library results
+  shown below".
+- **Library no-results CTA** becomes "Search Soulseek for «q»" and submits right away.
+- **Results toolbar**: the title is the query. Tapping it goes back to Search in Soulseek
+  scope with the query in the input, ready to refine.
+
+### 8.3 Architecture (as built)
+
+- **`SlskSearchScreen`** (`:slsk:ui`, one per SearchFragment view, tracked weakly in
+  `SlskSeams`). It owns the inside of the SearchView: the header (`addHeaderView`), the
+  suggestion container, a transition listener, IME flags, and the SearchBar menu + badge.
+  - Its state (scope, drafts, last Library query, last submit scope) lives in
+    `SlskSearchScreenState`, a ViewModel scoped to the SearchFragment. It survives
+    back-stack view recreation and dies with the fragment.
+  - **Ghost fix**: Material sets `SHOWING` *before* copying `SearchBar.getText()` into the
+    input, and keeps the content invisible until a posted runnable runs. The controller
+    marks writes as non-user while `SHOWING` and posts a draft restore, which runs before
+    anything is visible.
+- **Pure logic in `:slsk:core`** (JVM-tested):
+  - `SuggestionSanitizer`.
+  - Scoped history: `SlskSearchHistoryEntry` gains defaulted `scope`, `searchId` and
+    `folderCount` (old JSON still decodes). The cap of 50 applies per scope, newest first;
+    re-submitting moves an entry to the top and takes the new id.
+- **Library candidates**: `HostBridge.librarySuggestions(query)` (default empty),
+  implemented in `slsk/app-glue` with the same search3 request upstream's
+  `SearchingRepository.getSuggestions` makes, run synchronously on IO. Debounced 200 ms;
+  stale answers are dropped.
+- **Gateway**: per-search `SearchMemory` (fallback groups + remembered hits), last 3 kept;
+  folder fallback searches newest first. `reopen(searchId)` covers the cases: complete →
+  one emit; in progress → polls; 404 → `SearchExpiredException`.
+- **Coordinator**: finished runs stay in the LRU (size-evicted only). A stopped run's last
+  snapshot is re-emitted as complete, and the folder count is written to history on
+  completion. `start` records the Soulseek history entry. `reattach` tries memory (unless
+  that run failed), then `reopen`.
+- **Seams: S3 only** (no new upstream files, budget stays at 16 files):
+  `attachSearchScreen(...)` replaces `attachScopeToggle(...)`; `inputFocus()` is guarded by
+  `shouldAutoShow`; and both upstream suggestion renderers return early via
+  `ownsSuggestions`. `onSearchSubmitted` records Library history and falls through for
+  Library. `slsk/SEAMS.md` and `check-seams.sh` anchors are updated.
+- **Install policy**: always installed. The Library fixes (I3, I5, I6, I7) apply without
+  slskd. The toggle, Downloads, Last results and CTA appear only once slskd is configured.
+- **Superseded upstream behavior (sync attention)**: upstream's `recent_search` list and the
+  `sort_search_chronologically` setting no longer drive the Search screen (upstream still
+  writes its table via `setQuery`). Upstream's auto-expand-on-every-entry is replaced by the
+  entry policy above.
+
+### 8.4 Delivery
+
+One PR (owner's call, 2026-11-23) instead of the three originally planned. Verification:
+the §3 gate, plus `assembleTempusRelease` because the serialized history entry changed.
+
+### 8.5 Device acceptance (Pixel, real servers)
+- I2: run two different Soulseek searches back to back; the second never shows the first
+  one's folders, including during the first 3 s.
+- I1: search → Home → search again → the resume card reopens the same results with no new
+  slskd search (check `GET /searches` count); Activity can be opened straight from Search;
+  after force-stop, a recent entry reopens from slskd or says *expired*.
+- I3: tap a Library suggestion, clear the input, back out, re-enter → the input is empty.
+  Switch scopes → each scope keeps its own draft.
+- I4/I6: Soulseek mode shows no candidates and no keyboard suggestions; on open, each scope's
+  recents list only its own queries, newest first.
+- I5: a server artist name over 60 chars never shows as a candidate.
+- I7: open Search → switch to Soulseek → submit with no back-navigation; back from results →
+  still on Soulseek, SearchView on recents without the keyboard; Library search → album →
+  back → collapsed with the Library results re-shown; results → Edit search → Soulseek
+  input holds the query.
+- Regression: back gesture (R1 notes), flavor parity (tempus + degoogled), Library search
+  without slskd configured.
+
+### 8.6 Decisions taken (owner-approved 2026-11-23)
+1. The controller installs without slskd (Library fixes for everyone).
+2. Superseded Soulseek searches stay on slskd (D8).
+3. Upstream `recent_search` rows are not imported: Library history starts fresh. The
+   upstream DAO doesn't expose timestamps.
+4. The candidate length limit is 60 chars, applied to live candidates only (not to result
+   lists).
