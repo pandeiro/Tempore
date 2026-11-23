@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.github.pandeiro.tempore.slsk.core.domain.ResultGroup
 import com.github.pandeiro.tempore.slsk.core.domain.SearchProgress
 import com.github.pandeiro.tempore.slsk.core.domain.SlskResultFilters
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -20,7 +21,7 @@ class SlskResultsViewModel(
     val fallbackQuery: String?,
 ) : ViewModel() {
 
-    enum class Banner { NONE, UNREACHABLE, UNAUTHORIZED, DISCONNECTED, NOT_CONFIGURED, RAN_OUT }
+    enum class Banner { NONE, UNREACHABLE, UNAUTHORIZED, DISCONNECTED, NOT_CONFIGURED, RAN_OUT, EXPIRED }
 
     data class UiModel(
         val run: SlskSearchCoordinator.SearchRun? = null,
@@ -44,6 +45,9 @@ class SlskResultsViewModel(
     /** Mirror of the persisted filters; written only by the store collector below. */
     private var filters = SlskResultFilters()
 
+    /** Collectors of the currently bound run (declared before init: setup() binds). */
+    private var bindings: List<Job> = emptyList()
+
     init {
         setup()
         viewModelScope.launch {
@@ -57,18 +61,22 @@ class SlskResultsViewModel(
     }
 
     private fun setup() {
-        val run = SlskSearchCoordinator.find(searchId) ?: run {
-            if (fallbackQuery.isNullOrBlank()) {
+        // Reattach, never silently re-run (PLAN.md §8, I1): the in-memory run, else the search
+        // re-read from slskd by id. An expired search offers an explicit "Run again".
+        val run = when {
+            searchId.isNotBlank() -> SlskSearchCoordinator.reattach(searchId, fallbackQuery)
+            !fallbackQuery.isNullOrBlank() -> SlskSearchCoordinator.start(fallbackQuery)
+            else -> {
                 _ui.value = _ui.value.copy(banner = Banner.RAN_OUT)
                 return
             }
-            // Process death recovered with the id-only policy: restart the same query fresh.
-            SlskSearchCoordinator.start(fallbackQuery)
         }
-
-        _ui.value = _ui.value.copy(run = run)
         bindRun(run)
     }
+
+    /** Query this screen is about (the run's, or the deep link's for a reopened search). */
+    val query: String
+        get() = _ui.value.run?.query?.takeIf { it.isNotBlank() } ?: fallbackQuery.orEmpty()
 
     private fun ingest(progress: SearchProgress) {
         allGroups = SlskRanking.sort(progress.groups)
@@ -105,27 +113,31 @@ class SlskResultsViewModel(
 
     /** Re-runs the same query when the slskd search failed to produce anything. */
     fun retry() {
-        val run = _ui.value.run ?: return
+        val text = query
+        if (text.isBlank()) return
         clearBanner()
-        val fresh = SlskSearchCoordinator.start(run.query)
-        bindRun(fresh)
+        bindRun(SlskSearchCoordinator.start(text))
     }
 
     private fun bindRun(run: SlskSearchCoordinator.SearchRun) {
-        // Never flash the previous run's rows on retry()/process-death restart.
+        // Never flash the previous run's rows on retry()/process-death restart, and stop
+        // listening to the previous run so a late snapshot can't land on the new one.
+        bindings.forEach { it.cancel() }
         allGroups = emptyList()
         visibleLimit.value = 100
         _ui.value = _ui.value.copy(run = run, groups = emptyList(), responders = 0, fileCount = 0, isComplete = false)
-        viewModelScope.launch {
-            run.failure.collect { cause ->
-                if (cause != null) {
-                    _ui.value = _ui.value.copy(banner = classify(cause), bannerDetail = cause.message)
+        bindings = listOf(
+            viewModelScope.launch {
+                run.failure.collect { cause ->
+                    if (cause != null) {
+                        _ui.value = _ui.value.copy(banner = classify(cause), bannerDetail = cause.message)
+                    }
                 }
-            }
-        }
-        viewModelScope.launch {
-            run.progress.collect { progress -> ingest(progress) }
-        }
+            },
+            viewModelScope.launch {
+                run.progress.collect { progress -> ingest(progress) }
+            },
+        )
     }
 
     fun stopSearch() {
@@ -136,6 +148,7 @@ class SlskResultsViewModel(
     private suspend fun classify(cause: Throwable): Banner {
         // Spring to a health check when the transport already failed: slskd down vs
         // slskd-up-but-disconnected produce different banners (§5.5).
+        if (cause is com.github.pandeiro.tempore.slsk.core.domain.SearchExpiredException) return Banner.EXPIRED
         val message = cause.message ?: ""
         if (message.contains("401") || message.contains("403")) {
             return Banner.UNAUTHORIZED

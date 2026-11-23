@@ -6,6 +6,7 @@ import com.github.pandeiro.tempore.slsk.core.domain.SearchProgress
 import com.github.pandeiro.tempore.slsk.core.domain.TransferLifecycle
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.take
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
 import okhttp3.mockwebserver.Dispatcher
@@ -113,6 +114,9 @@ class SlskdGatewayHttpTest {
                                  "extension":"","length":238,"isLocked":false}]}]}
                             """.trimIndent(),
                         )
+                    } else if (handler.recorded.none { it.method == "POST" }) {
+                        // the POST is fired on a worker: never complete before it landed
+                        ok("""{"id":"$searchId","isComplete":false,"state":"InProgress","responseCount":1,"fileCount":2}""")
                     } else {
                         // responses omitted -> gateway falls through to GET /responses
                         ok(
@@ -133,7 +137,7 @@ class SlskdGatewayHttpTest {
             ).collect { events.add(it) }
         }
 
-        assertEquals(2, events.size)
+        assertTrue(events.size >= 2)
         assertFalse(events[0].isComplete)
         assertEquals(1, events[0].groups.size)
         val files = events[0].groups[0].files
@@ -145,7 +149,7 @@ class SlskdGatewayHttpTest {
         assertEquals("mp3", mp3.extension) // empty extension field -> derived
         assertFalse(mp3.bitrateKbps == null)
         assertEquals(323, mp3.bitrateKbps)
-        assertTrue(events[1].isComplete)
+        assertTrue(events.last().isComplete)
 
         // Completed searches are NOT deleted while/results after consumption:
         assertTrue(handler.recorded.none { it.method == "DELETE" })
@@ -158,7 +162,7 @@ class SlskdGatewayHttpTest {
     }
 
     @Test
-    fun abandoned_search_is_stopped_then_deleted() = runBlocking {
+    fun abandoned_search_is_stopped_but_kept_on_slskd() = runBlocking {
         val searchId = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
         handler.route = { req ->
             when {
@@ -179,14 +183,80 @@ class SlskdGatewayHttpTest {
                 .collect { }
         }
         withTimeout(10_000) {
-            while (true) {
-                val stopped = handler.recorded.any { it.method == "PUT" }
-                val deleted = handler.recorded.any { it.method == "DELETE" }
-                if (stopped && deleted) break
-            }
+            while (handler.recorded.none { it.method == "PUT" }) kotlinx.coroutines.delay(5)
         }
         assertEquals("/api/v0/searches/$searchId", handler.recorded.first { it.method == "PUT" }.path)
-        assertEquals("/api/v0/searches/$searchId", handler.recorded.first { it.method == "DELETE" }.path)
+        // D8: kept on slskd so the history can reopen its partial results.
+        kotlinx.coroutines.delay(100)
+        assertTrue(handler.recorded.none { it.method == "DELETE" })
+    }
+
+    @Test
+    fun new_search_never_shows_the_previous_searchs_groups() = runBlocking {
+        val first = "11111111-1111-1111-1111-111111111111"
+        val second = "22222222-2222-2222-2222-222222222222"
+        val secondResponsesCalls = java.util.concurrent.atomic.AtomicInteger()
+        fun peer(name: String) = """[{"username":"$name","hasFreeUploadSlot":true,"queueLength":0,"uploadSpeed":1,"fileCount":1,
+            "files":[{"code":1,"filename":"D\\$name\\01.flac","size":1000,"extension":"flac","length":100,"isLocked":false}]}]"""
+        handler.route = { req ->
+            when {
+                req.method == "POST" -> ok("""{"isComplete":false,"state":"InProgress"}""")
+                req.path == "/api/v0/searches/$first" ->
+                    ok("""{"id":"$first","isComplete":true,"state":"Completed","responseCount":1,"fileCount":1}""")
+                req.path == "/api/v0/searches/$first/responses" -> ok(peer("OLDPEER"))
+                req.path == "/api/v0/searches/$second" -> {
+                    val done = secondResponsesCalls.get() >= 3
+                    ok("""{"id":"$second","isComplete":$done,"state":"${if (done) "Completed" else "InProgress"}","responseCount":1,"fileCount":1}""")
+                }
+                // slskd already counts a response but /responses has not caught up yet
+                req.path == "/api/v0/searches/$second/responses" ->
+                    if (secondResponsesCalls.incrementAndGet() < 3) ok("[]") else ok(peer("NEWPEER"))
+                else -> MockResponse().setResponseCode(404).setBody("{}")
+            }
+        }
+        withTimeout(15_000) {
+            gateway.search("old", SearchOptions(searchText = "old", searchId = first)).collect { }
+        }
+        val events = mutableListOf<SearchProgress>()
+        withTimeout(15_000) {
+            gateway.search("new", SearchOptions(searchText = "new", searchId = second)).collect { events.add(it) }
+        }
+        val usernames = events.flatMap { e -> e.groups.map { it.username } }
+        assertFalse("previous search leaked into the new one: $usernames", "OLDPEER" in usernames)
+        assertTrue(events.first().groups.isEmpty())
+        assertEquals("NEWPEER", events.last().groups.single().username)
+    }
+
+    @Test
+    fun reopen_reads_a_completed_search_without_starting_one() = runBlocking {
+        val searchId = "33333333-3333-3333-3333-333333333333"
+        handler.route = { req ->
+            when (req.path) {
+                "/api/v0/searches/$searchId" ->
+                    ok("""{"id":"$searchId","isComplete":true,"state":"Completed, TimedOut","responseCount":1,"fileCount":1}""")
+                "/api/v0/searches/$searchId/responses" -> ok(
+                    """[{"username":"PEER01","hasFreeUploadSlot":true,"queueLength":0,"uploadSpeed":1,"fileCount":1,
+                      "files":[{"code":1,"filename":"D\\Album\\01.flac","size":1000,"extension":"flac","length":100,"isLocked":false}]}]""",
+                )
+                else -> MockResponse().setResponseCode(404).setBody("{}")
+            }
+        }
+        val events = withTimeout(15_000) { gateway.reopen(searchId).toList() }
+        assertEquals(1, events.size)
+        assertTrue(events.single().isComplete)
+        assertEquals("PEER01", events.single().groups.single().username)
+        assertTrue(handler.recorded.none { it.method == "POST" })
+        // folder fallback works for the reopened search's hits
+        assertEquals(1, gateway.folderContents("PEER01", "D\\Album").size)
+    }
+
+    @Test
+    fun reopen_of_an_unknown_search_is_expired() = runBlocking {
+        handler.route = { MockResponse().setResponseCode(404).setBody("{}") }
+        val failure = runCatching {
+            withTimeout(15_000) { gateway.reopen("44444444-4444-4444-4444-444444444444").toList() }
+        }.exceptionOrNull()
+        assertTrue("expected expiry, got $failure", failure is com.github.pandeiro.tempore.slsk.core.domain.SearchExpiredException)
     }
 
     // ------------------------------------------------------------------ enqueue

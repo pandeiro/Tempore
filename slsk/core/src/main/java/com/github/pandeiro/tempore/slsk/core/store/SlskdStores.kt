@@ -21,7 +21,9 @@ import kotlinx.serialization.json.Json
  *    hide-locked / hide-no-slot filter flags, the results-screen [SlskResultFilters] (JSON),
  *    first-use notice shown, autoScan-after-handoff, and the client id prefix used to
  *    attribute our own slskd searches;
- *  - `slsk_history` — the last [SlskdStoreLimits.SEARCH_HISTORY_LIMIT] searches and a
+ *  - `slsk_history` — the last [SlskdStoreLimits.SEARCH_HISTORY_LIMIT] searches PER SCOPE
+ *    (Library and Soulseek never mix; Soulseek entries carry their slskd search id so the
+ *    results can be reopened without re-running, plus a folder-count summary) and a
  *    completions log capped at [SlskdStoreLimits.COMPLETION_LIMIT_COUNT] entries /
  *    [SlskdStoreLimits.COMPLETION_LIMIT_DAYS] days (JSON via kotlinx-serialization).
  *
@@ -29,8 +31,21 @@ import kotlinx.serialization.json.Json
  */
 enum class SlskSortMode { PREFERRED, UPLOAD_SPEED, QUEUE_LENGTH, NAME }
 
+/** Which search a history entry belongs to; the two lists are rendered and capped separately. */
 @kotlinx.serialization.Serializable
-data class SlskSearchHistoryEntry(val query: String, val atEpochMillis: Long)
+enum class SlskSearchScope { LIBRARY, SOULSEEK }
+
+@kotlinx.serialization.Serializable
+data class SlskSearchHistoryEntry(
+    val query: String,
+    val atEpochMillis: Long,
+    // Pre-scope entries were only ever written by the (then unused) Soulseek history.
+    val scope: SlskSearchScope = SlskSearchScope.SOULSEEK,
+    /** slskd search id (Soulseek only): reopen target. */
+    val searchId: String? = null,
+    /** Result folders when the run completed (Soulseek only); null while unknown. */
+    val folderCount: Int? = null,
+)
 
 @kotlinx.serialization.Serializable
 data class SlskCompletionEntry(
@@ -113,22 +128,49 @@ class SlskdStores(
 
     // ------------------------------------------------------------ history
 
-    fun searchHistory(): Flow<List<SlskSearchHistoryEntry>> = history.data.mapAndRecover { entry ->
-        decodeHistory(entry[Keys.SEARCH_HISTORY]).take(SlskdStoreLimits.SEARCH_HISTORY_LIMIT)
+    /** Newest-first history of one scope, capped at [SlskdStoreLimits.SEARCH_HISTORY_LIMIT]. */
+    fun searchHistory(scope: SlskSearchScope): Flow<List<SlskSearchHistoryEntry>> = history.data.mapAndRecover { entry ->
+        decodeHistory(entry[Keys.SEARCH_HISTORY])
+            .filter { it.scope == scope }
+            .sortedByDescending { it.atEpochMillis }
+            .take(SlskdStoreLimits.SEARCH_HISTORY_LIMIT)
     }
 
-    /** Prepends `query`, drops case-insensitive duplicates, caps at 50. */
-    suspend fun addSearch(query: String) {
+    /**
+     * Prepends `query` to its scope's list: a case-insensitive duplicate in the SAME scope is
+     * replaced (re-running moves it to the top and takes the new search id); each scope is
+     * capped at 50 independently.
+     */
+    suspend fun addSearch(query: String, scope: SlskSearchScope, searchId: String? = null) {
         val trimmed = query.trim()
         if (trimmed.isEmpty()) return
+        editHistory { existing ->
+            val fresh = SlskSearchHistoryEntry(query = trimmed, atEpochMillis = clock(), scope = scope, searchId = searchId)
+            val rest = existing.filterNot { it.scope == scope && it.query.equals(trimmed, ignoreCase = true) }
+            listOf(fresh) + rest
+        }
+    }
+
+    /** Records the completed folder count on the entry that owns `searchId` (no-op when gone). */
+    suspend fun setSearchSummary(searchId: String, folderCount: Int) {
+        editHistory { existing ->
+            existing.map { if (it.searchId == searchId) it.copy(folderCount = folderCount) else it }
+        }
+    }
+
+    suspend fun removeSearch(query: String, scope: SlskSearchScope) {
+        editHistory { existing ->
+            existing.filterNot { it.scope == scope && it.query.equals(query.trim(), ignoreCase = true) }
+        }
+    }
+
+    private suspend fun editHistory(transform: (List<SlskSearchHistoryEntry>) -> List<SlskSearchHistoryEntry>) {
         history.edit { entry ->
-            val existing = decodeHistory(entry[Keys.SEARCH_HISTORY])
-                .filterNot { it.query.equals(trimmed, ignoreCase = true) }
-            entry[Keys.SEARCH_HISTORY] = JSON.encodeToString(
-                ListSerializer(SlskSearchHistoryEntry.serializer()),
-                (listOf(SlskSearchHistoryEntry(query = trimmed, atEpochMillis = clock())) + existing)
-                    .take(SlskdStoreLimits.SEARCH_HISTORY_LIMIT),
-            )
+            val next = transform(decodeHistory(entry[Keys.SEARCH_HISTORY]).sortedByDescending { it.atEpochMillis })
+            val capped = SlskSearchScope.entries.flatMap { scope ->
+                next.filter { it.scope == scope }.take(SlskdStoreLimits.SEARCH_HISTORY_LIMIT)
+            }.sortedByDescending { it.atEpochMillis }
+            entry[Keys.SEARCH_HISTORY] = JSON.encodeToString(ListSerializer(SlskSearchHistoryEntry.serializer()), capped)
         }
     }
 

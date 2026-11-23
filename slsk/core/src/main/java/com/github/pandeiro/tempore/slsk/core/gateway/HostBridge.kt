@@ -37,4 +37,11 @@ interface HostBridge {
 
     /** Navigate to the given album inside the host app (deep-link handoff). */
     fun openAlbum(albumId: String, albumName: String, artistName: String)
+
+    /**
+     * Raw Library autocomplete candidates (artist / album / song names) for `query`; callers
+     * sanitize with [com.github.pandeiro.tempore.slsk.core.domain.SuggestionSanitizer].
+     * Called off the main thread; empty when the host has no server.
+     */
+    suspend fun librarySuggestions(query: String): List<String> = emptyList()
 }

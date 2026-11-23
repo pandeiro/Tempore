@@ -10,20 +10,13 @@ import kotlinx.coroutines.flow.map
 private val Context.slskPrefs by preferencesDataStore(name = "slsk_ui_prefs")
 
 /**
- * UI-scoped persistent flags: which search scope is active, whether the first-use
- * sheet has been shown once, and whether auto-scan after downloads is on.
+ * UI-scoped persistent flags: whether the first-use sheet has been shown once and whether
+ * auto-scan after downloads is on. (The search scope is deliberately NOT persisted: it lives
+ * per Search screen instance, PLAN.md §8 / D5.)
  */
 object SlskPrefs {
-    private val KEY_SLSK_SCOPE = booleanPreferencesKey("scope_soulseek_active")
     private val KEY_FIRST_USE_SHOWN = booleanPreferencesKey("first_use_sheet_shown")
     private val KEY_AUTOSCAN = booleanPreferencesKey("autoscan_after_download")
-
-    suspend fun setSlskScopeActive(context: Context, active: Boolean) {
-        context.slskPrefs.edit { it[KEY_SLSK_SCOPE] = active }
-    }
-
-    suspend fun isSlskScopeActive(context: Context): Boolean =
-        context.slskPrefs.data.map { it[KEY_SLSK_SCOPE] ?: false }.first()
 
     suspend fun setFirstUseShown(context: Context) {
         context.slskPrefs.edit { it[KEY_FIRST_USE_SHOWN] = true }

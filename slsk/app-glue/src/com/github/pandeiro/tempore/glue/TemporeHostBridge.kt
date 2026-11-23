@@ -62,6 +62,25 @@ class TemporeHostBridge : com.github.pandeiro.tempore.slsk.core.gateway.HostBrid
             .navigate(com.eddyizm.tempus.R.id.albumPageFragment, bundle)
     }
 
+    /**
+     * Same request upstream's SearchingRepository.getSuggestions makes (search3, 5 artists /
+     * 5 albums / 5 songs), synchronously on IO; the search screen sanitizes the names.
+     */
+    override suspend fun librarySuggestions(query: String): List<String> =
+        kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
+            val response = com.eddyizm.tempus.App.getSubsonicClientInstance(false)
+                .searchingClient
+                .search3(query, 5, 0, 5, 0, 5, 0)
+                .execute()
+            val result = response.body()?.subsonicResponse?.searchResult3
+                ?: return@withContext emptyList()
+            buildList {
+                result.artists?.forEach { add(it.name) }
+                result.albums?.forEach { add(it.name) }
+                result.songs?.forEach { add(it.title) }
+            }.filterNotNull()
+        }
+
     /** Convenience for the core handoff: convert a LibraryAlbumMatch into an open navigation. */
     fun openMatch(match: LibraryAlbumMatch) {
         openAlbum(match.id, match.name, match.artist)

@@ -25,11 +25,15 @@ class SlskResultsFragment : Fragment() {
     private var _bind: SlskFragmentResultsBinding? = null
     private val bind get() = _bind!!
 
+    /** The run on screen (a retry/run-again replaces the deep link's id). */
     val searchId: String
-        get() = requireArguments().getString("slsk_search_id") ?: ""
+        get() = viewModel.ui.value.run?.searchId ?: requireArguments().getString("slsk_search_id") ?: ""
 
     private val viewModel by viewModels<SlskResultsViewModel> {
-        SlskResultsViewModel.Factory(searchId, requireArguments().getString("slsk_fallback_query"))
+        SlskResultsViewModel.Factory(
+            requireArguments().getString("slsk_search_id") ?: "",
+            requireArguments().getString("slsk_fallback_query"),
+        )
     }
 
     private lateinit var adapter: SlskResultGroupAdapter
@@ -52,8 +56,11 @@ class SlskResultsFragment : Fragment() {
         bind.slskResultsToolbar.setNavigationOnClickListener {
             Navigation.findNavController(bind.root).popBackStack()
         }
+        // Title = the query; tapping it (or "Edit search") reopens Search on Soulseek to refine.
+        bind.slskResultsToolbar.setOnClickListener { refine() }
         bind.slskResultsToolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
+                R.id.slsk_action_refine -> { refine(); true }
                 R.id.slsk_action_filter -> { showFilterSheet(); true }
                 R.id.slsk_action_activity -> { openActivity(); true }
                 else -> false
@@ -89,6 +96,7 @@ class SlskResultsFragment : Fragment() {
 
     private fun render(model: SlskResultsViewModel.UiModel) {
         adapter.submitGroups(model.groups)
+        viewModel.query.takeIf { it.isNotBlank() }?.let { bind.slskResultsToolbar.title = it }
 
         val searching = model.run != null && !model.isComplete &&
             model.banner == SlskResultsViewModel.Banner.NONE
@@ -117,6 +125,7 @@ class SlskResultsFragment : Fragment() {
             SlskResultsViewModel.Banner.UNAUTHORIZED -> getString(R.string.slsk_error_unauthorized)
             SlskResultsViewModel.Banner.DISCONNECTED -> getString(R.string.slsk_error_disconnected)
             SlskResultsViewModel.Banner.RAN_OUT -> getString(R.string.slsk_error_search_failed)
+            SlskResultsViewModel.Banner.EXPIRED -> getString(R.string.slsk_error_search_expired)
             else -> ""
         }
         bind.slskResultsErrorAction.visibility =
@@ -124,14 +133,14 @@ class SlskResultsFragment : Fragment() {
                     SlskResultsViewModel.Banner.UNREACHABLE,
                     SlskResultsViewModel.Banner.UNAUTHORIZED,
                     SlskResultsViewModel.Banner.RAN_OUT,
+                    SlskResultsViewModel.Banner.EXPIRED,
                 )
             ) View.VISIBLE else View.GONE
-        bind.slskResultsErrorAction.text =
-            if (model.banner == SlskResultsViewModel.Banner.UNAUTHORIZED) {
-                getString(R.string.slsk_error_open_settings)
-            } else {
-                getString(R.string.slsk_retry)
-            }
+        bind.slskResultsErrorAction.text = when (model.banner) {
+            SlskResultsViewModel.Banner.UNAUTHORIZED -> getString(R.string.slsk_error_open_settings)
+            SlskResultsViewModel.Banner.EXPIRED -> getString(R.string.slsk_run_again)
+            else -> getString(R.string.slsk_retry)
+        }
     }
 
     private fun maybeShowFirstUseSheet() {
@@ -158,6 +167,11 @@ class SlskResultsFragment : Fragment() {
         }
         SlskFolderSheetFragment().apply { arguments = args }
             .show(parentFragmentManager, "slsk_folder")
+    }
+
+    private fun refine() {
+        SlskSeams.requestRefine()
+        Navigation.findNavController(bind.root).popBackStack()
     }
 
     private fun openActivity() {
