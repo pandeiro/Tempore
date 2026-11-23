@@ -124,8 +124,13 @@ interface; Library search and Soulseek search are never blended.
   `Github.java` queries `pandeiro/Tempore` (API `/repos/pandeiro/Tempore/releases/latest`,
   prerelease `-dev` tags excluded by GitHub automatically). Upstream tags never drive the
   fork's dialog — that was the "attached to upstream" nag: the fork sat below upstream's
-  latest version forever, so every app start (once per 24 h) offered upstream APKs the
-  fork cannot even install (different appId/signature).
+  latest version forever (live-checked 2026-11-23: upstream latest published release is
+  `v4.32.0`), so every app start (once per 24 h) offered upstream APKs the fork cannot
+  even install (different appId/signature).
+  **Live fact (2026-11-23)**: `pandeiro/Tempore` is public but has no published GitHub
+  releases yet (tags only), so `/releases/latest` 404s → `SystemRepository` leaves the
+  LiveData unset → observer no-ops → silent skip until the first stable fork release is
+  published (`github_release.yml` publishes one on every non-dev `v*` tag).
 - **Opt-in, off by default**: `github_update_check` preference defaults to `false`
   (`Preferences.kt` gate + `global_preferences.xml` SwitchPreference). Fresh installs never
   phone GitHub or show the dialog until the user enables Settings → Updates. The 24-hour
@@ -378,16 +383,23 @@ scratch branch (green/red/conflict report only) — TODO optional for this fork.
   fork cannot install (different appId `com.github.pandeiro.tempore.*`, fork keystore).
   Default was on (`github_update_check` default `true`), buried in Settings → Updates.
 - **Decision (D8, spec §2.7)**: opt-in by default + poll the fork's own releases.
-  Planned diff (implementation in this worktree, branch `fix/update-check-opt-in`):
+- **Implemented (2026-11-23, branch `fix/update-check-opt-in`, worktree
+  `Tempore-update-check`)**; diff:
   1. `Github.java` (seam S8): `OWNER` `"eddyizm"` → `"pandeiro"`, `REPO` `"Tempus"` →
      `"Tempore"` — `/releases/latest` ignores prerelease `-dev` tags, so the fork's
      stable channel is the comparison target.
   2. `Preferences.kt` (seam S9): `isGithubUpdateEnabled()` default `true` → `false`.
   3. `global_preferences.xml` (S5 amendment): `SwitchPreference` `defaultValue` `true` →
      `false`.
-  4. `values/strings.xml` (R2 amendment): reword default-locale
+  4. `values/strings.xml` (R2 amendment): reworded default-locale
      `settings_github_update_summary` to reflect opt-in + fork channel (per-locale
      copies untouched, R2 convention).
+  Gates: `assembleTempusDebug assembleDegoogledDebug testTempusDebugUnitTest
+  lintDegoogledDebug :slsk:core:testDebugUnitTest` pass; `slsk/tools/check-seams.sh`
+  passes (16 files / 47 added lines, budget 18). Device checks pending: fresh install
+  (clear data) → no dialog and no GitHub traffic on start; Settings → Updates → enable
+  → silent skip while the fork has no published release, then once-per-24-h dialog when
+  a stable fork tag > versionName; negative button snoozes.
 - **Unchanged on purpose**: 24-h snooze via the dialog's negative button
   (`NEXT_UPDATE_CHECK`), `UpdateUtil.showUpdateDialog` tag comparison (verified
   compatible with the `-tempore.N` versionName suffix: divergence is detected in the
