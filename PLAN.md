@@ -350,6 +350,30 @@ scratch branch (green/red/conflict report only) — TODO optional for this fork.
   clears; settings placeholders vanish on typing; login shortcut icon sandstone (launcher
   uses themed monochrome icons, so the home icon follows the system theme).
 
+### 2026-11-23 — Upstream sync v4.32.0 (Android Auto voice search)
+- Issue: "Hey Google, play Thelonious Monk on Tempore" in Android Auto — Gemini announced
+  playback, then spoke an error. Cause (v4.31.0 code): Media3 turns the legacy
+  `playFromSearch` into `onSetMediaItems`/`onAddMediaItems` with a blank `mediaId` and
+  `requestMetadata.searchQuery`; `MediaLibraryServiceCallback` ignored the query and queued
+  the blank item (no URI), so playback failed.
+- Fix: no fork code — merged upstream **v4.32.0** (branch `sync/2026-11-23`, clean merge, no
+  seam conflicts). It brings upstream #1214: voice query → `search3` → `VoiceQueryRouter`
+  (exact artist → instant mix; exact album → album; else matching songs with the exact title
+  first; near miss → closest artist/album; blank query → random songs). A query with nothing
+  playable fails the request so current playback continues. Also brings ~20 upstream fixes
+  (large-queue OOM, offline launch with queued downloads, widget oversized art, rating the
+  previous song, stream reconnect, scan-status polling #1215 — closes our backlog item).
+- Version: hook derives `4.32.0-tempore.N` / versionCode `53xx` automatically.
+- Gates: `check-seams.sh` OK (16 files / 47 added lines); `assembleTempusDebug
+  assembleDegoogledDebug testTempusDebugUnitTest :slsk:core:testDebugUnitTest
+  lintDegoogledDebug` green (363 tests, 0 failures, incl. upstream `VoiceQueryRouterTest` +
+  `MediaLibrarySessionCallbackVoiceTest`).
+- Pending: device verification in the car (artist, album, song, misheard name, "play some
+  music", cold start with Tempore not running, server unreachable). Follow-up only if the car
+  test shows it: route on Gemini's structured extras (`EXTRA_MEDIA_FOCUS`, `_ARTIST`,
+  `_ALBUM`, `_TITLE`) when the free-text query misses, e.g. "play Round Midnight by Monk".
+  Degoogled flavor has no Android Auto (out of scope).
+
 ## 7. Backlog (post-MVP candidates)
 
 - Revisit `POST /transfers/downloads/batches` when the server upgrades past slskd 0.26.x
@@ -359,5 +383,7 @@ scratch branch (green/red/conflict report only) — TODO optional for this fork.
   searches, peer-folder browsing, JWT auth strategy, staging importer (beets) deployment
   recipe.
 - Translation of `slsk_` strings (lint already tolerates MissingTranslation).
-- Upstream generic contribution candidates: pluggable search scopes, `ScanRepository
-  .getScanStatus()` bug fix (currently calls `startScan()` upstream).
+- Upstream generic contribution candidates: pluggable search scopes. (`ScanRepository
+  .getScanStatus()` bug was fixed upstream in v4.32.0, #1215.)
+- Android Auto voice: structured-extras fallback (see 2026-11-23 entry) if device tests
+  show free-text routing misses.
