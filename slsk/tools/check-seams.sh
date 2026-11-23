@@ -13,9 +13,10 @@ read -r FILES ADDED <<<"$(git diff --numstat "$BASE" HEAD -- . ':!slsk' ':!ARCHI
   | awk '{f++; a+=$1} END {print (f+0)" "(a+0)}')"
 echo "seam diff outside slsk/ + fork docs: $FILES files, $ADDED added lines"
 # fork-owned rebrand-identity resources (seam R3) raised this from 12;
-# launcher-adjacent recolors + shortcut icon (seam R4) raised it to 16.
-if [ "$FILES" -gt 16 ] || [ "$ADDED" -gt 150 ]; then
-  echo "FAIL: seam budget exceeded (max 16 files / 150 added lines)" >&2
+# launcher-adjacent recolors + shortcut icon (seam R4) raised it to 16;
+# update-check rechannel (seams S8/S9) raised it to 18.
+if [ "$FILES" -gt 18 ] || [ "$ADDED" -gt 150 ]; then
+  echo "FAIL: seam budget exceeded (max 18 files / 150 added lines)" >&2
   git diff --numstat "$BASE" HEAD -- . ':!slsk' ':!ARCHITECTURE.md' ':!PLAN.md' ':!README.md' ':!AGENTS.md' ':!CHANGELOG.md' ':!.github/workflows/slsk_*.yml'
   exit 1
 fi
@@ -48,5 +49,7 @@ anchor_check app/src/main/res/drawable/ic_splash_logo.xml '#FFC98352'
 anchor_check app/src/main/res/drawable/ic_launcher_background.xml '#FFC98352'
 anchor_check app/src/main/res/drawable/ic_launcher_foreground.xml '#FFC98352'
 anchor_check app/src/main/java/com/eddyizm/tempus/ui/activity/MainActivity.java 'R.mipmap.slsk_launcher'
+anchor_check app/src/main/java/com/eddyizm/tempus/github/Github.java 'return "https://api.github.com/";'
+anchor_check app/src/main/java/com/eddyizm/tempus/util/Preferences.kt 'private const val GITHUB_UPDATE_CHECK = "github_update_check"'
 
 echo "OK: seam budget + anchors pass"
