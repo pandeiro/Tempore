@@ -31,5 +31,8 @@
         android:id="@+id/slskActivityFragment"
         android:name="com.github.pandeiro.tempore.slsk.ui.SlskActivityFragment"
         android:label="@string/slsk_activity_title"
-        tools:layout="@layout/slsk_fragment_activity" />
+        tools:layout="@layout/slsk_fragment_activity">
+        <!-- Search screen's Downloads entry (root graph can't resolve nested ids, D4). -->
+        <deepLink android:id="@+id/slsk_deeplink_activity" app:uri="tempore://slsk/activity" />
+    </fragment>
 </navigation>

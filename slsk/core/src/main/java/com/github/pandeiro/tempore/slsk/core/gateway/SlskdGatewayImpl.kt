@@ -15,6 +15,7 @@ import com.github.pandeiro.tempore.slsk.core.domain.Health
 import com.github.pandeiro.tempore.slsk.core.domain.RemoteFile
 import com.github.pandeiro.tempore.slsk.core.domain.ResultGroup
 import com.github.pandeiro.tempore.slsk.core.domain.SearchOptions
+import com.github.pandeiro.tempore.slsk.core.domain.SearchExpiredException
 import com.github.pandeiro.tempore.slsk.core.domain.SearchProgress
 import com.github.pandeiro.tempore.slsk.core.domain.SoulseekGateway
 import com.github.pandeiro.tempore.slsk.core.domain.StateTokens
@@ -60,11 +61,28 @@ open class SlskdGatewayImpl private constructor(
     private val searchRequestTimeoutMs: Long,
 ) : SoulseekGateway {
 
-    /** Last search hits by username -> directory -> files (folder-contents fallback). */
-    private val lastSearchFiles: MutableMap<String, MutableMap<String, MutableList<RemoteFile>>> = HashMap()
+    /**
+     * Per-search memory, keyed by search id, newest last, at most [SEARCH_MEMORY_LIMIT] searches.
+     * Everything that used to be gateway-wide lives here: a search may only ever fall back to ITS
+     * OWN last result set (a gateway-wide fallback leaked the previous query's folders into a new
+     * search's first polls — PLAN.md §8, I2). Accessed from concurrent flows: guard with itself.
+     */
+    private val memories = LinkedHashMap<String, SearchMemory>()
 
-    /** Last non-empty grouped result set; returned when a poll fetch fails mid-search so the UI list never flickers empty. */
-    private var lastKnownGroups: List<ResultGroup> = emptyList()
+    private class SearchMemory {
+        /** Last non-empty grouped result set; returned when a poll fetch fails mid-search so the list never flickers empty. */
+        var lastKnownGroups: List<ResultGroup> = emptyList()
+
+        /** Search hits by username -> directory -> files (folder-contents fallback). */
+        val files: MutableMap<String, MutableMap<String, MutableList<RemoteFile>>> = HashMap()
+    }
+
+    private fun memory(searchId: String): SearchMemory = synchronized(memories) {
+        val existing = memories.remove(searchId) ?: SearchMemory()
+        memories[searchId] = existing // re-insert: newest last
+        while (memories.size > SEARCH_MEMORY_LIMIT) memories.remove(memories.keys.first())
+        existing
+    }
 
     // ------------------------------------------------------------------ health
 
@@ -76,6 +94,7 @@ open class SlskdGatewayImpl private constructor(
 
     override fun search(query: String, options: SearchOptions): Flow<SearchProgress> = flow {
         val id = options.searchId?.takeIf { it.isNotBlank() } ?: UUID.randomUUID().toString()
+        val memory = memory(id)
         var sawComplete = false
         coroutineScope {
             // (1) POST /searches blocks slskd until requestTimeout when given; fire on a
@@ -92,42 +111,63 @@ open class SlskdGatewayImpl private constructor(
                 if (!response.isSuccessful) {
                     throw IOException("slskd rejected search start: HTTP ${response.code()} ${response.message()}")
                 }
-                rememberResults(response.body()?.responses)
+                rememberResults(memory, response.body()?.responses)
             }
             try {
                 // (2) Poll; emit at most every searchPollIntervalMs; stop when completed.
-                while (true) {
-                    val state = fetchState(id)
-                    val groups = groupAndRemember(state)
-                    sawComplete = (state.isComplete ?: false) ||
-                        StateTokens.contains(StateTokens.parse(state.state), "Completed")
-                    emit(
-                        SearchProgress(
-                            searchId = state.id ?: id,
-                            stateTokens = StateTokens.parse(state.state),
-                            isComplete = sawComplete,
-                            responseCount = state.responseCount ?: groups.size,
-                            fileCount = state.fileCount ?: 0,
-                            groups = groups,
-                        )
-                    )
-                    if (sawComplete) break
-                    delay(searchPollIntervalMs)
-                }
+                sawComplete = pollUntilComplete(id, memory, fetchState(id)) { emit(it) }
             } finally {
                 startJob.cancel()
-                // (3) cancel-then-DELETE only when abandoned: never DELETE while the
-                // consumer is still reading results (recorded searches disappear).
-                // NonCancellable so an already-cancelled collector still runs cleanup.
+                // (3) An abandoned (superseded / cancelled) search is only told to stop seeking,
+                // never DELETEd: it stays on slskd so its partial results can be reopened from the
+                // search history until slskd's own retention clears it (PLAN.md §4, D8).
+                // NonCancellable so an already-cancelled collector still runs the stop.
                 if (!sawComplete) {
                     withContext(NonCancellable) {
                         runCatching { api.stopSearch(id) } // PUT stop-seeking; 404 tolerated
-                        runCatching { api.deleteSearch(id) }
                     }
                 }
             }
         }
     }.flowOn(io)
+
+    override fun reopen(searchId: String): Flow<SearchProgress> = flow {
+        val response = api.searchState(searchId)
+        if (response.code() == 404) throw SearchExpiredException(searchId)
+        if (!response.isSuccessful) {
+            throw IOException("slskd search state failed: HTTP ${response.code()} ${response.message()}")
+        }
+        val first = response.body() ?: SearchStateDto(id = searchId)
+        pollUntilComplete(searchId, memory(searchId), first) { emit(it) }
+    }.flowOn(io)
+
+    /** Emits one snapshot per poll until slskd reports completion; returns whether it completed. */
+    private suspend fun pollUntilComplete(
+        id: String,
+        memory: SearchMemory,
+        initial: SearchStateDto,
+        emit: suspend (SearchProgress) -> Unit,
+    ): Boolean {
+        var state = initial
+        while (true) {
+            val groups = groupAndRemember(id, memory, state)
+            val tokens = StateTokens.parse(state.state)
+            val complete = (state.isComplete ?: false) || StateTokens.contains(tokens, "Completed")
+            emit(
+                SearchProgress(
+                    searchId = state.id ?: id,
+                    stateTokens = tokens,
+                    isComplete = complete,
+                    responseCount = state.responseCount ?: groups.size,
+                    fileCount = state.fileCount ?: 0,
+                    groups = groups,
+                )
+            )
+            if (complete) return true
+            delay(searchPollIntervalMs)
+            state = fetchState(id)
+        }
+    }
 
     private suspend fun fetchState(id: String): SearchStateDto {
         var lastCode = 0
@@ -142,18 +182,18 @@ open class SlskdGatewayImpl private constructor(
         throw IOException("slskd search $id not reachable (last HTTP $lastCode)")
     }
 
-    private suspend fun groupAndRemember(state: SearchStateDto): List<ResultGroup> {
+    private suspend fun groupAndRemember(id: String, memory: SearchMemory, state: SearchStateDto): List<ResultGroup> {
         // Live slskd 0.26.1 quirk: GET /searches/{id} reports responseCount but ships an
         // empty responses array; the per-response payload only lives on the
         // /responses sub-resource. Fetch it every poll (recorded in slsk/SPIKE.md).
         val inline = state.responses
         val responses = if (!inline.isNullOrEmpty()) inline
-        else runCatching { api.searchResponses(state.id ?: "") }.getOrNull()
+        else runCatching { api.searchResponses(state.id ?: id) }.getOrNull()
             ?.body().orEmpty()
         if (responses.isEmpty() && (state.responseCount ?: 0) > 0) {
-            // Responses exist server-side but this fetch failed/returned nothing:
-            // keep the last known result set instead of wiping the list mid-search.
-            return lastKnownGroups
+            // Responses exist server-side but this fetch failed/returned nothing yet: keep THIS
+            // search's last known result set (empty on its first polls) instead of wiping the list.
+            return memory.lastKnownGroups
         }
         val peers = responses.map {
             GroupingEngine.PeerFiles(
@@ -165,27 +205,41 @@ open class SlskdGatewayImpl private constructor(
             )
         }
         val groups = GroupingEngine().group(peers)
-        lastKnownGroups = groups
-        for (group in groups) {
-            val directories = lastSearchFiles.getOrPut(group.username) { HashMap() }
-            val existing = directories.getOrPut(group.directory) { mutableListOf() }
-            for (file in group.files) {
-                if (existing.none { it.filename == file.filename }) existing.add(file)
+        synchronized(memory) {
+            memory.lastKnownGroups = groups
+            for (group in groups) {
+                val directories = memory.files.getOrPut(group.username) { HashMap() }
+                val existing = directories.getOrPut(group.directory) { mutableListOf() }
+                for (file in group.files) {
+                    if (existing.none { it.filename == file.filename }) existing.add(file)
+                }
             }
         }
         return groups
     }
 
-    private fun rememberResults(responses: List<com.github.pandeiro.tempore.slsk.core.api.SearchResponseDto>?) {
+    private fun rememberResults(memory: SearchMemory, responses: List<com.github.pandeiro.tempore.slsk.core.api.SearchResponseDto>?) {
         if (responses == null) return
-        for (response in responses) {
-            val name = response.username ?: continue
-            val byDirectory = lastSearchFiles.getOrPut(name) { HashMap() }
-            for (file in SlskdMapper.filesOf(response)) {
-                val existing = byDirectory.getOrPut(file.directory) { mutableListOf() }
-                if (existing.none { it.filename == file.filename }) existing.add(file)
+        synchronized(memory) {
+            for (response in responses) {
+                val name = response.username ?: continue
+                val byDirectory = memory.files.getOrPut(name) { HashMap() }
+                for (file in SlskdMapper.filesOf(response)) {
+                    val existing = byDirectory.getOrPut(file.directory) { mutableListOf() }
+                    if (existing.none { it.filename == file.filename }) existing.add(file)
+                }
             }
         }
+    }
+
+    /** Remembered hits for (username, directory), newest search first. */
+    private fun rememberedFiles(username: String, directory: String): List<RemoteFile> {
+        val newestFirst = synchronized(memories) { memories.values.toList().asReversed() }
+        for (memory in newestFirst) {
+            val hits = synchronized(memory) { memory.files[username]?.get(directory)?.toList() }
+            if (!hits.isNullOrEmpty()) return hits
+        }
+        return emptyList()
     }
 
     // ---------------------------------------------------------- folder contents
@@ -207,7 +261,7 @@ open class SlskdGatewayImpl private constructor(
                     response.errorBody()?.close()
                 }
             }.getOrNull()
-            val cached = lastSearchFiles[username]?.get(directory)?.filter { !it.isLocked }.orEmpty()
+            val cached = rememberedFiles(username, directory).filter { !it.isLocked }
             live?.takeIf { it.isNotEmpty() } ?: cached
         }
 
@@ -419,3 +473,5 @@ internal fun String.ensureTrailingSlash(): String = when {
     endsWith('/') -> this
     else -> "$this/"
 }
+/** Searches whose hits/fallback set the gateway keeps in memory (matches the coordinator LRU). */
+private const val SEARCH_MEMORY_LIMIT = 3

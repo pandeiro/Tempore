@@ -2,6 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/slsk_action_refine"
+        android:icon="@drawable/slsk_ic_edit"
+        android:title="@string/slsk_results_refine"
+        app:iconTint="?attr/colorOnSurface"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/slsk_action_filter"
         android:icon="@drawable/slsk_ic_filter"
         android:title="@string/slsk_results_filter"

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Inflated into upstream's SearchBar by SlskSearchScreen (no upstream XML change). -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/slsk_action_search_downloads"
+        android:icon="@drawable/slsk_ic_transfer"
+        android:title="@string/slsk_search_downloads"
+        app:iconTint="?attr/colorOnSurface"
+        app:showAsAction="always" />
+</menu>

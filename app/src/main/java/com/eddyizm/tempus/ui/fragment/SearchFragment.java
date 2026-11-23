@@ -70,8 +70,8 @@ public class SearchFragment extends Fragment implements ClickCallback {
 
         initSearchResultView();
         initSearchView();
-        SlskSeams.attachScopeToggle(this, bind.emptyResponseContainer);
-        inputFocus();
+        SlskSeams.attachSearchScreen(this, bind.searchBar, bind.searchView, bind.searchViewSuggestionContainer, bind.emptyResponseContainer, this::search);
+        if (SlskSeams.shouldAutoShow(this)) inputFocus();
 
         return view;
     }
@@ -182,6 +182,7 @@ public class SearchFragment extends Fragment implements ClickCallback {
     }
 
     public void setRecentSuggestions() {
+        if (SlskSeams.ownsSuggestions(this)) return;
         bind.searchViewSuggestionContainer.removeAllViews();
 
         for (String suggestion : searchViewModel.getRecentSearchSuggestion()) {
@@ -206,6 +207,7 @@ public class SearchFragment extends Fragment implements ClickCallback {
     }
 
     public void setSearchSuggestions(String query) {
+        if (SlskSeams.ownsSuggestions(this)) return;
         searchViewModel.getSearchSuggestion(query).observe(getViewLifecycleOwner(), suggestions -> {
             bind.searchViewSuggestionContainer.removeAllViews();
 

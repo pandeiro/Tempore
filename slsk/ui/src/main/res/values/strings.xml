@@ -4,6 +4,23 @@
     <string name="slsk_scope_soulseek">Soulseek</string>
     <string name="slsk_search_cta_title">Not in your library? Search Soulseek</string>
     <string name="slsk_search_cta_subtitle">Search other users\u2019 shares through your slskd</string>
+    <string name="slsk_search_cta_title_query">Not in your library? Search Soulseek for \u201c%1$s\u201d</string>
+
+    <!-- Search screen (PLAN.md §8) -->
+    <string name="slsk_search_hint_soulseek">Search Soulseek (any words)</string>
+    <string name="slsk_search_recent_library">Recent searches</string>
+    <string name="slsk_search_recent_soulseek">Recent Soulseek searches</string>
+    <string name="slsk_search_show_all">Show all (%1$d)</string>
+    <string name="slsk_search_show_fewer">Show fewer</string>
+    <string name="slsk_search_resume_title">Last results: \u201c%1$s\u201d</string>
+    <string name="slsk_search_status_searching">Searching \u00b7 %1$s</string>
+    <string name="slsk_search_status_joiner">%1$s \u00b7 %2$s</string>
+    <string name="slsk_search_downloads">Downloads</string>
+    <string name="slsk_search_remove_recent">Remove from history</string>
+    <plurals name="slsk_search_folders">
+        <item quantity="one">%d folder</item>
+        <item quantity="other">%d folders</item>
+    </plurals>
 
     <!-- Results -->
     <string name="slsk_results_active_transfers">%1$d active transfer(s)</string>
@@ -62,6 +79,9 @@
     <string name="slsk_error_disconnected">slskd is up but not connected to the Soulseek network. Searching is paused until it reconnects.</string>
     <string name="slsk_error_not_configured">Set up slskd first.</string>
     <string name="slsk_error_search_failed">The search failed. Try again.</string>
+    <string name="slsk_error_search_expired">slskd no longer has this search.</string>
+    <string name="slsk_run_again">Run again</string>
+    <string name="slsk_results_refine">Edit search</string>
     <string name="slsk_version_notice">Connected slskd %1$s is newer than the tested range (%2$s\u2013%3$s). Report odd results.</string>
     <string name="slsk_retry">Retry</string>
     <string name="slsk_cancel">Cancel</string>
