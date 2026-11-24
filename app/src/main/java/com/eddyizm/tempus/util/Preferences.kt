@@ -965,7 +965,7 @@ object Preferences {
     
     @JvmStatic
     fun isGithubUpdateEnabled(): Boolean {
-        return App.getInstance().preferences.getBoolean(GITHUB_UPDATE_CHECK, true)
+        return App.getInstance().preferences.getBoolean(GITHUB_UPDATE_CHECK, false)
     }
 
     @JvmStatic

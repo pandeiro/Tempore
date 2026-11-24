@@ -138,13 +138,14 @@ interface; Library search and Soulseek search are never blended.
 - New code: `:slsk:core` (no upstream imports), `:slsk:ui` (`slsk_` resource prefix), glue
   sources compiled into `:app` via the S2 hook; hook scripts `slsk/gradle/*.gradle`;
   own catalog `slsk/gradle/slsk.versions.toml`; guard script `slsk/tools/check-seams.sh`
-  budget ≤16 files / ≤150 added lines vs upstream merge-base (excl. `slsk/`, fork-doc layer,
-  `slsk_*.yml`).
+  budget ≤18 files / ≤150 added lines vs upstream merge-base (excl. `slsk/`, fork-doc layer,
+  `slsk_*.yml`; raised 16 → 18 for seam S8/S9, the update-check rechannel).
 - Upstream edits allowed only at registered seams: S1 `settings.gradle`, S2 `app/build.gradle`,
   S3 `SearchFragment.java`, S4 `fragment_search.xml`, S5 `global_preferences.xml` +
-  `SettingsContainerFragment.java`, S6 `nav_graph.xml`, S7 `App.java`, R1 manifest,
-  R2 default `app_name`, R3 rebrand icon recolors, R4 launcher-adjacent recolors + login
-  shortcut icon (`MainActivity.java`) — all recorded with anchors in `slsk/SEAMS.md`.
+  `SettingsContainerFragment.java`, S6 `nav_graph.xml`, S7 `App.java`, S8 `Github.java`,
+  S9 `Preferences.kt`, R1 manifest, R2 default `app_name` + `support_url`-adjacent strings,
+  R3 rebrand icon recolors, R4 launcher-adjacent recolors + login shortcut icon
+  (`MainActivity.java`) — all recorded with anchors in `slsk/SEAMS.md`.
 - Sync: upstream remotes are not auto-synced by CI; on each upstream release create a
   `sync/YYYY-MM-DD` branch off main, merge the upstream tag, re-apply seams per SEAMS.md,
   re-run `slsk/tools/check-seams.sh` + the build gate below.
@@ -153,6 +154,28 @@ interface; Library search and Soulseek search are never blended.
 - Device: Pixel 10a via adb UI automation; servers: slskd 0.26.1.0 (VPS) + Navidrome 0.64.2.
 - Golden fixtures under `slsk/contract/fixtures/` drive unit tests (MockWebServer) and the
   seam guard; live-API facts live in `slsk/SPIKE.md`.
+
+### 2.7 Update check (fork release channel)
+
+- The GitHub update check polls the **fork's own release channel**, never upstream:
+  `Github.java` queries `pandeiro/Tempore` (API `/repos/pandeiro/Tempore/releases/latest`,
+  prerelease `-dev` tags excluded by GitHub automatically). Upstream tags never drive the
+  fork's dialog — that was the "attached to upstream" nag: the fork sat below upstream's
+  latest version forever (live-checked 2026-11-23: upstream latest published release is
+  `v4.32.0`), so every app start (once per 24 h) offered upstream APKs the fork cannot
+  even install (different appId/signature).
+  **Live fact (2026-11-23)**: `pandeiro/Tempore` is public but has no published GitHub
+  releases yet (tags only), so `/releases/latest` 404s → `SystemRepository` leaves the
+  LiveData unset → observer no-ops → silent skip until the first stable fork release is
+  published (`github_release.yml` publishes one on every non-dev `v*` tag).
+- **Opt-in, off by default**: `github_update_check` preference defaults to `false`
+  (`Preferences.kt` gate + `global_preferences.xml` SwitchPreference). Fresh installs never
+  phone GitHub or show the dialog until the user enables Settings → Updates. The 24-hour
+  snooze (`NEXT_UPDATE_CHECK`, set by the dialog's negative button) and the
+  version-name/tag comparison (`UpdateUtil.showUpdateDialog`) are unchanged.
+- Dialog/UX unchanged: positive button opens the fork release page (`htmlUrl` of the
+  matched release), negative snoozes 24 h, neutral opens the support link.
+- `degoogled` flavor still never checks (existing flavor gate in `MainActivity`).
 
 ## 3. Verification gates (definition of done)
 
@@ -180,6 +203,7 @@ is exercised at feature milestones against the real servers.
 | D8 | Superseded/stopped Soulseek searches are stopped (PUT), not DELETEd | keeps them reopenable from history; slskd's own retention (or its UI) clears them |
 | D6 | Epoch millis (no java.time) | upstream ships no core-library desugaring; minSdk 24 |
 | D7 | Fork keeps upstream Kotlin package | only appId/label/icon change; seams stay tiny for frictionless upstream merges |
+| D9 | Update check is opt-in and polls the fork repo (`pandeiro/Tempore`), never upstream | the fork can never match upstream's version curve, so the default-on check nagged every start with APKs the fork cannot install (different appId/signature); silent network call at every cold start also conflicts with minimal-footprint rebrand |
 
 ## 5. Merged spec reference (from the 2026-11-07 drafts; now the only copy)
 
@@ -441,6 +465,42 @@ scratch branch (green/red/conflict report only) — TODO optional for this fork.
   (§8.2).
 - Verification: §3 gate + `assembleTempusRelease` (results in the PR). Device acceptance
   (§8.5) is pending.
+
+### 2026-11-23 — Update check: opt-in + fork release channel (seams S8/S9)
+- **Problem**: the GitHub update check (tempus flavor, `MainActivity.checkTempusUpdate()`,
+  fires at every app start, throttled to once per 24 h) polled **upstream**
+  (`eddyizm/Tempus`, hardcoded in `Github.java`), so the fork compared its `versionName`
+  against upstream's release curve (`4.31.0-tempore.N` < upstream `v4.32.0` while the
+  fork lagged the sync; upstream's next release would re-trigger it even at parity). The
+  dialog nagged on every cold start — offering upstream APKs the fork cannot install
+  (different appId `com.github.pandeiro.tempore.*`, fork keystore). Default was on
+  (`github_update_check` default `true`), buried in Settings → Updates.
+- **Decision (D9, spec §2.7)**: opt-in by default + poll the fork's own releases.
+  (Decision renumbered D8 → D9 during the merge: search-UX already took D8.)
+- **Implemented (2026-11-23, branch `fix/update-check-opt-in`, worktree
+  `Tempore-update-check`, remerged on top of the v4.32.0 sync + search-UX epic)**; diff:
+  1. `Github.java` (seam S8): `OWNER` `"eddyizm"` → `"pandeiro"`, `REPO` `"Tempus"` →
+     `"Tempore"` — `/releases/latest` ignores prerelease `-dev` tags, so the fork's
+     stable channel is the comparison target.
+  2. `Preferences.kt` (seam S9): `isGithubUpdateEnabled()` default `true` → `false`.
+  3. `global_preferences.xml` (S5 amendment): `SwitchPreference` `defaultValue` `true` →
+     `false`.
+  4. `values/strings.xml` (R2 amendment): reworded default-locale
+     `settings_github_update_summary` to reflect opt-in + fork channel (per-locale
+     copies untouched, R2 convention).
+  Gates (post-remerge): `assembleTempusDebug assembleDegoogledDebug
+  testTempusDebugUnitTest lintDegoogledDebug :slsk:core:testDebugUnitTest`;
+  `slsk/tools/check-seams.sh` (budget 18). Device checks pending: fresh install
+  (clear data) → no dialog and no GitHub traffic on start; Settings → Updates → enable
+  → silent skip while the fork has no published release, then once-per-24-h dialog when
+  a stable fork tag > versionName; negative button snoozes.
+- **Unchanged on purpose**: 24-h snooze via the dialog's negative button
+  (`NEXT_UPDATE_CHECK`), `UpdateUtil.showUpdateDialog` tag comparison (verified
+  compatible with the `-tempore.N` versionName suffix: divergence is detected in the
+  first two numeric parts; equal versions hit the suffix parse-fail path and return
+  false — no false positive), flavor gate (`degoogled` never checks), dialog UX
+  (release page / snooze / support link). `support_url` still points at upstream
+  ko-fi — left as-is (see backlog).
 
 ## 7. Backlog (post-MVP candidates)
 

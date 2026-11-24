@@ -668,7 +668,7 @@
             app:summary="@string/settings_github_update_summary" />
         <SwitchPreference
             android:title="@string/settings_github_update_title"
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="github_update_check" />
     </com.eddyizm.tempus.util.ClickablePreferenceCategory>
 
