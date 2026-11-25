@@ -502,6 +502,26 @@ scratch branch (green/red/conflict report only) — TODO optional for this fork.
   (release page / snooze / support link). `support_url` still points at upstream
   ko-fi — left as-is (see backlog).
 
+### 2026-11-24 — Artist page: no release type inferred from track count (issue #6)
+- **Problem**: upstream `ArtistPageViewModel.sectionType(AlbumID3)` fell back to a
+  song-count heuristic when the server reports no `releaseTypes` (absent, empty list, or
+  blank first entry as gonic sends): ≤2 tracks → "single", 3–7 → "ep", ≥8 → "album".
+  Tagless releases — the common case for Soulseek downloads, since the slsk pipeline
+  writes no tags — were therefore labelled **EP** on the artist page regardless of what
+  they actually are. Upstream Tempus behaviour, not a fork regression.
+- **Decision**: absence of metadata must not assert a release type. The track-count
+  heuristic is removed; with no server-reported type the release is filed under
+  **album** (the issue's preferred option 1). Explicit metadata still always wins and is
+  lowercased; unknown types still get their own title-cased section. Cosmetic,
+  artist-page bucket only — nothing written to files, server, or DB.
+- **Implemented**: `sectionType` returns `"album"` as the fallback; `getAutoType`
+  deleted; tests in `ArtistPageViewModelTest` updated to pin the new fallback (blank,
+  empty, null, and `[""]` cases all → `"album"`). `AlbumSectionsAdapter` already titles
+  and orders "album" first, so no UI change beyond re-bucketing.
+- **Verification**: `assembleTempusDebug assembleDegoogledDebug testTempusDebugUnitTest
+  lintDegoogledDebug :slsk:core:testDebugUnitTest`; `slsk/tools/check-seams.sh`.
+  Device check pending: artist page of a tagless 3–7-track release shows "Album" section.
+
 ## 7. Backlog (post-MVP candidates)
 
 - Revisit `POST /transfers/downloads/batches` when the server upgrades past slskd 0.26.x
