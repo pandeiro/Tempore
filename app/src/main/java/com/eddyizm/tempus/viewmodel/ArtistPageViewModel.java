@@ -98,19 +98,10 @@ public class ArtistPageViewModel extends AndroidViewModel {
             }
         }
 
-        return getAutoType(album);
-    }
-
-    private static String getAutoType(AlbumID3 album) {
-        // Fallback to song count if releaseTypes is not available
-        int songCount = album.getSongCount() != null ? album.getSongCount() : 0;
-        if (songCount >= 8) {
-            return "album";
-        } else if (songCount <= 2) {
-            return "single";
-        } else {
-            return "ep";
-        }
+        // No server-reported release type: don't infer one from the track count. Tagless
+        // releases (e.g. Soulseek downloads) were mislabelled "single"/"ep" by song count
+        // alone (issue #6); absence of metadata defaults to "album".
+        return "album";
     }
 
     public LiveData<Map<String, List<AlbumID3>>> getMapOfAlbums() { return mapOfAlbums; }

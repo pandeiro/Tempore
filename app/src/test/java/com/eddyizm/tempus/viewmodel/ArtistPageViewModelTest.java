@@ -31,15 +31,17 @@ public class ArtistPageViewModelTest {
     // gonic reports [""] rather than omitting the field. Without the blank check the group
     // key is "" and AlbumSectionsAdapter reads the first character of it.
     @Test
-    public void sectionType_fallsBackToTheSongCountWhenTheReleaseTypeIsBlank() {
+    public void sectionType_fallsBackToAlbumWhenTheReleaseTypeIsBlank() {
         assertEquals("album", ArtistPageViewModel.sectionType(album(10, Arrays.asList(""))));
-        assertEquals("single", ArtistPageViewModel.sectionType(album(2, Arrays.asList("   "))));
+        assertEquals("album", ArtistPageViewModel.sectionType(album(2, Arrays.asList("   "))));
     }
 
+    // Absence of metadata must not assert a release type: a tagless 10-track album and a
+    // tagless 3-track release are both just "album" (issue #6).
     @Test
-    public void sectionType_fallsBackToTheSongCountWithNoReleaseTypeAtAll() {
+    public void sectionType_fallsBackToAlbumWithNoReleaseTypeAtAll() {
         assertEquals("album", ArtistPageViewModel.sectionType(album(8, null)));
-        assertEquals("ep", ArtistPageViewModel.sectionType(album(3, Collections.emptyList())));
-        assertEquals("single", ArtistPageViewModel.sectionType(album(2, Collections.singletonList(null))));
+        assertEquals("album", ArtistPageViewModel.sectionType(album(3, Collections.emptyList())));
+        assertEquals("album", ArtistPageViewModel.sectionType(album(2, Collections.singletonList(null))));
     }
 }
