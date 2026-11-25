@@ -518,8 +518,17 @@ scratch branch (green/red/conflict report only) — TODO optional for this fork.
   deleted; tests in `ArtistPageViewModelTest` updated to pin the new fallback (blank,
   empty, null, and `[""]` cases all → `"album"`). `AlbumSectionsAdapter` already titles
   and orders "album" first, so no UI change beyond re-bucketing.
+- **Seam (S10)**: this supersedes upstream behavior in an upstream file, so it is
+  registered in `slsk/SEAMS.md` (anchor = the fork comment above the fallback return)
+  with an `anchor_check` in `slsk/tools/check-seams.sh`; guard budget raised
+  18 → 20 files (rules line + script comment, R3/R4/S8-S9 precedent) — the two touched
+  files (`ArtistPageViewModel.java`, its test) were upstream-identical before. Divergence
+  kept minimal: net −9 lines vs upstream, one file + its test, artist-page bucket only.
+  Candidate to upstream so the seam can be dropped (issue exists upstream; unfixed there
+  as of `be56e984`).
 - **Verification**: `assembleTempusDebug assembleDegoogledDebug testTempusDebugUnitTest
-  lintDegoogledDebug :slsk:core:testDebugUnitTest`; `slsk/tools/check-seams.sh`.
+  lintDegoogledDebug :slsk:core:testDebugUnitTest`; `slsk/tools/check-seams.sh`
+  (20 files / 66 added lines vs raised budget 20 / 150).
   Device check pending: artist page of a tagless 3–7-track release shows "Album" section.
 
 ## 7. Backlog (post-MVP candidates)
