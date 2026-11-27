@@ -612,6 +612,9 @@ scratch branch (green/red/conflict report only) — TODO optional for this fork.
 - **Verification**: `check-seams.sh` unchanged-green; local `assembleTempusDebug
   -PtemporeRc=99` confirms the override (versionCode `530099`, versionName
   `4.32.0-tempore.99`); release train + sentinel verified on first CI runs.
+- **Seam (S11)**: the legacy `github_release.yml` guard edit is a registered upstream-file
+  seam (SEAMS.md, anchor-check in `slsk/tools/check-seams.sh`); the budget is raised
+  20 → 21 files for it.
 - **Deferred**: none — both lanes shipped together; legacy `github_release.yml` /
   `github_prerelease.yml` kept for hand-cut tags but idle in normal operation.
 - **Review round 1 (PR #8, 2026-11-27)**: fixed broken `git push`/`gh pr create` line in

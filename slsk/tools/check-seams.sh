@@ -15,9 +15,10 @@ echo "seam diff outside slsk/ + fork docs: $FILES files, $ADDED added lines"
 # fork-owned rebrand-identity resources (seam R3) raised this from 12;
 # launcher-adjacent recolors + shortcut icon (seam R4) raised it to 16;
 # update-check rechannel (seams S8/S9) raised it to 18;
-# artist-page release-type fallback (seam S10, issue #6) raised it to 20.
-if [ "$FILES" -gt 20 ] || [ "$ADDED" -gt 150 ]; then
-  echo "FAIL: seam budget exceeded (max 20 files / 150 added lines)" >&2
+# artist-page release-type fallback (seam S10, issue #6) raised it to 20;
+# github_release.yml tempore-tag guard (seam S11) raised it to 21.
+if [ "$FILES" -gt 21 ] || [ "$ADDED" -gt 150 ]; then
+  echo "FAIL: seam budget exceeded (max 21 files / 150 added lines)" >&2
   git diff --numstat "$BASE" HEAD -- . ':!slsk' ':!ARCHITECTURE.md' ':!PLAN.md' ':!README.md' ':!AGENTS.md' ':!CHANGELOG.md' ':!.github/workflows/slsk_*.yml'
   exit 1
 fi
