@@ -2,10 +2,17 @@
 // - wires :slsk:ui (+ its transitive :slsk:core) into every variant
 // - adds slsk/app-glue sources + resources to the app module (HostBridge, branding overlay)
 // - rebrands: applicationId com.github.pandeiro.tempore.*, versionName/Code -tempore.N
+// - version override: -PtemporeRc=N (used by CI release train, fork-release.yml) sets
+//   versionName "<base>-tempore.N" and versionCode baseCode*10000+N. Scheme widened from
+//   baseCode*100+N (2026-11-26): N is now an automated counter and must stay monotonic
+//   across upstream syncs (baseCode 53 -> 54 rolls the *10000 block, never backwards).
+//   Local/default builds keep N = 1 (old scheme's 5301 maps to 530001, still monotonic).
 // Setting ids is done here (still during evaluation); afterEvaluate is too late in AGP 9.
 def slskRoot = new File(rootDir, 'slsk')
 def temporeSuffix = '.tempore'
-def temporeRc = 1
+def temporeRc = (project.hasProperty('temporeRc')
+        ? (project.property('temporeRc') as int)
+        : 1)
 
 android {
     sourceSets {
@@ -37,7 +44,7 @@ android.productFlavors.all { flavor ->
 }
 
 android.defaultConfig {
-    versionCode (baseCode * 100 + temporeRc)
+    versionCode (baseCode * 10000 + temporeRc)
     versionName "${baseName}-tempore.${temporeRc}"
 }
 

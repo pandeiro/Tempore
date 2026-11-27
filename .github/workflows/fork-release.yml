@@ -1,0 +1,126 @@
+name: Fork Release Train
+
+# Cuts an installable Tempore prerelease on every merge to main (spec PLAN.md §2.8).
+# Stable releases: promote a prerelease on GitHub (uncheck "Set as a pre-release") —
+# the in-app update check (/releases/latest, spec §2.7) only sees promoted releases,
+# so automated builds never hijack the update channel.
+# Versioning (D10): versionName "<base>-tempore.<N>", versionCode baseCode*10000+N,
+# N = this workflow's run_number — monotonic by construction.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fork-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup JDK 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'zulu'
+          java-version: '21'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Seam guard
+        run: slsk/tools/check-seams.sh
+
+      - name: Test gate
+        run: |
+          chmod +x ./gradlew
+          ./gradlew check
+
+      - name: Publish Test Summary
+        uses: test-summary/action@v2
+        if: failure()
+        with:
+          paths: '**/build/test-results/**/*.xml'
+
+      - name: Compute fork release version
+        id: version
+        run: |
+          BASE_NAME=$(grep -m1 "versionName" app/build.gradle | sed "s/.*versionName *'\([^']*\)'.*/\1/")
+          BASE_CODE=$(grep -m1 "versionCode" app/build.gradle | grep -o '[0-9]\+')
+          N=${{ github.run_number }}
+          VERSION_NAME="${BASE_NAME}-tempore.${N}"
+          VERSION_CODE=$(( BASE_CODE * 10000 + N ))
+          echo "tempore_rc=${N}" >> "$GITHUB_OUTPUT"
+          echo "version_name=${VERSION_NAME}" >> "$GITHUB_OUTPUT"
+          echo "version_code=${VERSION_CODE}" >> "$GITHUB_OUTPUT"
+          echo "Release: ${VERSION_NAME} (versionCode ${VERSION_CODE})"
+
+      - name: Build release APKs
+        run: |
+          sed -ri '/org.gradle.toolchains.foojay-resolver-convention/d' settings.gradle
+          bash ./gradlew assembleTempusRelease assembleDegoogledRelease \
+            -PtemporeRc=${{ steps.version.outputs.tempore_rc }}
+
+      - name: Sign Tempus flavor
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: app/build/outputs/apk/tempus/release
+          signingKeyBase64: ${{ secrets.KEYSTORE_BASE64 }}
+          alias: ${{ secrets.KEY_ALIAS_GITHUB }}
+          keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD_GITHUB }}
+        env:
+          BUILD_TOOLS_VERSION: "36.0.0"
+
+      - name: Sign Degoogled flavor
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: app/build/outputs/apk/degoogled/release
+          signingKeyBase64: ${{ secrets.KEYSTORE_BASE64 }}
+          alias: ${{ secrets.KEY_ALIAS_GITHUB }}
+          keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD_GITHUB }}
+        env:
+          BUILD_TOOLS_VERSION: "36.0.0"
+
+      - name: Rename signed APKs
+        run: |
+          for dir in app/build/outputs/apk/tempus/release app/build/outputs/apk/degoogled/release; do
+            for file in "$dir"/*-signed.apk; do
+              [ -e "$file" ] || continue
+              mv "$file" "$(echo "$file" | sed -e 's/-unsigned-signed\.apk$/.apk/' -e 's/-signed\.apk$/.apk/')"
+            done
+          done
+
+      - name: Rename and compress mapping files
+        run: |
+          mv -v app/build/outputs/mapping/tempusRelease/mapping.txt app/build/outputs/mapping/tempusRelease/mapping_Tempus.txt
+          mv -v app/build/outputs/mapping/degoogledRelease/mapping.txt app/build/outputs/mapping/degoogledRelease/mapping_Degoogled.txt
+          gzip -v app/build/outputs/mapping/tempusRelease/mapping_Tempus.txt
+          gzip -v app/build/outputs/mapping/degoogledRelease/mapping_Degoogled.txt
+
+      - name: Publish prerelease
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.version_name }}
+          name: Tempore ${{ steps.version.outputs.version_name }}
+          body: |
+            Automated prerelease from main (${{ github.sha }}).
+            versionCode ${{ steps.version.outputs.version_code }}. Promote to stable by unchecking "Set as a pre-release".
+          prerelease: true
+          generate_release_notes: true
+          files: |
+            app/build/outputs/apk/tempus/release/*-release.apk
+            app/build/outputs/apk/degoogled/release/*-release.apk
+            app/build/outputs/mapping/tempusRelease/mapping_Tempus.txt.gz
+            app/build/outputs/mapping/degoogledRelease/mapping_Degoogled.txt.gz

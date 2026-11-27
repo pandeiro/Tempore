@@ -177,6 +177,49 @@ interface; Library search and Soulseek search are never blended.
   matched release), negative snoozes 24 h, neutral opens the support link.
 - `degoogled` flavor still never checks (existing flavor gate in `MainActivity`).
 
+### 2.8 Fork CI automation (release train + upstream sync sentinel)
+
+Two automated lanes keep the fork installable without hand-running Gradle (built 2026-11-26,
+branch `feat/automated-builds`); both are fork-owned workflows and touch no upstream files.
+
+- **Release train** (`.github/workflows/fork-release.yml`, trigger: push to `main`,
+  plus `workflow_dispatch` re-run button): seam guard → `./gradlew check` → build
+  `assembleTempusRelease assembleDegoogledRelease` → sign both flavors with the fork
+  keystore → publish a GitHub **prerelease** tagged `v<versionName>` with both APKs and
+  gzipped R8 mapping files. Concurrency group `fork-release` serializes runs.
+- **Stable lane = promoted prerelease**: the in-app update check polls `/releases/latest`
+  (§2.7), which ignores prereleases, so automated builds can never hijack the update
+  channel. Cutting a stable release is unchecking "Set as a pre-release" on the chosen
+  prerelease; its tag already matches the APK `versionName`, so the update check matches
+  it. The legacy tag-driven `github_release.yml` stays for hand-cut tags but is no longer
+  the fork's release path (and does not build the play AAB lane — dropped from the train;
+  build it locally if a Play bundle is ever needed).
+- **Versioning (D10, supersedes the `baseCode*100+N` scheme of 2026-11-23)**:
+  `versionName` = `<upstream base>-tempore.<N>`, `versionCode` = `baseCode*10000+N`,
+  with `N` = the release train's `run_number` (monotonic by construction). The S2 hook
+  (`slsk/gradle/app-hook.gradle`) accepts `-PtemporeRc=N`; local/default builds keep `N=1`
+  (`530001` under the new scheme — still monotonic vs the hand-built `5201`/`5301`).
+  An upstream sync rolling `baseCode` 53→54 moves the `*10000` block forward, never back,
+  so update checks always see a rising `versionCode`.
+- **Signing**: the fork keystore (`slsk/keystore/tempore-release.jks`, gitignored) is
+  mirrored into GitHub Actions secrets (`KEYSTORE_BASE64`, `KEY_ALIAS_GITHUB`,
+  `KEYSTORE_PASSWORD`, `KEY_PASSWORD_GITHUB`, set 2026-11-26) so CI can sign. The local
+  `slsk/keystore/local.properties` remains the source of truth for local builds; losing
+  either copy still bricks updates for installed devices — back both up.
+- **Upstream sync sentinel** (`.github/workflows/fork-sync-sentinel.yml`, daily cron +
+  `workflow_dispatch` with `mode` input; implements the §5.6 "nightly dry-run" TODO and
+  the pre-validation half of the sync procedure):
+  - *check* (default): if the latest upstream release tag is not already an ancestor of
+    `main` (ancestry is the sync state — no marker files), dry-run `git merge --no-ff`
+    the tag on a scratch checkout, run `slsk/tools/check-seams.sh` + the full §5.6 build
+    gate, and create/update an open issue **"Upstream sync needed: vX.Y.Z"** with a
+    🟢 clean-merge+gates / 🟡 gates-red / 🔴 conflicts verdict and the brought-in commit list.
+  - *prepare*: the mechanical half of a sync — branch `sync/YYYY-MM-DD` off `main`, merge
+    the tag (input `tag` overrides latest), run the gates, push the branch, open the PR.
+    Refuses on conflict or red gates: those need a human at the seams (§2.5 discipline).
+  - The merge itself is never automated: verdict issues are reports, PRs are proposals;
+    a human reviews and merges, which triggers the release train.
+
 ## 3. Verification gates (definition of done)
 
 Per change set, all must pass:
@@ -204,6 +247,9 @@ is exercised at feature milestones against the real servers.
 | D6 | Epoch millis (no java.time) | upstream ships no core-library desugaring; minSdk 24 |
 | D7 | Fork keeps upstream Kotlin package | only appId/label/icon change; seams stay tiny for frictionless upstream merges |
 | D9 | Update check is opt-in and polls the fork repo (`pandeiro/Tempore`), never upstream | the fork can never match upstream's version curve, so the default-on check nagged every start with APKs the fork cannot install (different appId/signature); silent network call at every cold start also conflicts with minimal-footprint rebrand |
+| D10 | Automated fork releases (spec §2.8): every merge to `main` → signed prerelease; `N` = release-train `run_number`, `versionCode` = `baseCode*10000+N` (supersedes `baseCode*100+N`); stable = promoted prerelease | installable APKs from GitHub with zero local steps; `/releases/latest` ignores prereleases so the in-app update channel stays curated; scheme stays monotonic across upstream syncs |
+| D11 | Upstream merges stay human (§2.5): the sync sentinel only detects, dry-runs, gates, and prepares sync branches/PRs | an unattended merge can silently break a seam; the sentinel turns sync day into "read the verdict issue → prepare → review → merge" |
+| D12 | Fork keystore mirrored into GitHub Actions secrets (encrypted, set 2026-11-26) | required for CI-signed releases; personal fork key whose exposure surface is "GitHub Actions"; alternative (hand-signing every build) defeats the automation |
 
 ## 5. Merged spec reference (from the 2026-11-07 drafts; now the only copy)
 
@@ -530,6 +576,34 @@ scratch branch (green/red/conflict report only) — TODO optional for this fork.
   lintDegoogledDebug :slsk:core:testDebugUnitTest`; `slsk/tools/check-seams.sh`
   (20 files / 66 added lines vs raised budget 20 / 150).
   Device check pending: artist page of a tagless 3–7-track release shows "Album" section.
+
+### 2026-11-26 — Automated builds: fork release train + upstream sync sentinel (branch `feat/automated-builds`)
+
+- **Problem**: fork releases were hand-built and hand-signed (single lane, `5201`/`5301`
+  hand versioned); CI had run tests only (one PR-check run total, no secrets, no tags);
+  upstream syncs were detected manually despite §5.6 naming a nightly dry-run as an
+  optional TODO. End state requested: (1) upstream release → pre-validated sync with
+  minimal clicks; (2) merge to `main` → installable release on GitHub.
+- **Implemented** (spec §2.8, decisions D10–D12):
+  - Fork keystore mirrored into GitHub Actions secrets (`KEYSTORE_BASE64`,
+    `KEY_ALIAS_GITHUB`, `KEYSTORE_PASSWORD`, `KEY_PASSWORD_GITHUB`); alias `tempore`
+    verified against the JKS locally before upload.
+  - `slsk/gradle/app-hook.gradle`: `temporeRc` now overridable via `-PtemporeRc=N`;
+    version scheme widened to `baseCode*10000+N` (was `baseCode*100+N`) so the automated
+    counter stays monotonic across upstream syncs. Fork-owned file — no seam touched,
+    diff budget unchanged.
+  - `.github/workflows/fork-release.yml`: push to `main` (+ `workflow_dispatch`) →
+    seam guard → `./gradlew check` → both release flavors → sign → prerelease
+    `v<versionName>` with APKs + gzipped mappings. Version `N` = `run_number`.
+  - `.github/workflows/fork-sync-sentinel.yml`: daily dry-run of the latest upstream
+    release tag (ancestry vs `main` is the state), verdict issue
+    "Upstream sync needed: vX.Y.Z" (🟢/🟡/🔴), plus `prepare` mode that cuts
+    `sync/YYYY-MM-DD` + PR after gates go green.
+- **Verification**: `check-seams.sh` unchanged-green; local `assembleTempusDebug
+  -PtemporeRc=99` confirms the override (versionCode `530099`, versionName
+  `4.32.0-tempore.99`); release train + sentinel verified on first CI runs.
+- **Deferred**: none — both lanes shipped together; legacy `github_release.yml` /
+  `github_prerelease.yml` kept for hand-cut tags but idle in normal operation.
 
 ## 7. Backlog (post-MVP candidates)
 
