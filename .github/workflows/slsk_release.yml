@@ -10,6 +10,8 @@ name: Fork Release Train
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - '**.md'
   workflow_dispatch:
 
 permissions:
@@ -55,8 +57,9 @@ jobs:
       - name: Compute fork release version
         id: version
         run: |
-          BASE_NAME=$(grep -m1 "versionName" app/build.gradle | sed "s/.*versionName *'\([^']*\)'.*/\1/")
-          BASE_CODE=$(grep -m1 "versionCode" app/build.gradle | grep -o '[0-9]\+')
+          # Anchored to defaultConfig lines (not comments): "versionCode 53" / "versionName '4.32.0'"
+          BASE_NAME=$(grep -m1 -E "^[[:space:]]*versionName '" app/build.gradle | sed "s/.*versionName *'\([^']*\)'.*/\1/")
+          BASE_CODE=$(grep -m1 -E "^[[:space:]]*versionCode [0-9]+" app/build.gradle | grep -o '[0-9]\+')
           N=${{ github.run_number }}
           VERSION_NAME="${BASE_NAME}-tempore.${N}"
           VERSION_CODE=$(( BASE_CODE * 10000 + N ))

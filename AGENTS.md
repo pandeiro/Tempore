@@ -85,8 +85,8 @@ search-and-download feature backed by slskd (see `slsk/README.md`).
 ## CI / Release Process
 - **Prerelease** (`.github/workflows/github_prerelease.yml`): Triggered on `v*-dev*` tags, builds debug APKs, signs with release keystore
 - **Release** (`.github/workflows/github_release.yml`): Triggered on `v*` tags (non-dev), builds both release flavors, signs, creates GitHub release with APKs + ProGuard mapping files (gzipped)
-- **Fork release train** (`.github/workflows/fork-release.yml`): every merge to `main` cuts a signed prerelease (`v<versionName>`, APKs + mappings); stable = promoted prerelease; versioning per `PLAN.md` §2.8/D10 (`-PtemporeRc=N`, `versionCode baseCode*10000+N`)
-- **Fork sync sentinel** (`.github/workflows/fork-sync-sentinel.yml`): daily dry-run of the latest upstream release + verdict issue; `prepare` mode cuts the `sync/` branch + PR (spec §2.8/D11)
+- **Fork release train** (`.github/workflows/slsk_release.yml`): every merge to `main` cuts a signed prerelease (`v<versionName>`, APKs + mappings); stable = promoted prerelease; versioning per `PLAN.md` §2.8/D10 (`-PtemporeRc=N`, `versionCode baseCode*10000+N`)
+- **Fork sync sentinel** (`.github/workflows/slsk_sync_sentinel.yml`): daily dry-run of the latest upstream release + verdict issue; `prepare` mode cuts the `sync/` branch + PR (spec §2.8/D11)
 - **Signing**: Uses `r0adkll/sign-android-release` action with keystore from secrets (fork keystore mirrored into `pandeiro/Tempore` Actions secrets, spec §2.8/D12; local builds still use `slsk/keystore/local.properties`)
 - **Java**: Zulu JDK 21 in CI
 

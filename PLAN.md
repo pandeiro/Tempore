@@ -182,7 +182,7 @@ interface; Library search and Soulseek search are never blended.
 Two automated lanes keep the fork installable without hand-running Gradle (built 2026-11-26,
 branch `feat/automated-builds`); both are fork-owned workflows and touch no upstream files.
 
-- **Release train** (`.github/workflows/fork-release.yml`, trigger: push to `main`,
+- **Release train** (`.github/workflows/slsk_release.yml`, trigger: push to `main`,
   plus `workflow_dispatch` re-run button): seam guard → `./gradlew check` → build
   `assembleTempusRelease assembleDegoogledRelease` → sign both flavors with the fork
   keystore → publish a GitHub **prerelease** tagged `v<versionName>` with both APKs and
@@ -193,20 +193,24 @@ branch `feat/automated-builds`); both are fork-owned workflows and touch no upst
   prerelease; its tag already matches the APK `versionName`, so the update check matches
   it. The legacy tag-driven `github_release.yml` stays for hand-cut tags but is no longer
   the fork's release path (and does not build the play AAB lane — dropped from the train;
-  build it locally if a Play bundle is ever needed).
+  build it locally if a Play bundle is ever needed). Its job-level `if` excludes
+  `tempore` tags so train-published tags can never re-trigger it (double build / draft
+  conflict); it is the one intentionally divergent `.github` file, to be re-applied
+  across upstream syncs.
 - **Versioning (D10, supersedes the `baseCode*100+N` scheme of 2026-11-23)**:
   `versionName` = `<upstream base>-tempore.<N>`, `versionCode` = `baseCode*10000+N`,
   with `N` = the release train's `run_number` (monotonic by construction). The S2 hook
   (`slsk/gradle/app-hook.gradle`) accepts `-PtemporeRc=N`; local/default builds keep `N=1`
   (`530001` under the new scheme — still monotonic vs the hand-built `5201`/`5301`).
   An upstream sync rolling `baseCode` 53→54 moves the `*10000` block forward, never back,
-  so update checks always see a rising `versionCode`.
+  so update checks always see a rising `versionCode`. The scheme allows `N < 10000` fork
+  releases per upstream base before rollover — decades at current cadence.
 - **Signing**: the fork keystore (`slsk/keystore/tempore-release.jks`, gitignored) is
   mirrored into GitHub Actions secrets (`KEYSTORE_BASE64`, `KEY_ALIAS_GITHUB`,
   `KEYSTORE_PASSWORD`, `KEY_PASSWORD_GITHUB`, set 2026-11-26) so CI can sign. The local
   `slsk/keystore/local.properties` remains the source of truth for local builds; losing
   either copy still bricks updates for installed devices — back both up.
-- **Upstream sync sentinel** (`.github/workflows/fork-sync-sentinel.yml`, daily cron +
+- **Upstream sync sentinel** (`.github/workflows/slsk_sync_sentinel.yml`, daily cron +
   `workflow_dispatch` with `mode` input; implements the §5.6 "nightly dry-run" TODO and
   the pre-validation half of the sync procedure):
   - *check* (default): if the latest upstream release tag is not already an ancestor of
@@ -219,6 +223,12 @@ branch `feat/automated-builds`); both are fork-owned workflows and touch no upst
     Refuses on conflict or red gates: those need a human at the seams (§2.5 discipline).
   - The merge itself is never automated: verdict issues are reports, PRs are proposals;
     a human reviews and merges, which triggers the release train.
+- **Gate asymmetry is deliberate**: the sentinel runs the full §5.6 set (it stands in for
+  a sync day); the release train runs `./gradlew check` only, matching `github-pr.yml`,
+  because the train immediately assembles + signs both release flavors afterwards — the
+  build itself is the stronger gate there.
+- Sync PRs are named `sync/<date>-<tag-without-v>` (unique across same-day re-prepares);
+  verdict issues auto-close when the sentinel's ancestry check confirms the sync landed.
 
 ## 3. Verification gates (definition of done)
 
@@ -592,10 +602,10 @@ scratch branch (green/red/conflict report only) — TODO optional for this fork.
     version scheme widened to `baseCode*10000+N` (was `baseCode*100+N`) so the automated
     counter stays monotonic across upstream syncs. Fork-owned file — no seam touched,
     diff budget unchanged.
-  - `.github/workflows/fork-release.yml`: push to `main` (+ `workflow_dispatch`) →
+  - `.github/workflows/slsk_release.yml`: push to `main` (+ `workflow_dispatch`) →
     seam guard → `./gradlew check` → both release flavors → sign → prerelease
     `v<versionName>` with APKs + gzipped mappings. Version `N` = `run_number`.
-  - `.github/workflows/fork-sync-sentinel.yml`: daily dry-run of the latest upstream
+  - `.github/workflows/slsk_sync_sentinel.yml`: daily dry-run of the latest upstream
     release tag (ancestry vs `main` is the state), verdict issue
     "Upstream sync needed: vX.Y.Z" (🟢/🟡/🔴), plus `prepare` mode that cuts
     `sync/YYYY-MM-DD` + PR after gates go green.
@@ -604,6 +614,18 @@ scratch branch (green/red/conflict report only) — TODO optional for this fork.
   `4.32.0-tempore.99`); release train + sentinel verified on first CI runs.
 - **Deferred**: none — both lanes shipped together; legacy `github_release.yml` /
   `github_prerelease.yml` kept for hand-cut tags but idle in normal operation.
+- **Review round 1 (PR #8, 2026-11-27)**: fixed broken `git push`/`gh pr create` line in
+  the sentinel's prepare step (joined-line syntax error — ship-blocker); added
+  `pull-requests: write` to sentinel permissions; sync branches now
+  `sync/<date>-<tag>` (same-day uniqueness); prepare explicitly requires
+  `gate.outcome == 'success'` (was implicitly safe — failed gate fails the job — now
+  intent-explicit); legacy `github_release.yml` excludes `tempore` tags (train tags
+  `v<base>-tempore.N` would otherwise re-trigger it); upstream tag resolution moved to
+  `git ls-remote --tags upstream` (upstream-only, fork tags can't poison `LATEST`);
+  version greps anchored to defaultConfig lines; `paths-ignore: '**.md'` on the train;
+  sentinel auto-closes stale verdict issues when ancestry check confirms the sync
+  landed; remote-add insurance; PLAN gains gate-asymmetry rationale + versionCode
+  bound (`N < 10000` per upstream base).
 
 ## 7. Backlog (post-MVP candidates)
 

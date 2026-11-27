@@ -55,5 +55,6 @@ anchor_check app/src/main/java/com/eddyizm/tempus/ui/activity/MainActivity.java 
 anchor_check app/src/main/java/com/eddyizm/tempus/github/Github.java 'return "https://api.github.com/";'
 anchor_check app/src/main/java/com/eddyizm/tempus/util/Preferences.kt 'private const val GITHUB_UPDATE_CHECK = "github_update_check"'
 anchor_check app/src/main/java/com/eddyizm/tempus/viewmodel/ArtistPageViewModel.java 'absence of metadata defaults to "album"'
+anchor_check .github/workflows/github_release.yml "contains(github.ref_name, 'tempore')" # seam S11: train tags never re-trigger the legacy workflow
 
 echo "OK: seam budget + anchors pass"
