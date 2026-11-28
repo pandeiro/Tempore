@@ -1,0 +1,189 @@
+name: Fork Upstream Sync Sentinel
+
+# Automates detection + verification of upstream (Tempus) releases — spec PLAN.md §2.8,
+# procedure §5.6. Merges stay human (spec §2.5): CI only dry-runs, gates, and reports.
+#
+# check (default, daily cron): if a new upstream release tag is not yet an ancestor of
+#   main, dry-run merge it, run the seam guard + build gate, and open/update an
+#   "Upstream sync needed: vX.Y.Z" issue with a green/yellow/red verdict.
+# prepare (workflow_dispatch): create branch sync/YYYY-MM-DD off main, merge the tag,
+#   run the gates, push the branch, and open a PR — the "click a button" step. Refuses
+#   on conflicts (those need a human at the seams).
+
+on:
+  schedule:
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'check = verify + report issue; prepare = sync branch + PR'
+        type: choice
+        default: 'check'
+        options: ['check', 'prepare']
+      tag:
+        description: 'upstream tag to prepare (prepare mode; default = latest upstream release)'
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: fork-sync-sentinel
+  cancel-in-progress: false
+
+env:
+  UPSTREAM_REPO: https://github.com/eddyizm/tempus.git
+
+jobs:
+  sentinel:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup JDK 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'zulu'
+          java-version: '21'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Fetch upstream tags
+        run: |
+          git config rerere.enabled true
+          git remote remove upstream 2>/dev/null || true
+          git remote add upstream "$UPSTREAM_REPO"
+          git fetch upstream --tags
+
+      - name: Resolve latest upstream release
+        id: latest
+        run: |
+          # Resolve from the upstream remote only, so fork tags (v<base>-tempore.N)
+          # can never poison LATEST; server-side glob keeps the version shape strict.
+          LATEST=$(git ls-remote --tags upstream 'v[0-9]*.[0-9]*.[0-9]' \
+            | awk -F'/' '{print $3}' | grep -v '\^{}' | sort -V | tail -1)
+          echo "latest=${LATEST}" >> "$GITHUB_OUTPUT"
+          echo "Latest upstream release: ${LATEST}"
+          if git merge-base --is-ancestor "${LATEST}" HEAD; then
+            echo "already_synced=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "already_synced=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Close stale sync issues (sync already landed)
+        if: steps.latest.outputs.already_synced == 'true' && inputs.mode != 'prepare'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          for n in $(gh issue list --state open --search "Upstream sync needed in:title" --json number --jq '.[].number'); do
+            gh issue close "$n" --comment "Latest upstream release is already an ancestor of main — sync landed, closing."
+          done
+
+      - name: Dry-run merge upstream release
+        if: steps.latest.outputs.already_synced == 'false' || inputs.mode == 'prepare'
+        id: merge
+        run: |
+          LATEST=${{ inputs.tag || steps.latest.outputs.latest }}
+          MODE=${{ inputs.mode || 'check' }}
+          git checkout --detach
+          if git merge --no-ff "$LATEST" > /tmp/merge.log 2>&1; then
+            echo "conflict=false" >> "$GITHUB_OUTPUT"
+            COMMITS=$(git log --oneline ORIG_HEAD.."${LATEST}" | head -20)
+            {
+              echo "commits<<EOF"
+              echo "$COMMITS"
+              echo "EOF"
+            } >> "$GITHUB_OUTPUT"
+            echo "Clean merge of ${LATEST} (mode: ${MODE})"
+          else
+            cat /tmp/merge.log
+            CONFLICTS=$(git diff --name-only --diff-filter=U | tr '\n' ' ')
+            echo "conflict=true" >> "$GITHUB_OUTPUT"
+            echo "conflict_files=${CONFLICTS}" >> "$GITHUB_OUTPUT"
+            echo "CONFLICT merging ${LATEST}; files: ${CONFLICTS}"
+          fi
+
+      - name: Build gate (clean merge only)
+        if: steps.merge.outputs.conflict == 'false'
+        id: gate
+        run: |
+          chmod +x ./gradlew
+          slsk/tools/check-seams.sh
+          ./gradlew assembleTempusDebug assembleDegoogledDebug \
+            testTempusDebugUnitTest :slsk:core:testDebugUnitTest lintDegoogledDebug
+
+      - name: Prepare sync branch and PR
+        if: inputs.mode == 'prepare' && steps.merge.outputs.conflict == 'false' && steps.gate.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          LATEST: ${{ inputs.tag || steps.latest.outputs.latest }}
+        run: |
+          BRANCH="sync/$(date +%F)-${LATEST#v}"   # date + tag: unique across same-day re-prepares
+          git checkout -b "$BRANCH"   # merge tree carried over from the detached dry-run
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GH_REPO}.git"
+          git push -u origin "$BRANCH"
+          gh pr create \
+            --base main --head "$BRANCH" \
+            --title "sync ${LATEST} (prepared by sync sentinel)" \
+            --body "Automated sync branch for upstream ${LATEST}.
+          - Merge: clean
+          - Seam guard (\`slsk/tools/check-seams.sh\`): green
+          - Build gate (§5.6): green
+          - Upstream commits: see workflow summary.
+          Review the diff at the seams (\`slsk/SEAMS.md\`), then merge. Merging to main triggers the fork release train."
+
+      - name: Report verdict issue
+        if: always() && steps.latest.outputs.already_synced == 'false' && inputs.mode != 'prepare'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          LATEST: ${{ steps.latest.outputs.latest }}
+          CONFLICT: ${{ steps.merge.outputs.conflict }}
+          CONFLICT_FILES: ${{ steps.merge.outputs.conflict_files }}
+          COMMITS: ${{ steps.merge.outputs.commits }}
+          GATE_OUTCOME: ${{ steps.gate.outcome }}
+        run: |
+          if [ "${CONFLICT}" = "true" ]; then
+            VERDICT="🔴 Conflicts"
+            BODY_LINE="Dry-run merge conflicts at: ${CONFLICT_FILES:-unknown}. Resolve manually at the seams (slsk/SEAMS.md §5.6)."
+          elif [ "${GATE_OUTCOME}" != "success" ]; then
+            VERDICT="🟡 Clean merge, gates red"
+            BODY_LINE="Dry-run merge is clean but the seam guard or build gate failed — check the workflow run logs."
+          else
+            VERDICT="🟢 Clean merge, gates green"
+            BODY_LINE="Dry-run merge is clean; seam guard + §5.6 build gate passed. Use the sentinel's **prepare** mode to cut the sync branch + PR."
+          fi
+          STAMP="$(date -u '+%Y-%m-%d %H:%M UTC')"
+          ISSUE_BODY="${VERDICT} — ${LATEST} (${STAMP})
+          ${BODY_LINE}
+          Upstream commits brought in:
+          \`\`\`
+          ${COMMITS}
+          \`\`\`
+          _Verdicts are re-verified daily; this issue is updated in place until the sync lands (then it can be closed — future releases re-check ancestry against main)._"
+          ISSUE=$(gh issue list --state open --search "Upstream sync needed: ${LATEST} in:title" --json number --jq '.[0].number')
+          if [ -n "$ISSUE" ]; then
+            gh issue edit "$ISSUE" --body "$ISSUE_BODY"
+          else
+            gh issue create \
+              --title "Upstream sync needed: ${LATEST}" \
+              --body "$ISSUE_BODY"
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "## Sync sentinel"
+            echo "- Upstream latest: ${{ steps.latest.outputs.latest }}"
+            echo "- Already synced into main: ${{ steps.latest.outputs.already_synced }}"
+            echo "- Merge conflict: ${{ steps.merge.outputs.conflict }}"
+          } >> "$GITHUB_STEP_SUMMARY"
